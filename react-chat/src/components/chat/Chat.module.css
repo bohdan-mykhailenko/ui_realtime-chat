@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&family=Rubik+Bubbles&family=Rubik+Wet+Paint&display=swap');
+
+:root {
+  --first-color: #4FBAA7;
+  --second-color: #530B43;
+  --second-color-light: #3a032e;
+  --third-color: #8dbaad;
+  --fourth-color: #187358;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+}
+
+* {
+  margin: 0;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+
+.wrapper {
+  margin: 0 auto;
+}
+.body {
+  padding: 0 20px;
+  border: 5px solid var(--second-color);
+  border-radius: 20px;
+  width: 70%;
+  height: 70vh;
+  overflow-y: auto;
+  background-size: cover;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	background-image: url("../../imgs/image.png"), linear-gradient(0deg, rgb(47, 48, 20) 40%, rgb(23, 34, 51) 60%);
+	background-blend-mode: multiply;
+}
+
+.item {
+  padding: 7px;
+  border-radius: 20px;
+  background: var(--third-color);
+  max-width: 50%;
+  height: auto;
+  min-height: auto;
+  word-wrap: break-word;
+  overflow-y: auto;
+}
+
+.avatar{
+  border: 1px solid var(--second-color);
+}
+
+.name {
+  margin: 7px 7px 0 7px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.text {
+  margin: 3px;
+}
+
+.inputWrapper {
+  border: none;
+}
+
+.input {
+  padding: 10px 80px 10px 10px;
+  color: rgb(42, 6, 35);
+  font-size: 18px;
+  width: 100%;
+  height: auto;
+  border: 5px solid var(--second-color);
+  border-radius: 20px;
+  background: var(--third-color);
+  line-height: 27px;
+  letter-spacing: 0.7px;
+  resize: none;
+  font-weight: 600;
+}
+
+.input::placeholder {
+  color: #473c44;
+  font-size: 16px;
+}
+
+.button {
+  position: relative;
+  top: -62px;
+  right: 12px;
+  width: 70px;
+  height: 40px;
+  background: var(--second-color);
+  border-radius: 30px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+  box-sizing: border-box;
+  box-shadow: none;
+  border: 2px solid var(--third-color);
+}
+
+.button:hover {
+  fill: var(--first-color);
+  color: var(--first-color);
+  background: var(--second-color-light);
+}
+
+.button:active {
+  color: rgb(255, 255, 255);
+  background: var(--second-color-light);
+}
+
+.bottomItem {
+  margin: 100px;
+  background: transparent;
+}
+

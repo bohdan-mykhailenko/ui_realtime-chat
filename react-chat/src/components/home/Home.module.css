@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&family=Rubik+Bubbles&family=Rubik+Wet+Paint&display=swap');
+
+:root {
+  --first-color: #4FBAA7;
+  --second-color: #530B43;
+  --second-color-light: #3a032e;
+  --third-color: #8dbaad;
+  --fourth-color: #187358;
+}
+
+
+
+.wrapper {
+  margin: 0 auto;
+  width: 70%;
+  height: auto;
+  border: 5px solid var(--fourth-color);
+  border-radius: 20px;
+}
+
+.title {
+  font-size: 40px;
+  text-transform: uppercase;
+}
+
+.text {
+  padding: 10px;
+  word-wrap: break-word;
+  overflow: auto;
+}

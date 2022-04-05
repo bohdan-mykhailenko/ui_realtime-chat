@@ -1,36 +1,40 @@
 import React, { useContext } from 'react';
 import { Grid, Container, Button } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
-import { Context } from '../index';
+import { Context } from '../../index';
 import firebase from 'firebase/compat/app';
+import classes from './Login.module.css';
 
-const Login = () => {
+const Login = (setVisible) => {
   const { auth } = useContext(Context);
 
   const login = async () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     const { user } = await auth.signInWithPopup(provider);
+    setVisible(false);
   }
   return (
     <div>
-      <Container>
+      <Container >
         <Grid
           container
-          style={{ height: window.innerHeight - 50 }}
+          style={{
+            height: 'auto'
+          }}
           alignItems={'center'}
-          justify={'center'}>
+          justify={'center'}
+        >
           <Grid
+            className={classes.wrapper}
             container
-            style={{ width: 400, background: 'lightgray' }}
+            justifyContent={'center'}
             alignItems={'center'}
             direction={'column'}>
-            <Box p={5}>
-              <Button onClick={login} variant={'outlined'}>Log in with Google</Button>
-            </Box>
+            <button className={classes.button} onClick={login}>Log in with Google</button>
           </Grid>
         </Grid>
       </Container>
-    </div>
+    </div >
   )
 }
 

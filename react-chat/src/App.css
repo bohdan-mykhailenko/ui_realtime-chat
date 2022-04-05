@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+.root {
+  background: #dddced;
+}
+
 .lds-spinner {
   color: official;
   display: inline-block;
@@ -82,3 +86,6 @@
     opacity: 0;
   }
 }
+
+
+

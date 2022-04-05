@@ -1,11 +1,11 @@
-import { LOGIN_ROUTE, CHAT_ROUTE } from "./utils/consts";
-import Login from "./components/Login";
-import Chat from "./components/Chat";
+import { CHAT_ROUTE, HOME_ROUTE } from "./utils/consts";
+import Home from "./components/home/Home";
+import Chat from "./components/chat/Chat";
 
 export const publicRoutes = [
   {
-    path: LOGIN_ROUTE,
-    component: <Login />,
+    path: HOME_ROUTE,
+    component: <Home />,
   }
 ]
 

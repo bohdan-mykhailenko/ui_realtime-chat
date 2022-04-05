@@ -4,6 +4,18 @@ import App from './App';
 import firebase from "firebase/compat/app";
 import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
+import { ThemeProvider, createTheme } from '@material-ui/core';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#4FBAA7'
+    },
+    secondary: {
+      main: '#530B43'
+    }
+  }
+})
 
 const firebaseConfig = {
   apiKey: "AIzaSyAn2PO7wTGLc-Wr6sr0xG5RkkgulZPifxw",
@@ -28,7 +40,9 @@ ReactDOM.render(
     auth,
     firestore,
   }}>
-    <App />
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
   </Context.Provider>,
 
   document.getElementById('root')

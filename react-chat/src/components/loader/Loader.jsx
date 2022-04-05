@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Container } from '@material-ui/core';
-import '../App.css';
+import '../../App.css';
 
 const Loader = () => {
   return (

@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400;1,800&display=swap');
+
+:root {
+  --first-color: #4FBAA7;
+  --second-color: #530B43;
+  --second-color-light: #bd0a96;
+}
+
+* {
+  margin: 0;
+  font-family: 'Merriweather Sans', sans-serif;
+}
+
+.toolbar {
+  padding: 0 30px;
+  height: 100px;
+  box-shadow: none;
+  border-bottom: 5px solid var(--second-color);
+}
+
+.logo {
+  margin: 0 15px 0 0;
+  fill: var(--second-color);
+  width: 60px;
+  height: 60px;
+}
+
+.title {
+  color: var(--second-color);
+  font-weight: 800;
+  font-size: 50px;
+  letter-spacing: 2px;
+}
+
+.button {
+  width: 100px;
+  height: 45px;
+  background: var(--second-color);
+  border-radius: 30px;
+  font-size: 25px;
+  text-transform: capitalize;
+  font-weight: 600;
+  color: rgb(255, 255, 255);
+  box-sizing: border-box;
+  box-shadow: none;
+  border: none;
+}
+
+.button:hover,
+.title:hover,
+.logo:hover
+ {
+  fill: var(--first-color);
+  color: var(--first-color);
+  background: var(--second-color-light);
+}
+
+.button:active {
+  color: rgb(255, 255, 255);
+  background: var(--second-color-light);
+}
+
+#id {
+  width: 100px;
+  height: 100px;
+  background: #000;
+  border: 1px solid #000;
+}

@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { privateRoutes, publicRoutes } from '../routes';
-import { CHAT_ROUTE, LOGIN_ROUTE } from '../utils/consts';
+import { privateRoutes, publicRoutes } from '../../routes';
+import { CHAT_ROUTE, HOME_ROUTE } from '../../utils/consts';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Context } from '../index';
+import { Context } from '../../index';
 
 const AppRoater = () => {
   const { auth } = useContext(Context);
@@ -32,7 +32,7 @@ const AppRoater = () => {
             element={component}
             exact={true} />
         )}
-        {<Route path="*" element={<Navigate replace to={LOGIN_ROUTE} />} />}
+        {<Route path="*" element={<Navigate replace to={HOME_ROUTE} />} />}
       </Routes>
     )
 }
