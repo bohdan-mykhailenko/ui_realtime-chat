@@ -48,6 +48,7 @@ const Chat = () => {
         container
         style={{ height: window.innerHeight - 115, marginTop: 15 }}
         className={classes.wrapper}
+
         justifyContent={'center'}>
         <div
           className={classes.body} >
@@ -61,7 +62,7 @@ const Chat = () => {
                 marginLeft: user.uid === message.uid ? 'auto' : '10px',
                 width: 'fit-content'
               }}>
-              <Grid container>
+              <Grid container >
                 <Avatar src={message.photoURL} className={classes.avatar} />
                 <div className={classes.name}>
                   {message.displayName}
@@ -77,7 +78,6 @@ const Chat = () => {
           container
           direction={'column'}
           alignItems={'flex-end'}
-          style={{ width: '70%' }}
         >
           <textarea
             autoFocus
