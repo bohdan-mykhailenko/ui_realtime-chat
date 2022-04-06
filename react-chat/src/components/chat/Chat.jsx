@@ -44,22 +44,19 @@ const Chat = () => {
 
   return (
     <Container >
-      <Grid
-        container
-        style={{ height: window.innerHeight - 115, marginTop: 15 }}
-        className={classes.wrapper}
-
-        justifyContent={'center'}>
+      <div
+        className={classes.wrapper}>
         <div
-          className={classes.body} >
+          className={classes.body}>
           {messages.map(message =>
             <div
               className={classes.item}
               style={{
-                margin: 10,
+                margin: 5,
+                marginTop: 10,
                 border: user.uid === message.uid ? '3px solid green' : '3px solid #fff',
                 borderRadius: user.uid === message.uid ? '25px 25px 0px 25px' : '0px 25px 25px 25px',
-                marginLeft: user.uid === message.uid ? 'auto' : '10px',
+                marginLeft: user.uid === message.uid ? 'auto' : '5px',
                 width: 'fit-content'
               }}>
               <Grid container >
@@ -73,11 +70,8 @@ const Chat = () => {
           )}
           <div ref={bottomRef} className={classes.bottomItem}></div>
         </div>
-        <Grid
+        <div
           className={classes.inputWrapper}
-          container
-          direction={'column'}
-          alignItems={'flex-end'}
         >
           <textarea
             autoFocus
@@ -93,8 +87,8 @@ const Chat = () => {
             onClick={value && sendMessage}>
             Send
           </button>
-        </Grid>
-      </Grid >
+        </div>
+      </div >
     </Container >
   )
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Container } from '@material-ui/core';
-import '../../App.css';
+import classes from './Loader.module.css';
 
 const Loader = () => {
   return (
@@ -15,7 +15,8 @@ const Loader = () => {
           alignItems={'center'}
           direction={'column'}
         >
-          <div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+          <div class={classes.spinner}><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+          <h1 class={classes.title}>Loading...</h1>
         </Grid>
       </Grid>
     </Container>

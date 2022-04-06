@@ -13,7 +13,7 @@
 
 .toolbar {
   padding: 0 30px;
-  height: 100px;
+  height: 80px;
   box-shadow: none;
   border-bottom: 5px solid var(--second-color);
 }
@@ -68,6 +68,10 @@
 }
 
 @media(max-width: 992px) {
+  .toolbar {
+    padding: 0 20px;
+    height: 70px;
+  }
   .title {
     font-size: 40px;
   }
@@ -77,8 +81,10 @@
   }
 }
 
-
 @media(max-width: 767px) {
+  .toolbar {
+    height: 60px;
+  }
   .title {
     font-size: 35px;
   }
@@ -94,6 +100,10 @@
 }
 
 @media(max-width: 600px) {
+  .toolbar {
+    height: 50px;
+    border-bottom: 3px solid var(--second-color)
+  }
   .title {
     font-size: 30px;
   }
@@ -110,6 +120,9 @@
 }
 
 @media(max-width: 450px) {
+  .toolbar {
+    height: 35px;
+  }
   .title {
     font-size: 25px;
   }
