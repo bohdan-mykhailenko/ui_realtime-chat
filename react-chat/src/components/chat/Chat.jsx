@@ -8,6 +8,7 @@ import firebase from "firebase/compat/app";
 import Loader from '../loader/Loader';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import classes from './Chat.module.css';
+import SendIcon from '@mui/icons-material/Send';
 
 const Chat = () => {
   const btnRef = useRef(null);
@@ -54,7 +55,7 @@ const Chat = () => {
               style={{
                 margin: 5,
                 marginTop: 10,
-                border: user.uid === message.uid ? '3px solid green' : '3px solid #fff',
+                border: user.uid === message.uid ? '3px solid #4FBAA7' : '3px solid #555',
                 borderRadius: user.uid === message.uid ? '25px 25px 0px 25px' : '0px 25px 25px 25px',
                 marginLeft: user.uid === message.uid ? 'auto' : '5px',
                 width: 'fit-content'
@@ -74,7 +75,6 @@ const Chat = () => {
           className={classes.inputWrapper}
         >
           <textarea
-            autoFocus
             className={classes.input}
             placeholder={'Write a message...'}
             value={value}
@@ -85,7 +85,7 @@ const Chat = () => {
             ref={btnRef}
             className={classes.button}
             onClick={value && sendMessage}>
-            Send
+            <SendIcon fontSize={'large'} />
           </button>
         </div>
       </div >

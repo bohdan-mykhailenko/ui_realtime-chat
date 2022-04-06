@@ -20,12 +20,13 @@
   right: 0;
   left: 0;
   display:none;
-  background: rgba(0, 0, 0, 0.664);
+  z-index: 122;
+  background: rgba(2, 1, 14, 0.9);
 }
 
 .modalContent {
   padding: 25px;
-  background: var(--third-color);
+  background: rgb(58, 128, 93);
   border-radius: 50px;
   height: auto;
   width: auto;
@@ -38,6 +39,21 @@
   align-items: center;
 }
 
-.modal:hover {
 
+@media(max-width: 600px) {
+  .modalContent {
+    padding: 20px;
+  }
+}
+
+@media(max-width: 450px) {
+  .modalContent {
+    padding: 15px;
+  }
+}
+
+@media(max-width: 350px) {
+  .modalContent {
+    padding: 12px;
+  }
 }

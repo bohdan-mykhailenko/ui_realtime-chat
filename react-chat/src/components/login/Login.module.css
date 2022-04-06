@@ -25,17 +25,64 @@
   border-radius: 30px;
   font-size: 30px;
   font-weight: 600;
-  color: rgb(246, 246, 246);
+  color: #ddd;
   box-sizing: border-box;
   box-shadow: none;
-  border: 5px solid #fff;
+  border: 5px solid #ddd;
 }
 
 .button:hover,
 .button:active {
-  color:rgb(243, 158, 38);
+  color:#fff;
   box-sizing: border-box;
   box-shadow: none;
-  border: 5px solid rgb(243, 158, 38);
+  border: 5px solid #fff;
   background: #06503a;;
+}
+
+@media(max-width: 767px) {
+  .wrapper {
+    height: 120px;
+  }
+  
+  .button {
+    width: 330px;
+    height: 80px;
+  }
+}
+
+@media(max-width: 600px) {
+  .wrapper {
+    height: 100px;
+  }
+  
+  .button {
+    font-size: 28px;
+    width: 280px;
+    height: 80px;
+  }
+}
+
+@media(max-width: 450px) {
+  .wrapper {
+    height: 90px;
+  }
+  
+  .button {
+    font-size: 25px;
+    width: 240px;
+    height: 70px;
+  }
+}
+
+@media(max-width: 350px) {
+  .wrapper {
+    height: 80px;
+  }
+  
+  .button {
+    font-size: 20px;
+    width: 200px;
+    height: 60px;
+  }
 }

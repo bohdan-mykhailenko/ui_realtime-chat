@@ -22,7 +22,7 @@ const Navbar = () => {
   }
 
   return (
-    <AppBar color={'primary'} position="static">
+    <AppBar className={classes.appbar} color={'primary'} position="static">
       <Toolbar className={classes.toolbar} color={'primary'}>
         <Logo className={classes.logo} />
         <h1 className={classes.title} >

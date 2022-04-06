@@ -4,12 +4,10 @@
 :root {
   --first-color: #4FBAA7;
   --second-color: #530B43;
-  --second-color-light: #3a032e;
+  --second-color-light: #28001f;
   --third-color: #8dbaad;
   --fourth-color: #187358;
 }
-
-
 
 ::-webkit-scrollbar {
   width: 0;
@@ -45,12 +43,13 @@
 .item {
   padding: 7px;
   border-radius: 20px;
-  background: var(--third-color);
+  background: rgb(50, 43, 43);
   max-width: 50%;
   height: auto;
   min-height: auto;
   word-wrap: break-word;
   overflow-y: auto;
+  color: rgb(239, 207, 207);
 }
 
 .avatar{
@@ -61,6 +60,7 @@
   margin: 7px 7px 0 7px;
   font-size: 18px;
   font-weight: 700;
+  color: var(--first-color);
 }
 
 .text {
@@ -77,50 +77,40 @@
 }
 
 .input {
-  padding: 10px 80px 10px 10px;
-  color: rgb(42, 6, 35);
+  padding: 10px 50px 0 10px;
+  color: rgb(255, 247, 247);
   font-size: 18px;
   width: 100%;
   height: auto;
   border: 5px solid var(--second-color);
   border-radius: 20px;
-  background: var(--third-color);
+  background: #06796b;
   line-height: 1.5;
   letter-spacing: 0.7px;
   resize: none;
-  font-weight: 600;
+  font-weight: 400;
+}
+
+.input:focus {
+  border: 5px solid var(--second-color);
+  background: #043c3f;
 }
 
 .input::placeholder {
-  color: #473c44;
+  color: #c1bac4;
   font-size: 16px;
 }
 
 .button {
   position: relative;
-  top: -62px;
-  right: 12px;
-  width: 70px;
-  height: 40px;
-  background: var(--second-color);
-  border-radius: 30px;
-  font-size: 20px;
-  font-weight: 600;
-  color: #fff;
-  box-sizing: border-box;
-  box-shadow: none;
-  border: 2px solid var(--third-color);
-}
-
-.button:hover {
-  fill: var(--first-color);
-  color: var(--first-color);
-  background: var(--second-color-light);
-}
-
-.button:active {
-  color: rgb(255, 255, 255);
-  background: var(--second-color-light);
+  top: -57px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none; 
+  color:#fff;
 }
 
 .bottomItem {
@@ -132,7 +122,6 @@
  width: 100px;
  height: 100px;
 }
-
 
 @media(max-width: 767px) {
   .body {
@@ -156,15 +145,13 @@
     margin: 3px;
     font-size: 16px;
   }
-  .button {
-    top: -58px;
-    right: 12px;
-    width: 75px;
-    height: 35px;
-    font-size: 18px;
-  }
   .input {
-    padding: 10px 85px 10px 10px;
+    padding: 10px 55px 0 10px;
+  }
+  .button {
+    top: -57px;
+    right: 20px;
+    font-size: 18px;
   }
 } 
 
@@ -204,24 +191,27 @@
     font-size: 16px;
     border: 3px solid var(--second-color)
   }
+
+  .input:focus {
+    border:3px solid var(--second-color);
+  }
   
   .input::placeholder {
     font-size: 14px;
   }
+  .input {
+    padding: 10px 50px 0 10px;
+  }
   .button {
-    top: -58px;
-    right: 12px;
-    width: 65px;
-    height: 35px;
-    font-size: 17px;
+    top: -50px;
+    right: 15px;
   }
 }
 
 @media(max-width: 450px) {
   .body {
     padding: 0 1px;
-    margin: 2% 0;
-    height: 75vh;
+    height: 73vh;
   }
 
   .avatar{
@@ -240,15 +230,12 @@
   }
 
   .button {
-    top: -54px;
-    right: 12px;
-    width: 55px;
-    height: 30px;
-    font-size: 15px;
+    top: -47px;
+    right: 7px;
   }
 
   .input {
-    padding: 10px 65px 10px 10px;
+    padding: 7px 40px 0 7px;
     font-size: 16px;
   }
   
@@ -278,15 +265,12 @@
   }
 
   .button {
-    top: -52px;
+    top: -47px;
     right: 7px;
-    width: 55px;
-    height: 30px;
-    font-size: 15px;
   }
-  
+
   .input {
-    padding: 10px 50px 10px 10px;
+    padding: 7px 40px 0 7px;
     font-size: 15px;
   }
   

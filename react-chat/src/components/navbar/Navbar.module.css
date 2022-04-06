@@ -120,6 +120,9 @@
 }
 
 @media(max-width: 450px) {
+  /* .appbar {
+    position: fixed;
+  }  */
   .toolbar {
     height: 35px;
   }
