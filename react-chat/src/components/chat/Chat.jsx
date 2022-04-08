@@ -1,14 +1,14 @@
 import React, { useContext, useState, useRef } from 'react';
 import { Context } from '../../index';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Grid, Container, Button } from '@material-ui/core';
-import TextField from '@material-ui/core/TextField';
+import { Grid, Container } from '@material-ui/core';
 import Avatar from '@material-ui/core/Avatar';
 import firebase from "firebase/compat/app";
 import Loader from '../loader/Loader';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import classes from './Chat.module.css';
 import SendIcon from '@mui/icons-material/Send';
+import MyDate from '../date/MyDate'
 
 const Chat = () => {
   const btnRef = useRef(null);
@@ -21,7 +21,7 @@ const Chat = () => {
   )
 
   const sendMessage = async () => {
-    firestore.collection('messages').add({
+    await firestore.collection('messages').add({
       uid: user.uid,
       displayName: user.displayName,
       photoURL: user.photoURL,
@@ -45,8 +45,7 @@ const Chat = () => {
 
   return (
     <Container >
-      <div
-        className={classes.wrapper}>
+      <div className={classes.wrapper}>
         <div
           className={classes.body}>
           {messages.map(message =>
@@ -67,6 +66,7 @@ const Chat = () => {
                 </div>
               </Grid>
               <div className={classes.text}>{message.text}</div>
+              <MyDate message={message} />
             </div>
           )}
           <div ref={bottomRef} className={classes.bottomItem}></div>
@@ -75,6 +75,7 @@ const Chat = () => {
           className={classes.inputWrapper}
         >
           <textarea
+            rows='3'
             className={classes.input}
             placeholder={'Write a message...'}
             value={value}
@@ -85,9 +86,10 @@ const Chat = () => {
             ref={btnRef}
             className={classes.button}
             onClick={value && sendMessage}>
-            <SendIcon fontSize={'large'} />
+            <SendIcon className={classes.icon} fontSize={'large'} />
           </button>
         </div>
+
       </div >
     </Container >
   )
