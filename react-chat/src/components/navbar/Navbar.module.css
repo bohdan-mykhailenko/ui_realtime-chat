@@ -3,7 +3,7 @@
 :root {
   --first-color: #4FBAA7;
   --second-color: #530B43;
-  --second-color-light: #bd0a96;
+  --second-color-dark: #300727;
 }
 
 * {
@@ -13,7 +13,7 @@
 
 .toolbar {
   padding: 0 30px;
-  height: 80px;
+  height: 86px;
   box-shadow: none;
   border-bottom: 5px solid var(--second-color);
 }
@@ -48,24 +48,35 @@
 
 .button:hover,
 .title:hover,
-.logo:hover
- {
+.logo:hover {
   fill: var(--first-color);
   color: var(--first-color);
-  background: var(--second-color-light);
+  background: var(--second-color-dark);
 }
 
 .button:active {
   color: rgb(255, 255, 255);
-  background: var(--second-color-light);
+  background: var(--second-color-dark);
 }
 
-#id {
-  width: 100px;
+.buttonWrapper {
+  display: flex;
+  align-items: center;
   height: 100px;
-  background: #000;
-  border: 1px solid #000;
 }
+
+.avatar {
+  width: 45px;
+  height: 45px;
+  border: 0.1px solid var(--second-color); 
+}
+
+.avatarWrapper {
+  height: 100px;
+  background: transparent;
+  border: none;
+ }
+
 
 @media(max-width: 992px) {
   .toolbar {
@@ -97,6 +108,10 @@
     height: 40px;
     font-size: 19px;
   }
+  /* .avatar{
+    width: 32px;
+    height: 32px;
+  } */
 }
 
 @media(max-width: 600px) {

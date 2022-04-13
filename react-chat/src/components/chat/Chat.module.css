@@ -13,14 +13,6 @@
   width: 0;
 }
 
-.f {
-  border: 2px solid red;
-  background: #fff;
-  font-size:20px;
-  height: 100px;
-  color: #333;
-}
-
 * {
   margin: 0;
   font-family: 'Nunito Sans', sans-serif;
@@ -39,7 +31,7 @@
   border: 5px solid var(--second-color);
   border-radius: 20px;
   width: 100%;
-  height: 67vh;
+  height: 65vh;
   overflow-y: auto;
   background-size: cover;
 	background-position: 50% 50%;
@@ -133,10 +125,10 @@
   background: transparent;
 }
 
-.avatarWrapper {
+/* .avatarWrapper {
  width: 100px;
  height: 100px;
-}
+} */
 
 @media(max-width: 767px) {
   .body {

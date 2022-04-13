@@ -32,6 +32,9 @@ const firebaseApp = firebase.initializeApp(firebaseConfig);
 const firestore = firebaseApp.firestore();
 const auth = firebase.auth();
 
+
+const photoURL = '';
+
 export const Context = React.createContext(null);
 
 ReactDOM.render(
@@ -39,6 +42,7 @@ ReactDOM.render(
     firebase,
     auth,
     firestore,
+    photoURL,
   }}>
     <ThemeProvider theme={theme}>
       <App />

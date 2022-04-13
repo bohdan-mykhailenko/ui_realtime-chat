@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef } from 'react';
+import React, { useContext, useState, useRef, useEffect } from 'react';
 import { Context } from '../../index';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Grid, Container } from '@material-ui/core';
@@ -31,6 +31,10 @@ const Chat = () => {
     setValue('');
     bottomRef.current.scrollIntoView(true);
   }
+  // useEffect(() => {
+  //   sendMessage();
+  // }, []);
+
 
   const enterKey = (event) => {
     if (event.keyCode === 13) {
