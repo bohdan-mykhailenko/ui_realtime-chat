@@ -22,15 +22,16 @@
   display:none;
   z-index: 122;
   background: rgba(2, 1, 14, 0.9);
+  z-index: 1000;
 }
 
 .modalContent {
   padding: 25px;
-  background: rgb(58, 128, 93);
-  border-radius: 50px;
+  background: var(--third-color);
+  border-radius: 10px;
   height: auto;
   width: auto;
-  border: 5px solid var(--second-color)
+  border: 3px solid var(--second-color)
 }
 
 .modal.active {

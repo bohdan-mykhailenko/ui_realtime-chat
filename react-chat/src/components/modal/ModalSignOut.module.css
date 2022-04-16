@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400;1,800&display=swap');
+
+:root {
+  --first-color: #4FBAA7;
+  --second-color: #530B43;
+  --second-color-light: #710d5b;
+  --third-color: #8dbaad;
+  --fourth-color: #187358;
+}
+
+* {
+  margin: 0;
+  font-family: 'Merriweather Sans', sans-serif;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display:none;
+  z-index: 122;
+  background: rgba(2, 1, 14, 0.9);
+  z-index: 1000;
+}
+
+.modalContent {
+  padding: 25px;
+  background: var(--third-color);
+  border-radius: 10px;
+  height: auto;
+  width: auto;
+  border: 3px solid var(--second-color)
+}
+
+.modal.active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+@media(max-width: 600px) {
+  .modalContent {
+    padding: 20px;
+  }
+}
+
+@media(max-width: 450px) {
+  .modalContent {
+    padding: 15px;
+  }
+}
+
+@media(max-width: 350px) {
+  .modalContent {
+    padding: 12px;
+  }
+}

@@ -3,7 +3,7 @@
 :root {
   --first-color: #4FBAA7;
   --second-color: #530B43;
-  --second-color-light: #710d5b;
+  --second-color-dark: #24041d;
   --third-color: #8dbaad;
   --fourth-color: #187358;
 }
@@ -17,10 +17,6 @@
   position: relative;
   z-index: 1000;
   height: auto;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: repeat(4, 1fr);
-  row-gap: 20px;
 }
 
 .button {
@@ -44,12 +40,23 @@
   background: #06503a;;
 }
 
-.title {
-  margin: 0 0 15px 0;
-  text-align: center;
+.avatar {
+  margin:  0 auto 20px auto;
+  border: 3px solid var(--fourth-color);
+  width: 100px;
+  height: 100px;
+}
+
+.name {
+  margin: 0 0 20px 0;
+  font-size: 28px;
   color: var(--second-color);
-  letter-spacing: 1px;
-  font-size: 32px;
+}
+
+.email {
+  margin: 0 0 65px 0;
+  font-size: 20px;
+  color: var(--second-color-dark);
 }
 
 @media(max-width: 767px) {

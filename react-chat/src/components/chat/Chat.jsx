@@ -50,31 +50,37 @@ const Chat = () => {
   return (
     <Container >
       <div className={classes.wrapper}>
-        <div
-          className={classes.body}>
-          {messages.map(message =>
-            <div
-              className={classes.item}
-              style={{
-                margin: 5,
-                marginTop: 10,
-                border: user.uid === message.uid ? '3px solid #4FBAA7' : '3px solid #555',
-                borderRadius: user.uid === message.uid ? '25px 25px 0px 25px' : '0px 25px 25px 25px',
-                marginLeft: user.uid === message.uid ? 'auto' : '5px',
-                width: 'fit-content'
-              }}>
-              <Grid container >
-                <Avatar src={message.photoURL} className={classes.avatar} />
-                <div className={classes.name}>
-                  {message.displayName}
-                </div>
-              </Grid>
-              <div className={classes.text}>{message.text}</div>
-              <MyDate message={message} />
-            </div>
-          )}
-          <div ref={bottomRef} className={classes.bottomItem}></div>
-        </div>
+        {user
+          ?
+          <div
+            className={classes.body}>
+            {messages.map(message =>
+              <div
+                className={classes.item}
+                style={{
+                  margin: 5,
+                  marginTop: 10,
+                  border: user.uid === message.uid ? '3px solid #4FBAA7' : '3px solid #555',
+                  borderRadius: user.uid === message.uid ? '25px 25px 0px 25px' : '0px 25px 25px 25px',
+                  marginLeft: user.uid === message.uid ? 'auto' : '5px',
+                  width: 'fit-content'
+                }}>
+                <Grid container >
+                  <Avatar src={message.photoURL} className={classes.avatar} />
+                  <div className={classes.name}>
+                    {message.displayName}
+                  </div>
+                </Grid>
+                <div className={classes.text}>{message.text}</div>
+                <MyDate message={message} />
+              </div>
+            )}
+            <div ref={bottomRef} className={classes.bottomItem}></div>
+          </div>
+          :
+          <Loader />
+        }
+
         <div
           className={classes.inputWrapper}
         >

@@ -6,33 +6,33 @@ import Avatar from '@material-ui/core/Avatar';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Context } from '../../index';
 import Loader from '../loader/Loader';
-import Modal from '../modal/Modal';
+import ModalSignIn from '../modal/ModalSignIn';
+import ModalSignOut from '../modal/ModalSignOut';
 import Login from '../login/Login';
 import '../../App.css';
 import { ReactComponent as Logo } from '../../imgs/logo.svg'
 import classes from './Navbar.module.css';
 import { getAuth } from "firebase/auth";
+import { Link } from 'react-router-dom';
+import { CHAT_ROUTE, HOME_ROUTE } from '../../utils/consts';
 
 
 const Navbar = () => {
-  const [modal, setModal] = useState(false);
+  const [modalSignIn, setModalSignIn] = useState(false);
+  const [modalSignOut, setModalSignOut] = useState(false);
   const { auth, loading } = useContext(Context);
   const [user] = useAuthState(auth);
-
   const [photoURL, setPhotoURL] = useState('');
 
-
-
-  const getURL = async () => {
+  const getPhotoURL = async () => {
     const url = await getAuth().currentUser.photoURL;
     setPhotoURL(url);
   }
 
+
   useEffect(() => {
-    getURL();
+    getPhotoURL();
   }, [user]);
-
-
 
   if (loading) {
     return <Loader />
@@ -45,23 +45,27 @@ const Navbar = () => {
         <h1 className={classes.title} >
           MyChat
         </h1>
+        <div className="navbar__links">
+        </div>
         <Grid container justify={"flex-end"} className={classes.buttonWrapper}>
           {user
             ?
             <div>
-              <button className={classes.avatarWrapper} onClick={() => {
-                auth.signOut();
-                //setModal(false);
-              }}>
+              <button className={classes.avatarWrapper}
+                onClick={() => { setModalSignOut(true) }}
+              >
                 <Avatar variants='square' src={photoURL} className={classes.avatar} />
               </button>
+              <ModalSignOut visible={modalSignOut} setVisible={setModalSignOut} />
             </div>
             :
             <div>
-              <button className={classes.button} onClick={() => setModal(true)} >Login</button>
-              <Modal visible={modal} setVisible={setModal}>
+              <button className={classes.button} onClick={() => setModalSignIn(true)} >
+                Login
+              </button>
+              <ModalSignIn visible={modalSignIn} setVisible={setModalSignIn}>
                 <Login />
-              </Modal>
+              </ModalSignIn>
             </div>
           }
         </Grid>
