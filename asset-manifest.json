@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/react_task_3/static/css/main.afcd76a3.css",
-    "main.js": "/react_task_3/static/js/main.557cd216.js",
+    "main.css": "/react_task_3/static/css/main.f11d1ffe.css",
+    "main.js": "/react_task_3/static/js/main.6667fad0.js",
     "static/media/forestbw.jpg": "/react_task_3/static/media/forestbw.0434eb058bfed8d66fda.jpg",
     "static/media/react.svg": "/react_task_3/static/media/react.ee142fe49f6ca15e312c787c9eb21845.svg",
     "static/media/logo.svg": "/react_task_3/static/media/logo.ea32ec083a5a90fed586f5032f4637a0.svg",
     "index.html": "/react_task_3/index.html",
-    "main.afcd76a3.css.map": "/react_task_3/static/css/main.afcd76a3.css.map",
-    "main.557cd216.js.map": "/react_task_3/static/js/main.557cd216.js.map"
+    "main.f11d1ffe.css.map": "/react_task_3/static/css/main.f11d1ffe.css.map",
+    "main.6667fad0.js.map": "/react_task_3/static/js/main.6667fad0.js.map"
   },
   "entrypoints": [
-    "static/css/main.afcd76a3.css",
-    "static/js/main.557cd216.js"
+    "static/css/main.f11d1ffe.css",
+    "static/js/main.6667fad0.js"
   ]
 }
