@@ -101,7 +101,7 @@
 
 .reactIcon {
   margin: 0 auto;
-  animation: react-animation 30s ease-in-out infinite 
+  animation: react-animation 60s linear infinite 
   alternate-reverse running 0s none;
 }
 

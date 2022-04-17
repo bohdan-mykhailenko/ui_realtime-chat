@@ -19,29 +19,46 @@
   height: auto;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(4, 1fr);
-  row-gap: 20px;
+  grid-template-rows: auto repeat(3, 1fr);
+  row-gap: 20px; 
 }
 
-.button {
-  padding: 15px 70px;
+.item {
   background: var(--fourth-color);
   border-radius: 5px;
-  font-size: 25px;
-  font-weight: 600;
-  color: #ddd;
+  border: 5px solid #ddd;
+  display: flex;
+  height: auto;
+  align-items: center;
+  justify-content: center;
+  width: 250px;
+}
+
+.item:hover,
+.item:active {
+  color:#fff;
   box-sizing: border-box;
   box-shadow: none;
-  border: 5px solid #ddd;
+  border: 5px solid #fff;
+  background: #088b63;
+  fill:rgb(187, 31, 31);
 }
 
 .button:hover,
 .button:active {
   color:#fff;
+}
+
+.button {
+  padding: 15px 0;
+  font-size: 25px;
+  font-weight: 600;
+  color: #ddd;
   box-sizing: border-box;
   box-shadow: none;
-  border: 5px solid #fff;
-  background: #06503a;;
+  border: none;
+  background: transparent;
+  width: auto;
 }
 
 .title {
@@ -52,49 +69,97 @@
   font-size: 32px;
 }
 
-@media(max-width: 767px) {
-  .wrapper {
-    height: 120px;
-  }
+.icon {
+  margin: 5px 7px 0 0;
+  width: auto;
+  height: auto;
   
-  .button {
-    width: 330px;
-    height: 80px;
-  }
+}
+
+.googleIcon {
+  font-size: 25px;
+  fill:rgb(187, 31, 31);
+}
+
+.facebookIcon {
+  font-size: 25px;
+  fill: rgb(20, 54, 134);
+}
+
+.githubIcon {
+  font-size: 25px;
+  fill:rgb(32, 36, 32)
 }
 
 @media(max-width: 600px) {
   .wrapper {
-    height: 100px;
+    row-gap: 20px;
   }
-  
+  .item {
+    width: 230px;
+  }
+  .title {
+    margin: 0 0 10px 0;
+    font-size: 30px;
+  }
   .button {
-    font-size: 28px;
-    width: 280px;
-    height: 80px;
+    font-size: 23px;
+  }
+  .googleIcon {
+    font-size: 24px;
+  }
+  .facebookIcon {
+    font-size: 24px;
+  }
+  .githubIcon {
+    font-size: 24px;
   }
 }
 
 @media(max-width: 450px) {
   .wrapper {
-    height: 90px;
+    row-gap: 15px;
   }
-  
+  .item {
+    width: 210px;
+  }
+  .title {
+    font-size: 28px;
+  }
   .button {
-    font-size: 25px;
-    width: 240px;
-    height: 70px;
+    font-size: 21px;
+  }
+  .googleIcon {
+    font-size: 23px;
+  }
+  .facebookIcon {
+    font-size: 23px;
+  }
+  .githubIcon {
+    font-size: 23px;
   }
 }
 
 @media(max-width: 350px) {
   .wrapper {
-    height: 80px;
+    row-gap: 15px;
   }
-  
+  .item {
+    width: 180px;
+  }
+  .title {
+    font-size: 26px;
+  }
   .button {
     font-size: 20px;
-    width: 200px;
-    height: 60px;
+  }
+  .googleIcon {
+    font-size: 22px;
+  }
+  .facebookIcon {
+    font-size: 22px;
+  }
+  .githubIcon {
+    font-size: 22px;
   }
 }

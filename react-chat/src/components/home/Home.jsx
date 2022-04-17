@@ -8,8 +8,6 @@ import ExtensionIcon from '@mui/icons-material/Extension';
 import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
 import { ReactComponent as ReactIcon } from '../../imgs/react.svg';
 
-
-
 const Home = () => {
   const techArray = ['Java Sctipt(ES6)', 'React 18.0.0', 'MaterialUl 5.5.3(framework)', 'Firebase 9.6.10(service)', 'HTML5', 'CSS3(animation)'];
   const abilArray = ['Authentication with Google', 'Chating in realtime', 'Sending an atachments', 'Typing emodji', 'Changing UI theme', 'Watching the time'];

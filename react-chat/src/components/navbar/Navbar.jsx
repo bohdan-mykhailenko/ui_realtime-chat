@@ -2,19 +2,15 @@ import React, { useContext, useState, useEffect } from 'react';
 import AppBar from '@material-ui/core/Appbar';
 import Toolbar from '@material-ui/core/Toolbar';
 import { Grid } from '@material-ui/core';
-import Avatar from '@material-ui/core/Avatar';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Context } from '../../index';
 import Loader from '../loader/Loader';
 import ModalSignIn from '../modal/ModalSignIn';
 import ModalSignOut from '../modal/ModalSignOut';
 import Login from '../login/Login';
-import '../../App.css';
 import { ReactComponent as Logo } from '../../imgs/logo.svg'
 import classes from './Navbar.module.css';
 import { getAuth } from "firebase/auth";
-import { Link } from 'react-router-dom';
-import { CHAT_ROUTE, HOME_ROUTE } from '../../utils/consts';
 
 
 const Navbar = () => {
@@ -28,7 +24,6 @@ const Navbar = () => {
     const url = await getAuth().currentUser.photoURL;
     setPhotoURL(url);
   }
-
 
   useEffect(() => {
     getPhotoURL();
@@ -54,13 +49,16 @@ const Navbar = () => {
               <button className={classes.avatarWrapper}
                 onClick={() => { setModalSignOut(true) }}
               >
-                <Avatar variants='square' src={photoURL} className={classes.avatar} />
+                <img src={photoURL} className={classes.avatar} />
               </button>
               <ModalSignOut visible={modalSignOut} setVisible={setModalSignOut} />
             </div>
             :
             <div>
-              <button className={classes.button} onClick={() => setModalSignIn(true)} >
+              <button className={classes.button} onClick={() => {
+                setModalSignIn(true);
+                setModalSignOut(false);
+              }} >
                 Login
               </button>
               <ModalSignIn visible={modalSignIn} setVisible={setModalSignIn}>

@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef, useEffect } from 'react';
+import React, { useContext, useState, useRef } from 'react';
 import { Context } from '../../index';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Grid, Container } from '@material-ui/core';
@@ -31,10 +31,6 @@ const Chat = () => {
     setValue('');
     bottomRef.current.scrollIntoView(true);
   }
-  // useEffect(() => {
-  //   sendMessage();
-  // }, []);
-
 
   const enterKey = (event) => {
     if (event.keyCode === 13) {
@@ -68,11 +64,19 @@ const Chat = () => {
                 <Grid container >
                   <Avatar src={message.photoURL} className={classes.avatar} />
                   <div className={classes.name}>
-                    {message.displayName}
+                    {message.displayName
+                      ? <div>
+                        {message.displayName}
+                      </div>
+                      : <div>
+                        {"Github user"}
+                      </div>
+                    }
                   </div>
                 </Grid>
                 <div className={classes.text}>{message.text}</div>
                 <MyDate message={message} />
+
               </div>
             )}
             <div ref={bottomRef} className={classes.bottomItem}></div>

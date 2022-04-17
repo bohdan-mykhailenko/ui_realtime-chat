@@ -6,32 +6,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#000000" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
-  <link rel="stylesheet" href="../src/App.css">
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
   <title>Chat</title>
+  <style>
+    #root {
+      overflow-y: auto;
+      height: 100vh;
+      background: #dddced;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+  </style>
 </head>
 
 <body>
-  <script>
-    window.fbAsyncInit = function () {
-      FB.init({
-        appId: '1241887976616576',
-        xfbml: true,
-        version: 'v2.6'
-      });
-    };
 
-    (function (d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) { return; }
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/sdk.js";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-
-  </script>
-  <div id="root" class="root"></div>
+  <div id="root"></div>
 
 </body>
 

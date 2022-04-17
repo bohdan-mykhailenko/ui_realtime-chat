@@ -1,11 +1,10 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { Grid, Container, Button } from '@material-ui/core';
+import { Grid, Container } from '@material-ui/core';
 import { Context } from '../../index';
-import firebase from 'firebase/compat/app';
 import classes from './Logout.module.css';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getAuth } from "firebase/auth";
-import Avatar from '@material-ui/core/Avatar';
+import Loader from '../loader/Loader';
 
 const Logout = (setVisible) => {
   const { auth, } = useContext(Context);
@@ -13,24 +12,34 @@ const Logout = (setVisible) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [user] = useAuthState(auth);
+  console.log(getAuth().currentUser);
 
-  const getPhotoURL = async () => {
+  const getUserInfo = async () => {
     const photoURL = await getAuth().currentUser.photoURL;
-    const name = await getAuth().currentUser.displayName;
-    const email = await getAuth().currentUser.email;
+    let name = await getAuth().currentUser.displayName;
+    let email = await getAuth().currentUser.email;
+    if (name === null) {
+      name = "GitHub user";
+    }
+    if (email === null) {
+      email = "hidden_email@mail.com";
+    }
     setPhotoURL(photoURL);
     setName(name);
     setEmail(email);
+
   }
 
-
   useEffect(() => {
-    getPhotoURL();
+    getUserInfo();
   }, [user]);
 
   const logout = async () => {
-    auth.signOut()
-    setVisible(false);
+    await auth.signOut()
+    await setVisible(false);
+    return (
+      <Loader />
+    )
   }
 
   return (
@@ -50,7 +59,7 @@ const Logout = (setVisible) => {
             justifyContent={'center'}
             alignItems={'center'}
             direction={'column'}>
-            <Avatar variants='square' src={photoURL} className={classes.avatar} />
+            <img src={photoURL} className={classes.avatar} />
             <h1 className={classes.name}>{name}</h1>
             <h2 className={classes.email}>{email}</h2>
             <button className={classes.button} onClick={logout}>

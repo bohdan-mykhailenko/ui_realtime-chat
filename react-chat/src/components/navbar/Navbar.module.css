@@ -12,10 +12,11 @@
 }
 
 .toolbar {
-  padding: 0 30px;
   height: 86px;
   box-shadow: none;
   border-bottom: 5px solid var(--second-color);
+  display: flex;
+  align-items: center;
 }
 
 .logo {
@@ -59,16 +60,16 @@
   background: var(--second-color-dark);
 }
 
-.buttonWrapper {
+.avatarWrapper {
   display: flex;
   align-items: center;
-  height: 100px;
 }
 
 .avatar {
-  width: 45px;
-  height: 45px;
-  border: 0.1px solid var(--second-color); 
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid var(--second-color); 
 }
 
 .avatarWrapper {
@@ -90,6 +91,10 @@
     width: 50px;
     height: 50px;
   }
+  .avatar {
+    width: 50px;
+    height: 50px;
+  }
 }
 
 @media(max-width: 767px) {
@@ -108,10 +113,10 @@
     height: 40px;
     font-size: 19px;
   }
-  /* .avatar{
-    width: 32px;
-    height: 32px;
-  } */
+  .avatar {
+    width: 45px;
+    height: 45px;
+  }
 }
 
 @media(max-width: 600px) {
@@ -132,12 +137,13 @@
     height: 30px;
     font-size: 18px;
   }
+  .avatar {
+    width: 42px;
+    height: 42px;
+  }
 }
 
 @media(max-width: 450px) {
-  /* .appbar {
-    position: fixed;
-  }  */
   .toolbar {
     height: 35px;
   }
@@ -153,5 +159,15 @@
     width: 55px;
     height: 25px;
     font-size: 16px;
+  }
+  .avatar {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media(max-width: 350px) {
+  .toolbar {
+    padding: 0 0px;
   }
 }

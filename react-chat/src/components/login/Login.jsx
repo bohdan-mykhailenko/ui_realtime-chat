@@ -3,22 +3,29 @@ import { Grid, Container, Button } from '@material-ui/core';
 import { Context } from '../../index';
 import firebase from 'firebase/compat/app';
 import classes from './Login.module.css';
-import { FacebookAuthProvider, signInWithPopup } from "firebase/auth";
-
-
+import Icon from '@mui/material/Icon';
+import GoogleIcon from '@mui/icons-material/Google';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 const Login = (setVisible) => {
-  const { auth, } = useContext(Context);
+  const { auth } = useContext(Context);
 
-  // const login = async () => {
-  //   const provider = new firebase.auth.GoogleAuthProvider();
-  //   const { user } = await auth.signInWithPopup(provider);
-  //   setVisible(false);
-  // }
+  const googleLogin = async () => {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    const { user } = await auth.signInWithPopup(provider);
+    setVisible(false);
+  }
 
-  const login = async () => {
-    const provider = new FacebookAuthProvider();
-    signInWithPopup(auth, provider);
+  const facebookLogin = async () => {
+    const provider = new firebase.auth.FacebookAuthProvider();
+    const { user } = await auth.signInWithPopup(provider);
+    setVisible(false);
+  }
+
+  const githubLogin = async () => {
+    const provider = new firebase.auth.GithubAuthProvider();
+    const { user } = await auth.signInWithPopup(provider);
     setVisible(false);
   }
 
@@ -40,14 +47,30 @@ const Login = (setVisible) => {
             alignItems={'center'}
             direction={'column'}>
             <h1 className={classes.title}>Log in with:</h1>
-            <button className={classes.button} onClick={login}> Google
-            </button>
-            <button className={classes.button} onClick={login}>
-              Facebook
-            </button>
-            <button className={classes.button} onClick={login}>
-              Twitter
-            </button>
+            <div className={classes.item}>
+              <Icon className={classes.icon} >
+                <GoogleIcon className={classes.googleIcon} />
+              </Icon>
+              <button className={classes.button} onClick={googleLogin}>
+                Google
+              </button>
+            </div>
+            <div className={classes.item}>
+              <Icon className={classes.icon}>
+                <FacebookIcon className={classes.facebookIcon} />
+              </Icon>
+              <button className={classes.button} onClick={facebookLogin}>
+                Facebook
+              </button>
+            </div>
+            <div className={classes.item}>
+              <Icon className={classes.icon}>
+                <GitHubIcon className={classes.githubIcon} />
+              </Icon>
+              <button className={classes.button} onClick={githubLogin}>
+                GitHub
+              </button>
+            </div>
           </Grid>
         </Grid>
       </Container>

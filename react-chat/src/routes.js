@@ -1,17 +1,16 @@
-import { CHAT_ROUTE, HOME_ROUTE } from "./utils/consts";
 import Home from "./components/home/Home";
 import Chat from "./components/chat/Chat";
 
 export const publicRoutes = [
   {
-    path: HOME_ROUTE,
+    path: '/home',
     component: <Home />,
   }
 ]
 
 export const privateRoutes = [
   {
-    path: CHAT_ROUTE,
+    path: '/chat',
     component: <Chat />,
   }
 ]
