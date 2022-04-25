@@ -12,7 +12,6 @@ const Logout = (setVisible) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [user] = useAuthState(auth);
-  console.log(getAuth().currentUser);
 
   const getUserInfo = async () => {
     const photoURL = await getAuth().currentUser.photoURL;

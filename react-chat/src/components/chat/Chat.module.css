@@ -4,7 +4,8 @@
 :root {
   --first-color: #4FBAA7;
   --second-color: #530B43;
-  --second-color-light: #28001f;
+  --second-color-dark: #28001f;
+  --second-color-light: #4a163e;
   --third-color: #8dbaad;
   --fourth-color: #187358;
 }
@@ -19,24 +20,26 @@
 }
 
 .wrapper {
-  height: auto;
+  height: calc(100vh - 100px);
   margin: 0 auto;
-  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 0 100px;
+  row-gap: 20px;
 }
 
 .body {
-  margin: 1% 0;
-  margin-bottom: 15px;
+  margin: 15px 0 0 0;
   padding: 0 10px;
   border: 5px solid var(--second-color);
   border-radius: 10px;
   width: 100%;
-  height: 65vh;
+  height: 100%;
   overflow-y: auto;
   background-size: cover;
 	background-position: 50% 50%;
 	background-repeat: no-repeat;
-	background-image: url("../../imgs/forestbw.jpg"), linear-gradient(0deg, rgb(30, 26, 53) 20%, rgb(37, 52, 74) 70%);
+	background-image: url("../../imgs/new-york.jpg"), linear-gradient(0deg, rgb(30, 26, 53) 20%, rgb(37, 52, 74) 70%);
 	background-blend-mode: multiply;
 }
 
@@ -67,18 +70,20 @@
   margin: 3px;
 }
 
-.inputWrapper {
+.form {
   width: 100%;
-  display: flex;
-  align-items: flex-end;
-  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
+  display: grid;
+  align-items: center;
   box-sizing: content-box;
   border: none;
+  grid-template-columns: 1fr auto auto;
 }
 
-.input {
+.textarea {
   margin: 0 auto;
-  padding: 10px 50px 0 10px;
+  padding: 5px 10px;
   height: auto;
   color: rgb(255, 247, 247);
   font-size: 18px;
@@ -90,55 +95,125 @@
   letter-spacing: 0.7px;
   resize: none;
   font-weight: 400;
+  cursor: pointer;
+  outline: none;
 }
 
-.input:focus,
-.input:active {
+.textarea:focus,
+.textarea:active {
   background: #043c3f;
+  outline: none;
 }
 
-.input::placeholder {
+.textarea::placeholder {
   color: #c1bac4;
   font-size: 16px;
 }
 
 .button {
-  position: relative;
-  top: -67px;
-  right: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   background: transparent;
   border: none; 
   color:#c1bac4;
-  stroke: #c1bac4;
+  stroke: var(--second-color);
+  cursor: pointer;
 }
 
 .button:hover,
 .button:active { 
-  color:#fff;
-  stroke: #fff;
+  stroke: var(--second-color-dark);
+}
+
+.icon {
+  color:var(--second-color);
+}
+
+.icon:hover,
+.icon:active {
+  color:var(--second-color-dark);
+  transform: scale(1.1);
+}
+
+.label {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color:#c1bac4;
+  display: flex;
+  cursor: pointer;
+}
+
+.fileInput {
+  display: none;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--second-color);
+  border-radius: 10px;
+}
+
+.imgPreviewWrapper {
+  margin: 0 0 0 7px;
+  border-radius: 50%;
+  position: relative;
+  width: 100px;
+  height: 100%;
+  font-size: 1px;
+  line-height: 0;
+}
+
+.imgPreview {
+  position: absolute;
+  right: 0;
+  top: 0;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--second-color);
+  border-radius: 10px;
+  display: block;
 }
 
 .bottomItem {
-  margin: 100px;
-  background: transparent;
+  margin: 0;
 }
 
-/* .avatarWrapper {
- width: 100px;
- height: 100px;
-} */
+.arrow {
+  margin: 0 0 0 auto;
+  position: relative;
+  right:  15px;
+  bottom: 70px;
+  border: 3px solid rgb(72, 52, 70);;
+  border-radius: 50%;
+  color: rgb(121, 202, 202);
+  background-color:rgba(172, 87, 200, 0.218);
+  width: 40px;
+  height: 40px;
+}
+
+@media(max-width: 992px) {
+  .wrapper {
+    height: calc(100vh - 80px);
+  }
+  .body {
+    margin: 12px 0 0 0;
+  }
+} 
 
 @media(max-width: 767px) {
   .body {
-    margin: 2% 0;
-    height: 70vh;
+    margin: 10px 0 0 0;
   }
-  .wrapper {
-    margin-top: 7px;
-  }
+
   .avatar{
     width: 32px;
     height: 32px;
@@ -153,9 +228,11 @@
     margin: 3px;
     font-size: 16px;
   }
-  .input {
-    padding: 10px 55px 0 10px;
+
+  .textarea {
+    padding: 10px 5px;
   }
+
   .button {
     right: 20px;
     font-size: 18px;
@@ -163,13 +240,11 @@
 } 
 
 @media(max-width: 600px) {
-  .body {
-    margin: 2% 0;
-    height: 73vh;
-  }
   .wrapper {
-    margin-top: 5px;
+    height: calc(100vh - 60px);
+    row-gap: 12px;
   }
+
   .body {
     padding: 0 1px;
     border: 3px solid var(--second-color)
@@ -194,35 +269,48 @@
     font-size: 16px;
   }
 
-  .input {
+  .textarea {
    
     font-size: 16px;
     border: 3px solid var(--second-color)
   }
 
-  .input:focus {
+  .textarea:focus {
     border:3px solid var(--second-color);
   }
   
-  .input::placeholder {
+  .textarea::placeholder {
     font-size: 14px;
   }
-  .input {
-    padding: 8px 50px 0 8px;
+
+  .textarea {
+    padding: 8px 3px;
   }
+  
   .button {
     top: -58px;
     right: 12px;
   }
+
   .icon {
     width: 30px;
+  }
+
+  .imgPreviewWrapper {
+    width: 85px;
+    height: 85px;
   }
 }
 
 @media(max-width: 450px) {
+  .wrapper {
+    margin: 5px 0 0 0;
+    height: calc(100vh - 62px);
+    row-gap: 10px;
+  }
+
   .body {
-    padding: 0 1px;
-    height: 73vh;
+    margin: 5px 0 0 0;
   }
 
   .avatar{
@@ -244,21 +332,31 @@
     right: 10px;
   }
 
-  .input {
-    padding: 7px 35px 0 7px;
+  .textarea {
+    padding: 7px 2px;
     font-size: 16px;
 
   }
   
-  .input::placeholder {
+  .textarea::placeholder {
     font-size: 13px;
   }
+
   .icon {
     width: 28px;
+  }
+
+  .imgPreviewWrapper {
+    width: 85px;
+    height: 85px;
   }
 }
 
 @media(max-width: 350px) {
+  .wrapper {
+    row-gap: 5px;
+  }
+
   .item {
     padding: 3px;
   }
@@ -279,16 +377,22 @@
   }
 
 
-  .input {
+  .textarea {
     padding: 7px 33px 0 7px;
     font-size: 15px;
   }
   
-  .input::placeholder {
+  .textarea::placeholder {
     font-size: 13px;
   }
+
   .icon {
     width: 28px;
+  }
+
+  .imgPreviewWrapper {
+    width: 40px;
+    height: 40px;
   }
 }
 
@@ -313,12 +417,12 @@
   }
 
 
-  .input {
+  .textarea {
     padding: 7px 33px 0 7px;
     font-size: 15px;
   }
   
-  .input::placeholder {
+  .textarea::placeholder {
     font-size: 13px;
   }
   .icon {
