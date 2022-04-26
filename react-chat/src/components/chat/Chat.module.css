@@ -86,6 +86,28 @@
   height: 40px;
 }
 
+/* .imgWrapper {
+  position: relative;
+  width: 50vw;
+  height: 50vh;
+}
+
+.img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+} */
+
+.img {
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--second-color);
+  border-radius: 10px;
+}
+
 @media(max-width: 992px) {
   .wrapper {
     height: calc(100vh - 80px);

@@ -131,7 +131,6 @@ const Chat = () => {
               </div>
             )}
             <div id={'id'} ref={bottomRef} className={classes.bottomItem}>
-              dddd
             </div>
           </div>
           :
