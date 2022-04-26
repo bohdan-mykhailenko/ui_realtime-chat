@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&family=Rubik+Bubbles&family=Rubik+Wet+Paint&display=swap');
+
+:root {
+  --first-color: #4FBAA7;
+  --second-color: #530B43;
+  --second-color-dark: #28001f;
+  --second-color-light: #4a163e;
+  --third-color: #8dbaad;
+  --fourth-color: #187358;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+}
+
+* {
+  margin: 0;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+.form {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  align-items: center;
+  box-sizing: content-box;
+  border: none;
+  grid-template-columns: 1fr auto auto;
+}
+
+.textarea {
+  margin: 0 auto;
+  padding: 5px 10px;
+  height: auto;
+  color: rgb(255, 247, 247);
+  font-size: 18px;
+  width: 100%;
+  border: 5px solid var(--second-color);
+  border-radius: 10px;
+  background: #06796b;
+  line-height: 1.5;
+  letter-spacing: 0.7px;
+  resize: none;
+  font-weight: 400;
+  cursor: pointer;
+  outline: none;
+}
+
+.textarea:focus,
+.textarea:active {
+  background: #043c3f;
+  outline: none;
+}
+
+.textarea::placeholder {
+  color: #c1bac4;
+  font-size: 16px;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none; 
+  color:#c1bac4;
+  stroke: var(--second-color);
+  cursor: pointer;
+}
+
+.button:hover,
+.button:active { 
+  stroke: var(--second-color-light);
+  color:var(--first-color);
+}
+
+.icon {
+  color:var(--second-color);
+}
+
+.icon:hover,
+.icon:active {
+  color:var(--second-color-dark);
+  transform: scale(1.1);
+}
+
+.label {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color:#c1bac4;
+  display: flex;
+  cursor: pointer;
+}
+
+.fileInput {
+  display: none;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--second-color);
+  border-radius: 10px;
+}
+
+.imgPreviewWrapper {
+  margin: 0 0 0 7px;
+  border-radius: 50%;
+  position: relative;
+  width: 100px;
+  height: 100%;
+  font-size: 1px;
+  line-height: 0;
+}
+
+.imgPreview {
+  position: absolute;
+  right: 0;
+  top: 0;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--second-color);
+  border-radius: 10px;
+  display: block;
+}
+
+@media(max-width: 767px) {
+  .button {
+    font-size: 18px;
+  }
+}
+
+@media(max-width: 600px) {
+  .textarea {
+    font-size: 16px;
+    border: 3px solid var(--second-color)
+  }
+
+  .textarea:focus {
+    border:3px solid var(--second-color);
+  }
+  
+  .textarea::placeholder {
+    font-size: 14px;
+  }
+
+  .textarea {
+    padding: 8px 3px;
+  }
+  
+  .button {
+    top: -58px;
+    right: 12px;
+  }
+
+  .icon {
+    width: 30px;
+  }
+
+  .imgPreviewWrapper {
+    width: 94px;
+    height: 94px;
+  }
+}
+
+@media(max-width: 450px) {
+  .textarea {
+    padding: 7px 2px;
+    font-size: 16px;
+  }
+  
+  .textarea::placeholder {
+    font-size: 13px;
+  }
+  
+  .icon {
+    width: 28px;
+  }
+  
+  .imgPreviewWrapper {
+    width: 92px;
+    height: 92px;
+  }
+}
+
+@media(max-width: 350px) {
+  .textarea {
+    padding: 5px 0;
+    font-size: 15px;
+  }
+  
+  .textarea::placeholder {
+    font-size: 13px;
+  }
+
+  .icon {
+    width: 28px;
+  }
+
+  .imgPreviewWrapper {
+    width: 80.5px;
+    height: 80.5px;
+  }
+}
+
+@media(max-width: 300px) {
+  .textarea {
+    padding: 5px 0;
+    font-size: 15px;
+  }
+  
+  .textarea::placeholder {
+    font-size: 13px;
+  }
+
+  .icon {
+    width: 28px;
+  }
+
+  .imgPreviewWrapper {
+    width: 40px;
+    height: 40px;
+  }
+}

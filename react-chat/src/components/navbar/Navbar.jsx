@@ -46,10 +46,8 @@ const Navbar = () => {
           {user
             ?
             <div>
-              <button className={classes.avatarWrapper}
-                onClick={() => { setModalSignOut(true) }}
-              >
-                <img src={photoURL} className={classes.avatar} />
+              <button className={classes.avatarWrapper} onClick={() => { setModalSignOut(true) }} >
+                <img src={photoURL} className={classes.avatar} alt='avatar' />
               </button>
               <ModalSignOut visible={modalSignOut} setVisible={setModalSignOut} />
             </div>

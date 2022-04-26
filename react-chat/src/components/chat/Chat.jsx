@@ -5,6 +5,7 @@ import { Grid, Container } from '@material-ui/core';
 import Avatar from '@material-ui/core/Avatar';
 import firebase from "firebase/compat/app";
 import Loader from '../loader/Loader';
+import Form from '../form/Form';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import classes from './Chat.module.css';
 import SendIcon from '@mui/icons-material/Send';
@@ -19,12 +20,11 @@ const Chat = () => {
   const { auth, firestore } = useContext(Context);
   const [user] = useAuthState(auth);
   const [value, setValue] = useState('');
+  const [imageURL, setImageURL] = useState(null);
+  const [isVisibleBottomDiv, setIsVisibleBottomDiv] = useState('');
   const [messages, loading] = useCollectionData(
     firestore.collection('messages').orderBy('createdAt')
   )
-  const [url, setUrl] = useState(null);
-  const [fileInput, setFileInput] = useState('');
-  const [visibleBottomDiv, setVisibleBottomDiv] = useState('');
 
   const sendMessage = async () => {
     await firestore.collection('messages').add({
@@ -33,12 +33,13 @@ const Chat = () => {
       photoURL: user.photoURL,
       text: value,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      image: url,
+      image: imageURL,
     })
     setValue('');
-    setUrl('');
+    setImageURL('');
     bottomRef.current.scrollIntoView(true);
   }
+
   // Delete wong messages
   // var query = firestore.collection('messages').where("text", '==', "Перевірка");
   // query.get().then(function (querySnapshot) {
@@ -47,12 +48,9 @@ const Chat = () => {
   //   });
   // });
 
-  // var element = document.getElementById('id').getBoundingClientRect().top;
-  // console.log(element);
-
-  const visible = () => {
+  const isVisible = () => {
     const target = document.getElementById('id');
-    var targetPosition = {
+    let targetPosition = {
       top: window.pageYOffset + target.getBoundingClientRect().top,
       left: window.pageXOffset + target.getBoundingClientRect().left,
       right: window.pageXOffset + target.getBoundingClientRect().right,
@@ -69,10 +67,10 @@ const Chat = () => {
       targetPosition.top < windowPosition.bottom &&
       targetPosition.right > windowPosition.left &&
       targetPosition.left < windowPosition.right) {
-      setVisibleBottomDiv(true);
-    } else {
-      setVisibleBottomDiv(false);
-    };
+      setIsVisibleBottomDiv(true);
+      return;
+    }
+    setIsVisibleBottomDiv(false);
   };
 
 
@@ -80,7 +78,6 @@ const Chat = () => {
     if (event.keyCode === 13) {
       event.preventDefault();
       btnRef.current.click();
-      //bottomRef.current.scrollIntoView(true);
     }
   };
 
@@ -95,7 +92,7 @@ const Chat = () => {
           ?
           <div
             className={classes.body}
-            onScroll={visible}>
+            onScroll={isVisible}>
             {messages.map(message =>
               <div
                 className={classes.item}
@@ -108,24 +105,17 @@ const Chat = () => {
                   width: 'fit-content'
                 }}>
                 <Grid container >
-                  {message.photoURL
-                    ?
-                    <div>
-                      <Avatar src={message.photoURL} className={classes.avatar} />
-                      <div className={classes.name}>
-                        {message.displayName
-                          ? <div>
-                            {message.displayName}
-                          </div>
-                          : <div>
-                            {"Github user"}
-                          </div>
-                        }
+                  <Avatar src={message.photoURL} className={classes.avatar} />
+                  <div className={classes.name}>
+                    {message.displayName
+                      ? <div>
+                        {message.displayName}
                       </div>
-                    </div>
-                    :
-                    <Loader />
-                  }
+                      : <div>
+                        {"Github user"}
+                      </div>
+                    }
+                  </div>
                 </Grid>
                 <div className={classes.text}>{message.text}</div>
                 {message.image
@@ -147,7 +137,7 @@ const Chat = () => {
           :
           <Loader />
         }
-        {!visibleBottomDiv
+        {!isVisibleBottomDiv
           ?
           <div className={classes.arrow} onClick={() => {
             bottomRef.current.scrollIntoView(true);
@@ -157,50 +147,9 @@ const Chat = () => {
           :
           <div></div>
         }
-        <div className={classes.form}>
-          <textarea
-            rows='3'
-            className={classes.textarea}
-            placeholder={'Write a message...'}
-            value={value}
-            onChange={event => setValue(event.target.value)}
-            onKeyDown={enterKey}
-          >
-          </textarea>
-          <label className={classes.label}>
-            {url
-              ?
-              < div className={classes.imgPreviewWrapper}>
-                <img src={url} className={classes.imgPreview} />
-              </div>
-              :
-              <AttachFileIcon className={classes.icon} fontSize={'large'} />
-            }
-
-            <input
-              type="file"
-              accept="image/*"
-              className={classes.fileInput}
-              onChange={(event) => {
-                setFileInput(event.target.value);
-                const file = event.target.files[0];
-                const reader = new FileReader();
-                reader.onload = () => {
-                  setUrl(reader.result)
-                }
-                reader.readAsDataURL(file);
-              }} />
-          </label>
-          <button
-            ref={btnRef}
-            className={classes.button}
-            onClick={(value || url) && sendMessage}>
-            <SendIcon className={classes.icon} fontSize={'large'} />
-          </button>
-        </div>
-
-      </div >
-    </Container >
+        <Form imageURL={imageURL} setImageURL={setImageURL} btnRef={btnRef} value={value} setValue={setValue} sendMessage={sendMessage} enterKey={enterKey} />
+      </div>
+    </Container>
   )
 }
 
