@@ -1,10 +1,21 @@
 import React from 'react';
+import firebase from "firebase/compat/app";
 import SendIcon from '@mui/icons-material/Send';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import classes from './Form.module.css';
-
+import { app } from "../../../src/index";
+import 'firebase/firestore';
+import 'firebase/compat/storage';
 
 const Form = (props) => {
+  const atachImage = async (event) => {
+    const file = event.target.files[0];
+    const storageRef = app.storage().ref();
+    const fileRef = storageRef.child(file.name);
+    await fileRef.put(file);
+    props.setImageURL(await fileRef.getDownloadURL());
+  };
+
   return (
     <div className={classes.form}>
       <textarea
@@ -30,14 +41,7 @@ const Form = (props) => {
           type="file"
           accept="image/*"
           className={classes.fileInput}
-          onChange={(event) => {
-            const file = event.target.files[0];
-            const reader = new FileReader();
-            reader.onload = () => {
-              props.setImageURL(reader.result)
-            }
-            reader.readAsDataURL(file);
-          }} />
+          onChange={atachImage} />
       </label>
       <button
         ref={props.btnRef}

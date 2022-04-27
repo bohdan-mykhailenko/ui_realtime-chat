@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { HashRouter } from 'react-router-dom';
 import Navbar from './components/navbar/Navbar';
 import Loader from './components/loader/Loader';
@@ -9,11 +9,9 @@ import { Context } from './index';
 function App() {
   const { auth } = useContext(Context);
   const [user, loading, error] = useAuthState(auth);
-
   if (loading) {
     return <Loader />
   }
-
   return (
     <HashRouter>
       <Navbar />
@@ -21,5 +19,4 @@ function App() {
     </HashRouter>
   );
 }
-
 export default App;
