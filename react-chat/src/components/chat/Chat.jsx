@@ -8,11 +8,9 @@ import Loader from '../loader/Loader';
 import Form from '../form/Form';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import classes from './Chat.module.css';
-import SendIcon from '@mui/icons-material/Send';
-import AttachFileIcon from '@mui/icons-material/AttachFile';
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import MyDate from '../date/MyDate'
-import { doc } from 'firebase/firestore';
 
 const Chat = () => {
   const btnRef = useRef(null);
@@ -21,6 +19,7 @@ const Chat = () => {
   const [user] = useAuthState(auth);
   const [value, setValue] = useState('');
   const [imageURL, setImageURL] = useState(null);
+  const [arrayOfID, setArrayOfID] = useState(new Set());
   const [isVisibleBottomDiv, setIsVisibleBottomDiv] = useState('');
   const [messages, loading] = useCollectionData(
     firestore.collection('messages').orderBy('createdAt')
@@ -35,12 +34,42 @@ const Chat = () => {
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       image: imageURL,
     })
+    firestore.collection('messages').orderBy('createdAt').get().then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
+        arrayOfID.add(doc.id);
+      });
+    });
+    console.log(arrayOfID)
     setValue('');
     setImageURL('');
     bottomRef.current.scrollIntoView(true);
   }
 
-  // Delete wong messages
+  const getDocumentId = () => {
+    firestore.collection('messages').orderBy('createdAt').get().then(function (querySnapshot) {
+      querySnapshot.forEach(function (doc) {
+        setArrayOfID(arrayOfID.add(doc.id));
+      });
+    });
+  }
+
+  getDocumentId();
+
+  const getDocumentIdFromSet = (set, index) => {
+    let i = 0;
+    let result;
+
+    for (let value of set) {
+      if (i === index) {
+        result = value;
+        break
+      }
+      i++;
+    }
+    return result;
+  }
+
+  // Delete wrong messages
   // var query = firestore.collection('messages').where("text", '==', "Перевірка");
   // query.get().then(function (querySnapshot) {
   //   querySnapshot.forEach(function (doc) {
@@ -85,6 +114,18 @@ const Chat = () => {
     return <Loader />
   }
 
+  const likeMessage = async (event) => {
+    if (event.detail >= 2) {
+      if (event.currentTarget.lastChild.firstChild.style.display === 'block') {
+        event.currentTarget.lastChild.firstChild.style.display = 'none';
+        await firestore.collection('messages').doc(event.currentTarget.id).update({ like: false });
+      } else {
+        event.currentTarget.lastChild.firstChild.style.display = 'block';
+        await firestore.collection('messages').doc(event.currentTarget.id).update({ like: true });
+      }
+    }
+  }
+
   return (
     <Container >
       <div className={classes.wrapper}>
@@ -93,8 +134,10 @@ const Chat = () => {
           <div
             className={classes.body}
             onScroll={isVisible}>
-            {messages.map(message =>
+            {messages.map((message, index) =>
               <div
+                onClick={likeMessage}
+                id={getDocumentIdFromSet(arrayOfID, index)}
                 className={classes.item}
                 style={{
                   margin: 5,
@@ -127,7 +170,13 @@ const Chat = () => {
                   <div className={classes.emptyImg}>
                   </div>
                 }
-                <MyDate message={message} />
+                <div className={classes.bottomInfoWrapper}>
+                  <FavoriteIcon className={classes.like}
+                    style={{
+                      display: message.like === true ? 'block' : 'none'
+                    }} />
+                  <MyDate message={message} />
+                </div>
               </div>
             )}
             <div id={'id'} ref={bottomRef} className={classes.bottomItem}>

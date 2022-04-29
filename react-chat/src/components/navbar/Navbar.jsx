@@ -57,7 +57,7 @@ const Navbar = () => {
                 setModalSignIn(true);
                 setModalSignOut(false);
               }} >
-                Login
+                Log in
               </button>
               <ModalSignIn visible={modalSignIn} setVisible={setModalSignIn}>
                 <Login />
