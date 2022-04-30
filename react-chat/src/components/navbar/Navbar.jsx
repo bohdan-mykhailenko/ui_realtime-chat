@@ -29,15 +29,28 @@ const Navbar = () => {
     getPhotoURL();
   }, [user]);
 
+  const escapeMouseDown = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
   if (loading) {
     return <Loader />
   }
 
   return (
     <AppBar className={classes.appbar} color={'primary'} position="static">
-      <Toolbar className={classes.toolbar} color={'primary'}>
-        <Logo className={classes.logo} />
-        <h1 className={classes.title} >
+      <Toolbar
+        className={classes.toolbar}
+        color={'primary'}
+        onMouseDown={(event) => escapeMouseDown(event)}>
+        <Logo
+          className={classes.logo}
+          onMouseDown={(event) => escapeMouseDown(event)}
+        />
+        <h1
+          className={classes.title}
+          onMouseDown={(event) => escapeMouseDown(event)} >
           MyChat
         </h1>
         <div className="navbar__links">
@@ -47,7 +60,12 @@ const Navbar = () => {
             ?
             <div>
               <button className={classes.avatarWrapper} onClick={() => { setModalSignOut(true) }} >
-                <img src={photoURL} className={classes.avatar} alt='avatar' />
+                {photoURL
+                  ?
+                  <img src={photoURL} className={classes.avatar} />
+                  :
+                  <div className={classes.defaultAvatar}></div>
+                }
               </button>
               <ModalSignOut visible={modalSignOut} setVisible={setModalSignOut} />
             </div>

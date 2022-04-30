@@ -11,6 +11,10 @@ import classes from './Chat.module.css';
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import MyDate from '../date/MyDate'
+import {
+  CSSTransition,
+  TransitionGroup,
+} from 'react-transition-group';
 
 const Chat = () => {
   const btnRef = useRef(null);
@@ -39,7 +43,6 @@ const Chat = () => {
         arrayOfID.add(doc.id);
       });
     });
-    console.log(arrayOfID)
     setValue('');
     setImageURL('');
     bottomRef.current.scrollIntoView(true);
@@ -69,6 +72,19 @@ const Chat = () => {
     return result;
   }
 
+  const likeMessage = async (event) => {
+    if (event.detail >= 2) {
+      if (event.currentTarget.lastChild.firstChild.style.display === 'block') {
+        event.currentTarget.lastChild.firstChild.style.display = 'none';
+        await firestore.collection('messages').doc(event.currentTarget.id).update({ like: false });
+        return;
+      }
+
+      event.currentTarget.lastChild.firstChild.style.display = 'block';
+      await firestore.collection('messages').doc(event.currentTarget.id).update({ like: true });
+    }
+  }
+
   // Delete wrong messages
   // var query = firestore.collection('messages').where("text", '==', "Перевірка");
   // query.get().then(function (querySnapshot) {
@@ -78,7 +94,7 @@ const Chat = () => {
   // });
 
   const isVisible = () => {
-    const target = document.getElementById('id');
+    const target = bottomRef.current;
     let targetPosition = {
       top: window.pageYOffset + target.getBoundingClientRect().top,
       left: window.pageXOffset + target.getBoundingClientRect().left,
@@ -102,7 +118,6 @@ const Chat = () => {
     setIsVisibleBottomDiv(false);
   };
 
-
   const enterKey = (event) => {
     if (event.keyCode === 13) {
       event.preventDefault();
@@ -110,20 +125,13 @@ const Chat = () => {
     }
   };
 
-  if (loading) {
-    return <Loader />
+  const escapeMouseDown = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
   }
 
-  const likeMessage = async (event) => {
-    if (event.detail >= 2) {
-      if (event.currentTarget.lastChild.firstChild.style.display === 'block') {
-        event.currentTarget.lastChild.firstChild.style.display = 'none';
-        await firestore.collection('messages').doc(event.currentTarget.id).update({ like: false });
-      } else {
-        event.currentTarget.lastChild.firstChild.style.display = 'block';
-        await firestore.collection('messages').doc(event.currentTarget.id).update({ like: true });
-      }
-    }
+  if (loading) {
+    return <Loader />
   }
 
   return (
@@ -133,9 +141,11 @@ const Chat = () => {
           ?
           <div
             className={classes.body}
+
             onScroll={isVisible}>
             {messages.map((message, index) =>
               <div
+                onMouseDown={(event) => escapeMouseDown(event)}
                 onClick={likeMessage}
                 id={getDocumentIdFromSet(arrayOfID, index)}
                 className={classes.item}
@@ -149,7 +159,10 @@ const Chat = () => {
                 }}>
                 <Grid container >
                   <Avatar src={message.photoURL} className={classes.avatar} />
-                  <div className={classes.name}>
+                  <div
+                    className={classes.name}
+                    onMouseDown={(event) => escapeMouseDown(event)}
+                  >
                     {message.displayName
                       ? <div>
                         {message.displayName}
@@ -160,7 +173,12 @@ const Chat = () => {
                     }
                   </div>
                 </Grid>
-                <div className={classes.text}>{message.text}</div>
+                <div
+                  className={classes.text}
+                  onMouseDown={(event) => escapeMouseDown(event)}
+                >
+                  {message.text}
+                </div>
                 {message.image
                   ?
                   <div className={classes.imgWrapper}>
@@ -179,25 +197,26 @@ const Chat = () => {
                 </div>
               </div>
             )}
-            <div id={'id'} ref={bottomRef} className={classes.bottomItem}>
+            <div ref={bottomRef} className={classes.bottomItem}>
             </div>
           </div>
           :
           <Loader />
         }
-        {!isVisibleBottomDiv
-          ?
-          <div className={classes.arrow} onClick={() => {
-            bottomRef.current.scrollIntoView(true);
-          }}>
-            <KeyboardDoubleArrowDownIcon fontSize={'large'} />
-          </div>
-          :
-          <div></div>
+        {
+          !isVisibleBottomDiv
+            ?
+            <div className={classes.arrow} onClick={() => {
+              bottomRef.current.scrollIntoView(true);
+            }}>
+              <KeyboardDoubleArrowDownIcon fontSize={'large'} />
+            </div>
+            :
+            <div></div>
         }
         <Form imageURL={imageURL} setImageURL={setImageURL} btnRef={btnRef} value={value} setValue={setValue} sendMessage={sendMessage} enterKey={enterKey} />
-      </div>
-    </Container>
+      </div >
+    </Container >
   )
 }
 

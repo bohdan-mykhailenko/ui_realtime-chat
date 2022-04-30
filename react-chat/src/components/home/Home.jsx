@@ -34,18 +34,32 @@ const Home = () => {
     );
   }
 
+  const escapeMouseDown = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
   return (
     <Container >
       <Grid
         container
+        onMouseDown={(event) => escapeMouseDown(event)}
         className={classes.wrapper}
         direction={'column'}>
-        <h1 className={classes.title}>About app</h1>
-        <Grid className={classes.text} >
+        <h1
+          className={classes.title}
+          onMouseDown={(event) => escapeMouseDown(event)}>
+          About app
+        </h1>
+        <Grid
+          className={classes.text}
+          onMouseDown={(event) => escapeMouseDown(event)}>
           The idea to create this program came from watching a video from Ulbi (YouTube). The author showed the work of React(JavaScript library) and Firebase  - popular service for hosting apps and actions with databases, and it was so interesting and exciting for me because of my desire to study Web-development.
           I've been studying React for 2 weeks, so these materials helped me to find new information and improve my skills with this library.
         </Grid>
-        <div className={classes.lists}>
+        <div
+          className={classes.lists}
+          onMouseDown={(event) => escapeMouseDown(event)}>
           <Grid className={classes.firstList}>
             <h2 className={classes.subtitle}>Abilities:
             </h2>
@@ -60,7 +74,11 @@ const Home = () => {
             <CreateList array={techArray} icons={2} />
           </Grid>
         </div>
-        <Grid className={classes.enjoy}>Enjoy with using my app😊</Grid>
+        <Grid
+          className={classes.enjoy}
+          onMouseDown={(event) => escapeMouseDown(event)}>
+          Enjoy with using my app😊
+        </Grid>
       </Grid>
     </Container>
   )

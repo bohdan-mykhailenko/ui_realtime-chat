@@ -39,7 +39,6 @@
   background: var(--second-color);
   border-radius: 30px;
   font-size: 25px;
-  text-transform: capitalize;
   font-weight: 600;
   color: rgb(255, 255, 255);
   box-sizing: border-box;
@@ -47,12 +46,34 @@
   border: none;
 }
 
-.button:hover,
-.title:hover,
-.logo:hover {
+.button:hover {
   fill: var(--first-color);
   color: var(--first-color);
   background: var(--second-color-dark);
+}
+
+.title:hover,
+.logo:hover {
+  fill: var(--second-color-dark);
+  color: var(--second-color-dark);
+  animation: animation 0.5s linear 
+reverse running 0s none;
+}
+
+
+@keyframes animation {
+
+50% {
+  fill: var(--second-color);
+  color: var(--second-color);
+  transform: scale(1.05);
+}
+100% {
+  fill: var(--second-color-dark);
+  color: var(--second-color-dark);
+  transform: scale(1);
+
+}
 }
 
 .button:active {
@@ -63,6 +84,9 @@
 .avatarWrapper {
   display: flex;
   align-items: center;
+  height: 100px;
+  background: transparent;
+  border: none;
 }
 
 .avatar {
@@ -72,12 +96,13 @@
   border: 2px solid var(--second-color); 
 }
 
-.avatarWrapper {
-  height: 100px;
-  background: transparent;
-  border: none;
- }
-
+.defaultAvatar {
+  background: rgba(234, 210, 210, 0.751);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid var(--second-color); 
+}
 
 @media(max-width: 992px) {
   .toolbar {
@@ -92,6 +117,10 @@
     height: 50px;
   }
   .avatar {
+    width: 50px;
+    height: 50px;
+  }
+  .defaultAvatar {
     width: 50px;
     height: 50px;
   }
@@ -114,6 +143,10 @@
     font-size: 19px;
   }
   .avatar {
+    width: 45px;
+    height: 45px;
+  }
+  .defaultAvatar {
     width: 45px;
     height: 45px;
   }
@@ -141,6 +174,10 @@
     width: 42px;
     height: 42px;
   }
+  .defaultAvatar {
+    width: 42px;
+    height: 42px;
+  }
 }
 
 @media(max-width: 450px) {
@@ -156,11 +193,15 @@
     min-height: 25px;
   }
   .button {
-    width: 55px;
+    width: 60px;
     height: 25px;
     font-size: 16px;
   }
   .avatar {
+    width: 40px;
+    height: 40px;
+  }
+  .defaultAvatar {
     width: 40px;
     height: 40px;
   }

@@ -44,7 +44,7 @@
   background-size: cover;
 	background-position: 50% 50%;
 	background-repeat: no-repeat;
-	background-image: url("../../imgs/forestbw.jpg"), linear-gradient(0deg, rgb(66, 72, 10) 20%, rgb(79, 87, 146) 70%);
+	background-image: url("../../imgs/forestbw.jpg"), linear-gradient(0deg, rgb(50, 54, 17) 20%,  rgb(5, 63, 27) 70%);
 	background-blend-mode: multiply;
 }
 
@@ -96,7 +96,7 @@
 .img {
   width: 100%;
   height: 100%;
-  border: 1px solid var(--second-color);
+  border: 1px solid rgb(38, 30, 30);
   border-radius: 10px;
 }
 
@@ -106,26 +106,37 @@
 }
 
 .like {
+  padding: 1px;
+  margin-right: 0.5rem;
   position: relative;
   top: 0px;
   color: rgb(176, 15, 15);
-  animation: likeAppearance  0.2s linear 
-  alternate running 0s none;
+  border-radius: 50%;
+  animation: likeAppearance  0.6s linear 
+  alternate running 0s none; 
 }
 
 @keyframes likeAppearance {
   0% {
-    color: rgba(176, 15, 15, 0.5);
+    color: rgba(176, 15, 15, 0.2);
     transform: scale(0.7);
   }
+  25% {
+    background: #b00e1375;
+  }
   50% {
-    color: rgba(176, 15, 15, 0.7);
-    transform: scale(0.85);
+    background: none;
+  }
+  75% {
+    background: #b00e1375;
+    color: rgba(176, 15, 15, 0.5);
+    transform: scale(1.2);
   }
   100% {
+    border-radius: 50%;
+    background: none;
     color: rgba(176, 15, 15. 1);
     transform: scale(1);
-  
   }
 }
 
