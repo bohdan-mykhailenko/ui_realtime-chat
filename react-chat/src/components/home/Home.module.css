@@ -7,14 +7,6 @@
   font-family: Ubuntu, sans-serif;
 }
 
-:root {
-  --first-color: #4FBAA7;
-  --second-color: #530B43;
-  --second-color-light: #3a032e;
-  --third-color: #8dbaad;
-  --fourth-color: #187358;
-}
-
 .wrapper {
   margin: 10px auto;
   padding: 10px;
@@ -38,7 +30,7 @@
   overflow: auto;
   font-size: 22px;
   line-height: 1.4;
-  color: #333;
+  color: var(--text-color);
   border-radius: 5px;
   border-right: 5px solid var(--second-color);
   border-left: 5px solid var(--second-color);
@@ -47,7 +39,7 @@
 .enjoy {
   text-align: center;
   font-family: 'Rubik Wet Paint';
-  color: rgb(225, 16, 16);
+  color: var(--enjoy-color);
   font-size: 40px;
 }
 
@@ -79,7 +71,7 @@
 .li {
   margin: 0 0 0 10px;
   font-size: 20px;
-  color: #04382e;
+  color: var(--text-color);
   font-weight: 800;
 }
 
@@ -90,8 +82,8 @@
 }
 
 .icon:hover {
-  fill: #069d9b;
-  stroke: rgb(12, 73, 64);
+  fill: var(--first-color-dark);
+  stroke: var(--first-color-darkest);
   transform: scale(1.5);
 }
 
@@ -115,8 +107,8 @@
     fill: var(--first-color);
   }
   50%{
-    fill:  #0a978b;;
-    stroke: rgb(7, 117, 122);
+    fill: var(--first-color-dark);
+    stroke: var(--first-color-darkest);
   }
   75% {
     fill: var(--first-color);
@@ -141,6 +133,7 @@
       margin: 0 0 0 22px;
   }
 }
+
 @media(max-width: 767px) {
   .text {
     font-size: 20px;

@@ -1,0 +1,70 @@
+#root {
+  overflow-y: auto;
+  height: 100vh;
+  background: var(--background-main-color);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html[data-theme='light'] {
+  --first-color: #4FBAA7;
+  --first-color-light: #5c8f8a;
+  --first-color-lightest: #75948e;
+  --first-color-dark: #0a978b;
+  --first-color-darkest: rgb(7, 117, 122);
+  --second-color: #530B43;
+  --second-color-light: #6b1c59;
+  --second-color-dark: #28001f;
+   --third-color: #8dbaad; 
+  --fourth-color: #187358;
+  --fourth-color-light: #1e9370;
+  --fourth-color-dark: #06796b;
+  --fourth-color-darkest: #043c3f;
+  --fifth-color: #ddd;
+  --fifth-color-light: #fff;
+  --text-color: #1b2926;
+  --text-color-light: #c1bac4;
+  --text-color-lightest: rgb(239, 207, 207);
+  --enjoy-color: red;
+  --modal-color: rgba(2, 1, 14, 0.9);
+  --message-color: rgb(50, 43, 43);
+  --message-border-color: rgb(50, 43, 43);
+  --arrow-color: rgba(67, 48, 75, 0.658);
+  --background-main-color: #bfb8cd;
+  --background-first-color: rgb(68, 74, 22);
+  --background-second-color: rgb(34, 33, 70);
+  --theme-select-color-dark:  rgb(10, 49, 52);
+}
+
+
+
+html[data-theme='dark'] {
+  --first-color: #252d2c;
+  --first-color-light: #5c8f8a;
+  --first-color-lightest: #75948e;
+  --first-color-dark: #0a978b;
+  --first-color-darkest: rgb(7, 117, 122);
+  --second-color: #0c8f79;
+  --second-color-light: #6b1c59;
+  --second-color-dark: #28001f;
+   --third-color: #8dbaad; 
+  --fourth-color: #187358;
+  --fourth-color-light: #1e9370;
+  --fourth-color-dark: #06796b;
+  --fourth-color-darkest: #043c3f;
+  --fifth-color: #ddd;
+  --fifth-color-light: #fff;
+  --text-color: #1b2926;
+  --text-color-light: #c1bac4;
+  --text-color-lightest: rgb(239, 207, 207);
+  --enjoy-color: red;
+  --modal-color: rgba(2, 1, 14, 0.9);
+  --message-color: rgb(104, 99, 99);
+  --arrow-color: rgba(67, 48, 75, 0.658);
+  --background-main-color: #424748;
+  --background-first-color: rgb(134, 135, 130);
+  --background-second-color: rgb(52, 18, 53);
+  --theme-select-color-light:  rgb(181, 198, 199);
+}

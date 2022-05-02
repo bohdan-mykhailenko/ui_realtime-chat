@@ -1,13 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400;1,800&display=swap');
 
-:root {
-  --first-color: #4FBAA7;
-  --second-color: #530B43;
-  --second-color-dark: #24041d;
-  --third-color: #8dbaad;
-  --fourth-color: #187358;
-}
-
 * {
   margin: 0;
   font-family: 'Merriweather Sans', sans-serif;
@@ -25,19 +17,19 @@
   border-radius: 5px;
   font-size: 25px;
   font-weight: 600;
-  color: #ddd;
+  color: var(--fifth-color);
   box-sizing: border-box;
   box-shadow: none;
-  border: 5px solid #ddd;
+  border: 5px solid var(--fifth-color);
 }
 
 .button:hover,
 .button:active {
-  color:#fff;
+  color: var(--fifth-color-light);
   box-sizing: border-box;
   box-shadow: none;
-  border: 5px solid #fff;
-  background: #088b63;
+  border: 5px solid var(--fifth-color-light);
+  background: var(--fourth-color-light);
 }
 
 .avatar {

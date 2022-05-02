@@ -1,11 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400;1,800&display=swap');
 
-:root {
-  --first-color: #4FBAA7;
-  --second-color: #530B43;
-  --second-color-dark: #300727;
-}
-
 * {
   margin: 0;
   font-family: 'Merriweather Sans', sans-serif;
@@ -17,6 +11,7 @@
   border-bottom: 5px solid var(--second-color);
   display: flex;
   align-items: center;
+  background: var(--first-color);
 }
 
 .logo {
@@ -33,6 +28,29 @@
   letter-spacing: 2px;
 }
 
+.themeSelector {
+  display: flex;
+  align-items: center;
+}
+
+.themeSelectorTitle {
+  font-size: 22px;
+  text-transform: capitalize;
+  color: var(--theme-select-color-dark);
+  font-size: 800;
+}
+
+.themeSelectorIcon {
+  font-size: 10px;
+}
+svg {
+  width: 20px;
+}
+
+.buttonWrapper {
+  align-items: center;
+}
+
 .button {
   width: 100px;
   height: 45px;
@@ -40,13 +58,14 @@
   border-radius: 30px;
   font-size: 25px;
   font-weight: 600;
-  color: rgb(255, 255, 255);
+  color: var(--fifth-color-light);
   box-sizing: border-box;
   box-shadow: none;
   border: none;
 }
 
-.button:hover {
+.button:hover, 
+.button:active {
   fill: var(--first-color);
   color: var(--first-color);
   background: var(--second-color-dark);
@@ -60,25 +79,18 @@
 reverse running 0s none;
 }
 
-
 @keyframes animation {
+  50% {
+    fill: var(--second-color);
+    color: var(--second-color);
+    transform: scale(1.05);
+  }
+  100% {
+    fill: var(--second-color-dark);
+    color: var(--second-color-dark);
+    transform: scale(1);
 
-50% {
-  fill: var(--second-color);
-  color: var(--second-color);
-  transform: scale(1.05);
-}
-100% {
-  fill: var(--second-color-dark);
-  color: var(--second-color-dark);
-  transform: scale(1);
-
-}
-}
-
-.button:active {
-  color: rgb(255, 255, 255);
-  background: var(--second-color-dark);
+  }
 }
 
 .avatarWrapper {
@@ -97,7 +109,7 @@ reverse running 0s none;
 }
 
 .defaultAvatar {
-  background: rgba(234, 210, 210, 0.751);
+  background: var(--third-color);
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -150,6 +162,12 @@ reverse running 0s none;
     width: 45px;
     height: 45px;
   }
+  .themeSelectorTitle {
+    font-size: 21px;
+  }
+   .themeSelectorIcon {
+    width: 28px;
+  }
 }
 
 @media(max-width: 600px) {
@@ -178,6 +196,15 @@ reverse running 0s none;
     width: 42px;
     height: 42px;
   }
+  .themeSelectorIconWrapper {
+    padding: 6px;
+  }
+  .themeSelectorTitle {
+    font-size: 20px;
+  }
+   .themeSelectorIcon {
+    width: 26px;
+  } 
 }
 
 @media(max-width: 450px) {
@@ -205,10 +232,28 @@ reverse running 0s none;
     width: 40px;
     height: 40px;
   }
+  .themeSelectorIconWrapper {
+    padding: 5px;
+  }
+  .themeSelectorTitle {
+    font-size: 16px;
+  }
+   .themeSelectorIcon {
+    width: 22px;
+  }
 }
 
 @media(max-width: 350px) {
   .toolbar {
-    padding: 0 0px;
+    padding: 0 3px;
+  }
+  .themeSelectorIconWrapper {
+    padding: 3px;
+  }
+  .themeSelectorTitle {
+    display: none;
+  }
+   .themeSelectorIcon {
+    width: 20px;
   }
 }

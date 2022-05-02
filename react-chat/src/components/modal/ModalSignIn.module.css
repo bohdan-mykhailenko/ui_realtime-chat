@@ -1,13 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400;1,800&display=swap');
 
-:root {
-  --first-color: #4FBAA7;
-  --second-color: #530B43;
-  --second-color-light: #710d5b;
-  --third-color: #8dbaad;
-  --fourth-color: #187358;
-}
-
 * {
   margin: 0;
   font-family: 'Merriweather Sans', sans-serif;
@@ -21,7 +13,7 @@
   left: 0;
   display:none;
   z-index: 122;
-  background: rgba(2, 1, 14, 0.9);
+  background: var(--modal-color);
   z-index: 1000;
 }
 
@@ -39,7 +31,6 @@
   justify-content: center;
   align-items: center;
 }
-
 
 @media(max-width: 600px) {
   .modalContent {

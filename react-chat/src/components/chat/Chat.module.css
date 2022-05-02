@@ -1,14 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&family=Rubik+Bubbles&family=Rubik+Wet+Paint&display=swap');
 
-:root {
-  --first-color: #4FBAA7;
-  --second-color: #530B43;
-  --second-color-dark: #28001f;
-  --second-color-light: #4a163e;
-  --third-color: #8dbaad;
-  --fourth-color: #187358;
-}
-
 ::-webkit-scrollbar {
   width: 0;
 }
@@ -22,6 +13,7 @@
   width: 100px;
   height: 200px;
   background: rgb(50, 43, 43);
+  
 }
 
 .wrapper {
@@ -36,6 +28,7 @@
 .body {
   margin: 15px 0 0 0;
   padding: 0 10px;
+  transition: border-color 200ms linear;
   border: 5px solid var(--second-color);
   border-radius: 10px;
   width: 100%;
@@ -44,20 +37,20 @@
   background-size: cover;
 	background-position: 50% 50%;
 	background-repeat: no-repeat;
-	background-image: url("../../imgs/forestbw.jpg"), linear-gradient(0deg, rgb(50, 54, 17) 20%,  rgb(5, 63, 27) 70%);
+	background-image: url("../../imgs/forestbw.jpg"), linear-gradient(0deg, var(--background-first-color) 20%, var(--background-second-color) 70%);
 	background-blend-mode: multiply;
 }
 
 .item {
   padding: 7px;
   border-radius: 20px;
-  background: rgb(50, 43, 43);
+  background: var(--message-color);
   max-width: 50%;
   height: auto;
   min-height: auto;
   word-wrap: break-word;
   overflow-y: auto;
-  color: rgb(239, 207, 207);
+  color: var(--text-color-lightest);
 }
 
 .avatar{
@@ -84,19 +77,22 @@
   position: relative;
   right:  15px;
   bottom: 70px;
-  border: 3px solid rgb(72, 52, 70);;
+  border: 3px solid var(--second-color-light);
   border-radius: 50%;
-  color: rgba(121, 202, 202, 0.873);
-  background-color:rgba(172, 87, 200, 0.218);
+  color: var(--first-color-light);
+  background-color: var(--arrow-color);
   width: 40px;
   height: 40px;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .img {
   width: 100%;
   height: 100%;
-  border: 1px solid rgb(38, 30, 30);
+  border: 1px solid var(--text-color);
   border-radius: 10px;
 }
 
@@ -112,7 +108,7 @@
   top: 0px;
   color: rgb(176, 15, 15);
   border-radius: 50%;
-  animation: likeAppearance  0.6s linear 
+  animation: likeAppearance  0.4s linear 
   alternate running 0s none; 
 }
 

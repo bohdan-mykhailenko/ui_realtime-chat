@@ -11,10 +11,7 @@ import classes from './Chat.module.css';
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import MyDate from '../date/MyDate'
-import {
-  CSSTransition,
-  TransitionGroup,
-} from 'react-transition-group';
+import '../../index.css'
 
 const Chat = () => {
   const btnRef = useRef(null);
@@ -152,7 +149,7 @@ const Chat = () => {
                 style={{
                   margin: 5,
                   marginTop: 10,
-                  border: user.uid === message.uid ? '3px solid #4FBAA7' : '3px solid #555',
+                  border: user.uid === message.uid ? '3px solid var(--first-color)' : '3px solid var(--message-border-color)',
                   borderRadius: user.uid === message.uid ? '25px 25px 0px 25px' : '0px 25px 25px 25px',
                   marginLeft: user.uid === message.uid ? 'auto' : '5px',
                   width: 'fit-content'

@@ -1,14 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&family=Rubik+Bubbles&family=Rubik+Wet+Paint&display=swap');
 
-:root {
-  --first-color: #4FBAA7;
-  --second-color: #530B43;
-  --second-color-dark: #28001f;
-  --second-color-light: #4a163e;
-  --third-color: #8dbaad;
-  --fourth-color: #187358;
-}
-
 ::-webkit-scrollbar {
   width: 0;
 }
@@ -33,12 +24,12 @@
   margin: 0 auto;
   padding: 5px 10px;
   height: auto;
-  color: rgb(255, 247, 247);
+  color: var(--fifth-color);
   font-size: 18px;
   width: 100%;
   border: 5px solid var(--second-color);
   border-radius: 10px;
-  background: #06796b;
+  background: var(--fourth-color-dark);
   line-height: 1.5;
   letter-spacing: 0.7px;
   resize: none;
@@ -49,12 +40,12 @@
 
 .textarea:focus,
 .textarea:active {
-  background: #043c3f;
+  background: var(--fourth-color-darkest);
   outline: none;
 }
 
 .textarea::placeholder {
-  color: #c1bac4;
+  color: var(--text-color-light);
   font-size: 16px;
 }
 
@@ -64,7 +55,7 @@
   justify-content: center;
   background: transparent;
   border: none; 
-  color:#c1bac4;
+  color: var(--text-color-light);
   stroke: var(--second-color);
   cursor: pointer;
 }
@@ -90,7 +81,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color:#c1bac4;
+  color: var(--text-color-light);
   display: flex;
   cursor: pointer;
 }
@@ -223,3 +214,4 @@
     height: 40px;
   }
 }
+
