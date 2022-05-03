@@ -72,7 +72,7 @@ const Navbar = () => {
           <div className={classes.themeSelector}>
             <h2
               style={{
-                color: theme === 'dark' ? 'var(--theme-select-color-light)' : 'var(--theme-select-color-dark)'
+                color: theme === 'dark' ? 'var(--theme-selector-color)' : 'var(--theme-selector-color'
               }}
               className={classes.themeSelectorTitle}>
               {theme}
@@ -81,7 +81,7 @@ const Navbar = () => {
               className={classes.themeSelectorIconWrapper}
               onClick={handleSelectThemeClick}
               style={{
-                color: theme === 'dark' ? 'var(--theme-select-color-light)' : 'var(--theme-select-color-dark)'
+                color: theme === 'dark' ? 'var(--theme-selector-color)' : 'var(--theme-selector-color)'
               }}>
               {theme === 'dark'
                 ? <Brightness4Icon

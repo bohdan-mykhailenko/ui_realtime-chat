@@ -11,7 +11,6 @@
   margin: 10px auto;
   padding: 10px;
   border-radius: 20px;
-  
 }
 
 .title {
@@ -30,7 +29,7 @@
   overflow: auto;
   font-size: 22px;
   line-height: 1.4;
-  color: var(--text-color);
+  color: var(--text-color-light);
   border-radius: 5px;
   border-right: 5px solid var(--second-color);
   border-left: 5px solid var(--second-color);
@@ -58,7 +57,8 @@
   width: 90%;
   display: grid;
   grid-template-rows: 1fr;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
 }
 
 .list {
@@ -71,19 +71,17 @@
 .li {
   margin: 0 0 0 10px;
   font-size: 20px;
-  color: var(--text-color);
+  color: var(--text-color-lightest);
   font-weight: 800;
 }
 
 .icon {
   margin: 0 0 0 32px;
-  color: var(--first-color);
-  stroke: var(--fourth-color);
+  color: var(--first-color-dark);
+  stroke: var(--first-color-dark);
 }
 
 .icon:hover {
-  fill: var(--first-color-dark);
-  stroke: var(--first-color-darkest);
   transform: scale(1.5);
 }
 
@@ -104,14 +102,14 @@
     stroke: var(--first-color);
   }
   25% {
-    fill: var(--first-color);
+    fill: var(--first-color-dark);
   }
   50%{
-    fill: var(--first-color-dark);
-    stroke: var(--first-color-darkest);
+    fill: var(--first-color);
+    stroke: var(--first-color);
   }
   75% {
-    fill: var(--first-color);
+    fill: var(--first-color-dark);
   }
   100%{
     stroke: var(--first-color);
@@ -123,15 +121,30 @@
 
   @media(max-width: 992px) {
     .lists {
-      width: 100%;
+      width: 77%;
+      grid-template-columns: 1fr  1fr;
+      grid-template-rows: 1fr  1fr;
+      row-gap: 20px;
     }
+
     .li {
       margin: 0;;
     }
     
     .icon {
       margin: 0 0 0 22px;
-  }
+    }
+
+    .wrapperReactIcon {
+      grid-row: 1/3;
+      grid-column: 2;
+    }
+
+    .reactIcon {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
 }
 
 @media(max-width: 767px) {
@@ -140,29 +153,32 @@
   }
 
   .lists {
-    width: 95%;
-    grid-template-rows: 1fr 250px;
+    width: 92%;
+    /* grid-template-rows: 1fr 250px;
     grid-template-columns: 1fr 1fr;
     justify-content: center;
-    align-items: center;
-  }
+    align-items: center;*/
+  } 
   
   .icon {
     margin: 0 0 0 0px;
   }
 
-  .wrapperReactIcon {
+  /* .wrapperReactIcon {
     grid-row: 2;
     grid-column: 1/3;
-  }
+  } */
+
   .reactIcon {
     display: flex;
     justify-content: center;
-    width: 80%;
+    width: 90%;
   }
+
   .subtitle {
     font-size: 32px;
   }
+
   .li {
     margin: 0 0 0 -20px;
     font-size: 20px;

@@ -1,6 +1,6 @@
 .date {
   padding: 0 3px 0 0;
-  color: var(--first-color-lightest);
+  color: var(--first-color-light);
   font-size: 10px;
   display: flex;
   flex-direction: column;
@@ -8,10 +8,11 @@
 }
 
 .dateHM {
-  font-weight: 800;
+  font-weight: 700;
   color: var(--first-color-light);
 }
 
 .dateDMY {
-font-size: 8px;
+  font-weight: 600;
+  font-size: 8px;
 }

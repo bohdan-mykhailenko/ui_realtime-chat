@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { Grid, Container } from '@material-ui/core';
+import { Grid, Container, } from '@material-ui/core';
 import { Context } from '../../index';
 import classes from './Logout.module.css';
 import { useAuthState } from 'react-firebase-hooks/auth';

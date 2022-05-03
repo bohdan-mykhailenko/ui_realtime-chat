@@ -18,8 +18,6 @@
 }
 
 .modalContent {
-  padding: 25px;
-  background: var(--third-color);
   border-radius: 10px;
   height: auto;
   width: auto;
@@ -31,7 +29,6 @@
   justify-content: center;
   align-items: center;
 }
-
 
 @media(max-width: 600px) {
   .modalContent {

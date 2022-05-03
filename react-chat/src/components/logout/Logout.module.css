@@ -13,23 +13,24 @@
 
 .button {
   padding: 15px 70px;
-  background: var(--fourth-color);
+  background: var(--first-color);
   border-radius: 5px;
   font-size: 25px;
-  font-weight: 600;
-  color: var(--fifth-color);
+  font-weight: 800;
+  color: var(--first-color-darkest);
   box-sizing: border-box;
   box-shadow: none;
-  border: 5px solid var(--fifth-color);
+  border: 3px solid var(--second-color);
+  cursor: pointer;
 }
 
 .button:hover,
 .button:active {
-  color: var(--fifth-color-light);
   box-sizing: border-box;
   box-shadow: none;
-  border: 5px solid var(--fifth-color-light);
+  border-color: var(--second-color-dark);
   background: var(--fourth-color-light);
+  transition: background-color 200ms linear;
 }
 
 .avatar {
@@ -43,13 +44,13 @@
 .name {
   margin: 0 0 20px 0;
   font-size: 28px;
-  color: var(--second-color);
+  color: var(--text-color-lightest);
 }
 
 .email {
-  margin: 0 0 65px 0;
+  margin: 0 0 45px 0;
   font-size: 20px;
-  color: var(--second-color-dark);
+  color: var(--text-color-lightest);
 }
 
 @media(max-width: 600px) {
@@ -59,9 +60,10 @@
   }
   
   .email {
-    margin: 0 0 45px 0;
+    margin: 0 0 35px 0;
     font-size: 18px;
   }
+
   .button {
     padding: 10px 60px;
     font-size: 23px;
@@ -79,7 +81,7 @@
   }
   
   .email {
-    margin: 0 0 45px 0;
+    margin: 0 0 35px 0;
     font-size: 17px;
   }
   .button {

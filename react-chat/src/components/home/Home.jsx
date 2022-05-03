@@ -9,8 +9,8 @@ import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
 import { ReactComponent as ReactIcon } from '../../imgs/react.svg';
 
 const Home = () => {
-  const techArray = ['Java Sctipt(ES6)', 'React 18.0.0', 'MaterialUl 5.5.3(framework)', 'Firebase 9.6.10(service)', 'HTML5', 'CSS3(animation)'];
-  const abilArray = ['Authentication with Google', 'Chating in realtime', 'Sending an atachments', 'Typing emodji', 'Changing UI theme', 'Watching the time'];
+  const techArray = ['Java Sctipt(ES6)', 'React 18.0.0', 'MaterialUl 5.5.3', 'Firebase 9.6.10', 'HTML5', 'CSS3(animation)'];
+  const abilArray = ['Auth with social', 'Chating in realtime', 'Sending photos', 'Typing emodji', 'Changing UI theme', 'Sending likes'];
 
   function CreateList(props) {
     let i = 0;
@@ -77,7 +77,7 @@ const Home = () => {
         <Grid
           className={classes.enjoy}
           onMouseDown={(event) => escapeMouseDown(event)}>
-          Enjoy with using my app😊
+          Enjoy with using my app
         </Grid>
       </Grid>
     </Container>

@@ -19,8 +19,8 @@
 
 .modalContent {
   padding: 25px;
-  background: var(--third-color);
-  border-radius: 10px;
+  background: var(--background-main-color);
+  border-radius: 5px;
   height: auto;
   width: auto;
   border: 3px solid var(--second-color)

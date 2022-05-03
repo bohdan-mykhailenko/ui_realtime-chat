@@ -131,8 +131,10 @@ const Chat = () => {
     return <Loader />
   }
 
+  console.log(document.clientWidth)
+
   return (
-    <Container >
+    <Grid className={classes.container}>
       <div className={classes.wrapper}>
         {user
           ?
@@ -149,12 +151,13 @@ const Chat = () => {
                 style={{
                   margin: 5,
                   marginTop: 10,
-                  border: user.uid === message.uid ? '3px solid var(--first-color)' : '3px solid var(--message-border-color)',
+                  background: user.uid === message.uid ? 'var(--first-color)' : 'var(--message-color)',
+                  border: user.uid === message.uid ? '3px solid var(--first-color)' : '3px solid var(--message-color)',
                   borderRadius: user.uid === message.uid ? '25px 25px 0px 25px' : '0px 25px 25px 25px',
                   marginLeft: user.uid === message.uid ? 'auto' : '5px',
                   width: 'fit-content'
                 }}>
-                <Grid container >
+                <Grid container className={classes.infoWrapper}>
                   <Avatar src={message.photoURL} className={classes.avatar} />
                   <div
                     className={classes.name}
@@ -213,7 +216,7 @@ const Chat = () => {
         }
         <Form imageURL={imageURL} setImageURL={setImageURL} btnRef={btnRef} value={value} setValue={setValue} sendMessage={sendMessage} enterKey={enterKey} />
       </div >
-    </Container >
+    </Grid >
   )
 }
 

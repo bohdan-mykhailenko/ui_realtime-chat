@@ -47,27 +47,33 @@ const Login = (setVisible) => {
             alignItems={'center'}
             direction={'column'}>
             <h1 className={classes.title}>Log in with:</h1>
-            <div className={classes.item}>
+            <div
+              className={classes.item}
+              onClick={googleLogin}>
               <Icon className={classes.icon} >
                 <GoogleIcon className={classes.googleIcon} />
               </Icon>
-              <button className={classes.button} onClick={googleLogin}>
+              <button className={classes.button} >
                 Google
               </button>
             </div>
-            <div className={classes.item}>
+            <div
+              className={classes.item}
+              onClick={facebookLogin}>
               <Icon className={classes.icon}>
                 <FacebookIcon className={classes.facebookIcon} />
               </Icon>
-              <button className={classes.button} onClick={facebookLogin}>
+              <button className={classes.button}>
                 Facebook
               </button>
             </div>
-            <div className={classes.item}>
+            <div
+              className={classes.item}
+              onClick={githubLogin}>
               <Icon className={classes.icon}>
                 <GitHubIcon className={classes.githubIcon} />
               </Icon>
-              <button className={classes.button} onClick={githubLogin}>
+              <button className={classes.button}>
                 GitHub
               </button>
             </div>

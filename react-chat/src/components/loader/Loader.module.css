@@ -5,6 +5,10 @@
   font-family: 'Merriweather Sans', sans-serif;
 }
 
+:root {
+  background: #e3dede;
+}
+
 .spinner {
   color: official;
   display: inline-block;
@@ -27,7 +31,7 @@
   width: 6px;
   height: 18px;
   border-radius: 20%;
-  background: var(--second-color-light);
+  background:#561649;
 }
 
 .spinner div:nth-child(1) {
@@ -102,6 +106,12 @@
 .title {
   margin: 0 0 7px 0;
   font-size: 25px;
-  color: var(--second-color);
+  color: #561649;
 }
 
+
+@media(max-width: 450px) {
+  .title {
+    font-size: 22px;
+  }
+}

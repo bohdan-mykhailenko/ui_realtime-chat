@@ -31,7 +31,6 @@ const Form = (props) => {
     firestore.collection('photos').orderBy('createdAt')
   )
 
-
   return (
     <div className={classes.form}>
       <textarea
@@ -50,9 +49,8 @@ const Form = (props) => {
             <img src={props.imageURL} className={classes.imgPreview} />
           </div>
           :
-          <AttachFileIcon className={classes.icon} fontSize={'large'} />
+          <AttachFileIcon className={classes.icon} />
         }
-
         <input
           type="file"
           accept="image/*"
@@ -63,7 +61,7 @@ const Form = (props) => {
         ref={props.btnRef}
         className={classes.button}
         onClick={(props.value || props.imageURL) && props.sendMessage}>
-        <SendIcon className={classes.icon} fontSize={'large'} />
+        <SendIcon className={classes.icon} />
       </button>
     </div>
   )

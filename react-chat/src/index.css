@@ -1,4 +1,5 @@
 #root {
+  padding: 0;
   overflow-y: auto;
   height: 100vh;
   background: var(--background-main-color);
@@ -9,62 +10,24 @@
 }
 
 html[data-theme='light'] {
-  --first-color: #4FBAA7;
-  --first-color-light: #5c8f8a;
-  --first-color-lightest: #75948e;
-  --first-color-dark: #0a978b;
-  --first-color-darkest: rgb(7, 117, 122);
-  --second-color: #530B43;
-  --second-color-light: #6b1c59;
-  --second-color-dark: #28001f;
-   --third-color: #8dbaad; 
-  --fourth-color: #187358;
-  --fourth-color-light: #1e9370;
-  --fourth-color-dark: #06796b;
-  --fourth-color-darkest: #043c3f;
-  --fifth-color: #ddd;
-  --fifth-color-light: #fff;
-  --text-color: #1b2926;
-  --text-color-light: #c1bac4;
-  --text-color-lightest: rgb(239, 207, 207);
+  --first-color: rgb(194, 219, 219);
+  --first-color-light: #4e3152;
+  --first-color-dark: rgb(111, 152, 152);
+  --first-color-darkest:rgb(71, 98, 98);
+  --second-color: #561649;
+  --second-color-light: #6c1055;
+  --second-color-dark: #391235;
+  --fourth-color: #fff;
+  --fourth-color-light: #97cdbd;
+  --fifth-color: rgb(88, 78, 78);
+  --text-color-light: #241b28;
+  --text-color-lightest: rgb(92, 53, 94);
   --enjoy-color: red;
   --modal-color: rgba(2, 1, 14, 0.9);
-  --message-color: rgb(50, 43, 43);
-  --message-border-color: rgb(50, 43, 43);
-  --arrow-color: rgba(67, 48, 75, 0.658);
-  --background-main-color: #bfb8cd;
-  --background-first-color: rgb(68, 74, 22);
-  --background-second-color: rgb(34, 33, 70);
-  --theme-select-color-dark:  rgb(10, 49, 52);
-}
-
-
-
-html[data-theme='dark'] {
-  --first-color: #252d2c;
-  --first-color-light: #5c8f8a;
-  --first-color-lightest: #75948e;
-  --first-color-dark: #0a978b;
-  --first-color-darkest: rgb(7, 117, 122);
-  --second-color: #0c8f79;
-  --second-color-light: #6b1c59;
-  --second-color-dark: #28001f;
-   --third-color: #8dbaad; 
-  --fourth-color: #187358;
-  --fourth-color-light: #1e9370;
-  --fourth-color-dark: #06796b;
-  --fourth-color-darkest: #043c3f;
-  --fifth-color: #ddd;
-  --fifth-color-light: #fff;
-  --text-color: #1b2926;
-  --text-color-light: #c1bac4;
-  --text-color-lightest: rgb(239, 207, 207);
-  --enjoy-color: red;
-  --modal-color: rgba(2, 1, 14, 0.9);
-  --message-color: rgb(104, 99, 99);
-  --arrow-color: rgba(67, 48, 75, 0.658);
-  --background-main-color: #424748;
-  --background-first-color: rgb(134, 135, 130);
-  --background-second-color: rgb(52, 18, 53);
-  --theme-select-color-light:  rgb(181, 198, 199);
+  --message-color: rgb(220, 217, 220);
+  --theme-selector-color: rgb(202, 173, 9);
+  --background-main-color: #e3dede;
+  --background-first-color: rgb(122, 124, 122);
+  --background-second-color: rgb(172, 171, 190);
+  --arrow-color: rgba(78, 72, 72, 0.482);
 }

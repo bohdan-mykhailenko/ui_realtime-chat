@@ -24,12 +24,12 @@
   margin: 0 auto;
   padding: 5px 10px;
   height: auto;
-  color: var(--fifth-color);
+  color: var(--text-color-light);
   font-size: 18px;
   width: 100%;
   border: 5px solid var(--second-color);
   border-radius: 10px;
-  background: var(--fourth-color-dark);
+  background: var(--fourth-color);
   line-height: 1.5;
   letter-spacing: 0.7px;
   resize: none;
@@ -40,7 +40,6 @@
 
 .textarea:focus,
 .textarea:active {
-  background: var(--fourth-color-darkest);
   outline: none;
 }
 
@@ -63,20 +62,20 @@
 .button:hover,
 .button:active { 
   stroke: var(--second-color-light);
-  color:var(--first-color);
 }
 
 .icon {
   color:var(--second-color);
+  transform: scale(1.5);
 }
 
 .icon:hover,
 .icon:active {
-  color:var(--second-color-dark);
-  transform: scale(1.1);
+  color:var(--second-color-light);
 }
 
 .label {
+  padding: 0 7px;
   height: 100%;
   display: flex;
   align-items: center;
@@ -120,6 +119,10 @@
   .button {
     font-size: 18px;
   }
+
+  .label {
+    padding: 0 5px;
+  }
 }
 
 @media(max-width: 600px) {
@@ -156,28 +159,58 @@
 }
 
 @media(max-width: 450px) {
+  .icon {
+    transform: scale(1.25);
+  }
+
+  .label {
+    padding: 0 5px 0 0 ;
+  }
+
+  .form {
+    background: var(--fourth-color);
+    border-top: 3px solid var(--second-color)
+  }
+  
   .textarea {
-    padding: 7px 2px;
+    margin: 0;
+    padding: 4px;
+    background: var(--fourth-color);
+    height: 40px;
+    padding: 2px 3px;
     font-size: 16px;
+    border: none;
+    border-radius: 0;
   }
   
   .textarea::placeholder {
     font-size: 13px;
   }
+
+  .textarea:focus,
+  .textarea:active {
+    outline: none;
+    border: none;
+  } 
   
   .icon {
     width: 28px;
   }
   
   .imgPreviewWrapper {
-    width: 92px;
-    height: 92px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .imgPreview {
+    border: none;
+    border-radius: 5px;
   }
 }
 
 @media(max-width: 350px) {
   .textarea {
-    padding: 5px 0;
+    padding: 3px;
     font-size: 15px;
   }
   
@@ -187,11 +220,6 @@
 
   .icon {
     width: 28px;
-  }
-
-  .imgPreviewWrapper {
-    width: 80.5px;
-    height: 80.5px;
   }
 }
 
