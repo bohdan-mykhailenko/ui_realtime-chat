@@ -7,6 +7,7 @@
 * {
   margin: 0;
   font-family: 'Nunito Sans', sans-serif;
+  transition: border-color 200ms linear, background-color 200ms linear;
 }
 
 .galery {
@@ -29,7 +30,6 @@
 .body {
   margin: 15px 0 0 0;
   padding: 0 10px;
-  transition: border-color 200ms linear;
   border: 5px solid var(--second-color);
   border-radius: 10px;
   width: 100%;
@@ -51,7 +51,7 @@
   min-height: auto;
   word-wrap: break-word;
   overflow-y: auto;
-  color: var(--text-color-light);
+  color: var(--text-color);
 }
 
 .name {
@@ -83,7 +83,7 @@
   bottom: 70px;
   border: 3px solid var(--second-color);
   border-radius: 50%;
-  color: var(--theme-selector-color);
+  color: var(--first-color);
   background-color:var(--arrow-color);
   width: 40px;
   height: 40px;

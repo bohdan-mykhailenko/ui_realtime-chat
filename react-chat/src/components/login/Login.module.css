@@ -41,7 +41,7 @@
   padding: 15px 0;
   font-size: 25px;
   font-weight: 600;
-  color: var(--first-color-darkest);
+  color: var(--first-color-dark);
   box-sizing: border-box;
   box-shadow: none;
   border: none;
@@ -67,17 +67,17 @@
 
 .googleIcon {
   font-size: 25px;
-  color:rgb(187, 31, 31);
+  color:var(--facebook-color);
 }
 
 .facebookIcon {
   font-size: 25px;
-  color: rgb(14, 58, 159);
+  color: var(--google-color);
 }
 
 .githubIcon {
   font-size: 25px;
-  color:rgb(32, 36, 32)
+  color:var(--github-color);
 }
 
 @media(max-width: 600px) {

@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&family=Rubik+Bubbles&family=Rubik+Wet+Paint&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&family=Rubik:wght@400;500&display=swap');
 ::-webkit-scrollbar {
   width: 0;
 }
@@ -18,24 +17,26 @@
   box-sizing: content-box;
   border: none;
   grid-template-columns: 1fr auto auto;
+  background: var(--first-color);
 }
 
 .textarea {
   margin: 0 auto;
   padding: 5px 10px;
   height: auto;
-  color: var(--text-color-light);
+  color: var(--text-color);
   font-size: 18px;
   width: 100%;
   border: 5px solid var(--second-color);
   border-radius: 10px;
-  background: var(--fourth-color);
+  background: var(--first-color);
   line-height: 1.5;
   letter-spacing: 0.7px;
   resize: none;
   font-weight: 400;
   cursor: pointer;
   outline: none;
+  font-family: 'Rubik', sans-serif;
 }
 
 .textarea:focus,
@@ -44,7 +45,7 @@
 }
 
 .textarea::placeholder {
-  color: var(--text-color-light);
+  color: var(--placeholder-color);
   font-size: 16px;
 }
 
@@ -54,7 +55,6 @@
   justify-content: center;
   background: transparent;
   border: none; 
-  color: var(--text-color-light);
   stroke: var(--second-color);
   cursor: pointer;
 }
@@ -168,16 +168,13 @@
   }
 
   .form {
-    background: var(--fourth-color);
     border-top: 3px solid var(--second-color)
   }
   
   .textarea {
     margin: 0;
-    padding: 4px;
-    background: var(--fourth-color);
-    height: 40px;
-    padding: 2px 3px;
+    padding: 3px 7px;
+    height: 47px;
     font-size: 16px;
     border: none;
     border-radius: 0;

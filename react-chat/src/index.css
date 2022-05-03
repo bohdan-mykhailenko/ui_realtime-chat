@@ -11,23 +11,48 @@
 
 html[data-theme='light'] {
   --first-color: rgb(194, 219, 219);
-  --first-color-light: #4e3152;
-  --first-color-dark: rgb(111, 152, 152);
-  --first-color-darkest:rgb(71, 98, 98);
+  --first-color-dark: rgb(93, 175, 175);
   --second-color: #561649;
   --second-color-light: #6c1055;
   --second-color-dark: #391235;
-  --fourth-color: #fff;
+  --fourth-color: rgb(237, 249, 250);
   --fourth-color-light: #97cdbd;
-  --fifth-color: rgb(88, 78, 78);
-  --text-color-light: #241b28;
-  --text-color-lightest: rgb(92, 53, 94);
+  --text-color: #351a41;
+  --text-color-light: rgb(90, 64, 91);
+  --placeholder-color: rgb(93, 87, 87);
   --enjoy-color: red;
+  --arrow-color: rgba(78, 72, 72, 0.482);
   --modal-color: rgba(2, 1, 14, 0.9);
   --message-color: rgb(220, 217, 220);
-  --theme-selector-color: rgb(202, 173, 9);
+  --theme-selector-color: rgb(210, 180, 13);
   --background-main-color: #e3dede;
   --background-first-color: rgb(122, 124, 122);
   --background-second-color: rgb(172, 171, 190);
-  --arrow-color: rgba(78, 72, 72, 0.482);
+  --facebook-color: rgb(187, 31, 31);
+  --google-color:rgb(14, 58, 159);
+  --github-color:rgb(32, 36, 32)
+}
+
+html[data-theme='dark'] {
+  --first-color: rgb(48, 51, 51);
+  --first-color-dark: rgb(186, 225, 225);
+  --second-color: #269999;
+  --second-color-light: #1b7d7d;
+  --second-color-dark: rgb(34, 92, 92);
+  --fourth-color: rgb(28, 30, 30);
+  --fourth-color-light: rgb(29, 33, 33);
+  --text-color: #e7e0e7;
+  --text-color-light: rgb(149, 205, 219);
+  --placeholder-color: rgb(226, 215, 215);
+  --enjoy-color: rgb(234, 41, 41);
+  --arrow-color: rgba(160, 150, 150, 0.564);
+  --modal-color: rgba(7, 7, 10, 0.934);
+  --message-color: rgb(88, 86, 88);
+  --theme-selector-color:  rgb(202, 185, 91);
+  --background-main-color: #4f4b4b;
+  --background-first-color: rgb(29, 29, 32);
+  --background-second-color: rgb(50, 47, 47);
+  --facebook-color: rgb(211, 46, 46);
+  --google-color:rgb(34, 85, 202);
+  --github-color:rgb(124, 49, 123);
 }

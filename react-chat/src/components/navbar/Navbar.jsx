@@ -11,15 +11,13 @@ import Login from '../login/Login';
 import { ReactComponent as Logo } from '../../imgs/logo.svg'
 import classes from './Navbar.module.css';
 import { getAuth } from "firebase/auth";
-import { useMyTheme } from '../../hooks/useMyTheme';
+import { useTheme } from '../../hooks/useTheme';
 import IconButton from '@mui/material/IconButton';
-import Box from '@mui/material/Box';
-import { useTheme, ThemeProvider, createTheme } from '@mui/material/styles';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7'
 
 const Navbar = () => {
-  const { theme, setTheme } = useMyTheme();
+  const { theme, setTheme } = useTheme();
   const [modalSignIn, setModalSignIn] = useState(false);
   const [modalSignOut, setModalSignOut] = useState(false);
   const { auth, loading } = useContext(Context);

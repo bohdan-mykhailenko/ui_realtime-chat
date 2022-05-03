@@ -4,19 +4,18 @@ import classes from './Loader.module.css';
 
 const Loader = () => {
   return (
-    <Container>
+    <Container className={classes.container}>
       <Grid
-        container
-        style={{ height: window.innerHeight - 50 }}
+        className={classes.container}
         alignItems={'center'}
-        justify={'center'}>
+        justifyContent={'center'}>
         <Grid
           container
           alignItems={'center'}
           direction={'column'}
         >
-          <div class={classes.spinner}><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-          <h1 class={classes.title}>Loading...</h1>
+          <div className={classes.spinner}><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+          <h1 className={classes.title}>Loading...</h1>
         </Grid>
       </Grid>
     </Container>
