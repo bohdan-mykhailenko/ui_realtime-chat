@@ -11,9 +11,9 @@
 
 html[data-theme='light'] {
   --first-color: rgb(194, 219, 219);
-  --first-color-dark: rgb(93, 175, 175);
+  --first-color-dark: rgb(91, 111, 111);
   --second-color: #561649;
-  --second-color-light: #6c1055;
+  --second-color-light: #411a37;
   --second-color-dark: #391235;
   --fourth-color: rgb(237, 249, 250);
   --fourth-color-light: #97cdbd;
@@ -23,7 +23,7 @@ html[data-theme='light'] {
   --enjoy-color: red;
   --arrow-color: rgba(78, 72, 72, 0.482);
   --modal-color: rgba(2, 1, 14, 0.9);
-  --message-color: rgb(220, 217, 220);
+  --message-color: rgb(230, 230, 230);
   --theme-selector-color: rgb(210, 180, 13);
   --background-main-color: #e3dede;
   --background-first-color: rgb(122, 124, 122);
@@ -34,24 +34,24 @@ html[data-theme='light'] {
 }
 
 html[data-theme='dark'] {
-  --first-color: rgb(48, 51, 51);
-  --first-color-dark: rgb(186, 225, 225);
+  --first-color: rgb(41, 42, 42);
+  --first-color-dark: rgb(174, 182, 182);
   --second-color: #269999;
   --second-color-light: #1b7d7d;
   --second-color-dark: rgb(34, 92, 92);
   --fourth-color: rgb(28, 30, 30);
   --fourth-color-light: rgb(29, 33, 33);
-  --text-color: #e7e0e7;
+  --text-color: #e0d4e0;
   --text-color-light: rgb(149, 205, 219);
-  --placeholder-color: rgb(226, 215, 215);
+  --placeholder-color: rgb(181, 174, 174);
   --enjoy-color: rgb(234, 41, 41);
   --arrow-color: rgba(160, 150, 150, 0.564);
   --modal-color: rgba(7, 7, 10, 0.934);
   --message-color: rgb(88, 86, 88);
   --theme-selector-color:  rgb(202, 185, 91);
   --background-main-color: #4f4b4b;
-  --background-first-color: rgb(29, 29, 32);
-  --background-second-color: rgb(50, 47, 47);
+  --background-first-color: rgb(79, 38, 88);
+  --background-second-color: rgb(71, 45, 81);
   --facebook-color: rgb(211, 46, 46);
   --google-color:rgb(34, 85, 202);
   --github-color:rgb(124, 49, 123);

@@ -31,6 +31,7 @@
 .themeSelector {
   display: flex;
   align-items: center;
+  margin: 0 5px 0 0;
 }
 
 .themeSelectorTitle {
@@ -136,6 +137,9 @@ reverse running 0s none;
 }
 
 @media(max-width: 767px) {
+  .themeSelector {
+    margin: 0 2px 0 0;
+  }
   .toolbar {
     height: 60px;
   }
@@ -202,6 +206,12 @@ reverse running 0s none;
 }
 
 @media(max-width: 450px) {
+  .themeSelector {
+    margin: 0;
+  }
+  .appbar {
+    position: fixed;
+  }
   .toolbar {
     height: 35px;
   }

@@ -51,7 +51,7 @@ const Navbar = () => {
   }
 
   return (
-    <AppBar className={classes.appbar} position="static">
+    <AppBar className={classes.appbar} position="fixed">
       <Toolbar
         className={classes.toolbar}
         onMouseDown={(event) => escapeMouseDown(event)}>

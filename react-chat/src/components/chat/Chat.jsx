@@ -11,9 +11,13 @@ import classes from './Chat.module.css';
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import MyDate from '../date/MyDate'
+import Emoji from '../emoji/Emoji';
 import '../../index.css'
 
 const Chat = () => {
+  const [isVisibleEmoji, setIsVisibleEmoji] = useState(false);
+  const [emojiValue, setEmojiValue] = useState('');
+  const [focus, setFocus] = useState(false);
   const btnRef = useRef(null);
   const bottomRef = useRef(null);
   const { auth, firestore } = useContext(Context);
@@ -25,6 +29,8 @@ const Chat = () => {
   const [messages, loading] = useCollectionData(
     firestore.collection('messages').orderBy('createdAt')
   )
+
+  console.log(isVisibleEmoji)
 
   const sendMessage = async () => {
     await firestore.collection('messages').add({
@@ -131,16 +137,13 @@ const Chat = () => {
     return <Loader />
   }
 
-  console.log(document.clientWidth)
-
   return (
-    <Grid className={classes.container}>
+    <Grid className={classes.container} >
       <div className={classes.wrapper}>
         {user
           ?
           <div
             className={classes.body}
-
             onScroll={isVisible}>
             {messages.map((message, index) =>
               <div
@@ -214,7 +217,31 @@ const Chat = () => {
             :
             <div></div>
         }
-        <Form imageURL={imageURL} setImageURL={setImageURL} btnRef={btnRef} value={value} setValue={setValue} sendMessage={sendMessage} enterKey={enterKey} />
+        <Form
+          imageURL={imageURL}
+          setImageURL={setImageURL}
+          btnRef={btnRef}
+          value={value}
+          setValue={setValue}
+          sendMessage={sendMessage}
+          enterKey={enterKey}
+          isVisibleEmoji={isVisibleEmoji}
+          setIsVisibleEmoji={setIsVisibleEmoji}
+          emojiValue={emojiValue}
+          setEmojiValue={setEmojiValue}
+          focus={focus}
+          setFocus={setFocus}
+        />
+        {isVisibleEmoji &&
+          <div className={classes.emoji}>
+            <Emoji
+              emojiValue={emojiValue}
+              setEmojiValue={setEmojiValue}
+              focus={focus}
+              setFocus={setFocus}
+            />
+          </div>
+        }
       </div >
     </Grid >
   )

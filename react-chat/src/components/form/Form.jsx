@@ -1,15 +1,20 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import firebase from "firebase/compat/app";
+import { Grid } from '@material-ui/core';
 import SendIcon from '@mui/icons-material/Send';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
+import MoodIcon from '@mui/icons-material/Mood';
 import classes from './Form.module.css';
 import { app } from "../../../src/index";
 import { Context } from '../../index';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import 'firebase/firestore';
 import 'firebase/compat/storage';
+import Emoji from '../emoji/Emoji';
 
 const Form = (props) => {
+  const textareaRef = useRef(null);
+  const [textValue, setTextValue] = useState('');
   const { firestore } = useContext(Context);
   const atachImage = async (event) => {
     const file = event.target.files[0];
@@ -31,39 +36,90 @@ const Form = (props) => {
     firestore.collection('photos').orderBy('createdAt')
   )
 
+  useEffect(() => {
+    if (!textValue) {
+      props.setValue(props.emojiValue)
+      return
+    }
+    props.setValue(textValue + props.emojiValue)
+  }, [props.emojiValue]);
+
+  const enterKey = (event) => {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      textareaRef.current.focus();
+    }
+  };
+
+  if (props.focus) {
+    textareaRef.current.focus();
+  }
+
   return (
-    <div className={classes.form}>
-      <textarea
-        rows='3'
-        className={classes.textarea}
-        placeholder={'Write a message...'}
-        value={props.value}
-        onChange={event => props.setValue(event.target.value)}
-        onKeyDown={props.enterKey}
-      >
-      </textarea>
-      <label className={classes.label}>
-        {props.imageURL
-          ?
-          < div className={classes.imgPreviewWrapper}>
-            <img src={props.imageURL} className={classes.imgPreview} />
-          </div>
-          :
-          <AttachFileIcon className={classes.icon} />
-        }
-        <input
-          type="file"
-          accept="image/*"
-          className={classes.fileInput}
-          onChange={atachImage} />
-      </label>
-      <button
-        ref={props.btnRef}
-        className={classes.button}
-        onClick={(props.value || props.imageURL) && props.sendMessage}>
-        <SendIcon className={classes.icon} />
-      </button>
-    </div>
+    <Grid
+      onKeyDown={enterKey}
+    >
+      <div className={classes.form}>
+        <label className={classes.label}>
+          {props.imageURL
+            ?
+            < div className={classes.imgPreviewWrapper}>
+              <img src={props.imageURL} className={classes.imgPreview} />
+            </div>
+            :
+            <AttachFileIcon className={classes.icon} />
+          }
+          <input
+            type="file"
+            accept="image/*"
+            className={classes.fileInput}
+            onChange={atachImage} />
+        </label>
+        <textarea
+          ref={textareaRef}
+          rows='3'
+          className={classes.textarea}
+          placeholder={'Write a message...'}
+          value={props.value}
+          onChange={event => {
+            setTextValue(event.target.value);
+            if (event.target.value !== undefined) {
+              props.setValue(event.target.value + props.emojiValue)
+              props.setEmojiValue('');
+              console.log(event.target.value)
+              return
+            }
+            props.setValue(props.emojiValue)
+            props.setEmojiValue('');
+          }}
+          onKeyDown={props.enterKey}
+        >
+        </textarea>
+        <button className={classes.moodIcon}>
+          <MoodIcon
+            className={classes.icon}
+            onClick={(event) => {
+              props.setIsVisibleEmoji(!props.isVisibleEmoji);
+              event.preventDefault();
+              textareaRef.current.focus();
+            }}
+          />
+        </button>
+        <button
+          ref={props.btnRef}
+          className={classes.button}
+          onClick={() => {
+            if (props.value || props.imageURL) {
+              props.sendMessage();
+            }
+            props.setValue('');
+            props.setEmojiValue('');
+            setTextValue('');
+          }}>
+          <SendIcon className={classes.icon} />
+        </button>
+      </div>
+    </Grid >
   )
 }
 

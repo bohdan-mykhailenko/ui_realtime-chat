@@ -1,3 +1,7 @@
+* {
+  font-family: Ubuntu, sans-serif;
+}
+
 .date {
   padding: 0 3px 0 0;
   color: var(--first-color-dark);
@@ -8,11 +12,12 @@
 }
 
 .dateHM {
-  font-weight: 700;
+  margin: 0 0 2px 0;
+  font-weight: 500;
   color: var(--first-color-dark);
 }
 
 .dateDMY {
-  font-weight: 800;
+  font-weight: 500;
   font-size: 8px;
 }
