@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/react_task_3/static/css/main.175fa129.css",
+    "main.css": "/react_task_3/static/css/main.380420e9.css",
     "main.js": "/react_task_3/static/js/main.582abdb8.js",
     "static/media/forestbw.jpg": "/react_task_3/static/media/forestbw.0434eb058bfed8d66fda.jpg",
     "static/media/react.svg": "/react_task_3/static/media/react.ee142fe49f6ca15e312c787c9eb21845.svg",
     "static/media/logo.svg": "/react_task_3/static/media/logo.ea32ec083a5a90fed586f5032f4637a0.svg",
     "index.html": "/react_task_3/index.html",
-    "main.175fa129.css.map": "/react_task_3/static/css/main.175fa129.css.map",
+    "main.380420e9.css.map": "/react_task_3/static/css/main.380420e9.css.map",
     "main.582abdb8.js.map": "/react_task_3/static/js/main.582abdb8.js.map"
   },
   "entrypoints": [
-    "static/css/main.175fa129.css",
+    "static/css/main.380420e9.css",
     "static/js/main.582abdb8.js"
   ]
 }
