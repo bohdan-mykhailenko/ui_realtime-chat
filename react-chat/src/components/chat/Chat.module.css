@@ -35,20 +35,6 @@
 	background-blend-mode: multiply;
 }
 
-.emoji {
-  margin: 0 0 0 auto;
-  position: relative;
-  right:  0px;
-  bottom: 255px;
-  border: 3px solid var(--second-color);
-  color: var(--first-color);
-  background: transparent;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .item {
   padding: 7px;
   border-radius: 20px;
@@ -89,10 +75,10 @@
   position: relative;
   right:  15px;
   bottom: 70px;
-  border: 3px solid var(--second-color);
+  border: 1px solid var(--second-color);
   border-radius: 50%;
-  color: var(--first-color);
-  background-color:var(--arrow-color);
+  color: var(--second-color);
+  background-color:var(--message-color);
   width: 40px;
   height: 40px;
   cursor: pointer;
@@ -110,6 +96,32 @@
 .bottomInfoWrapper {
   display: flex;
   justify-content: flex-end;
+}
+
+.emoji {
+  margin: 0 0 0 auto;
+  position: relative;
+  right: 5px;
+  bottom: 255px;
+  color: var(--first-color);
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  animation: emojiAppearance 1s linear 
+  alternate running 0s none; 
+}
+
+@keyframes emojiAppearance {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
 }
 
 .like {
@@ -154,12 +166,6 @@
 }
 
 @media(max-width: 992px) {
-  /* .wrapper {
-    height: calc(100vh - 80px);
-    width: 85vw;
-  } */
-
-
   .item {
     padding: 5px;
     max-width: 80%;
@@ -212,6 +218,10 @@
     right:  15px;
     bottom: 60px;
   }
+
+  .emoji {
+    bottom: 227px;
+  }
 }
 
 @media(max-width: 450px) {
@@ -238,6 +248,12 @@
   .item {
     padding: 3px;
   }
+
+  .emoji {
+    margin: 0 auto 0 0;
+    left: 3px;
+    bottom: 212.5px;
+  }
 }
 
 @media(max-width: 350px) {
@@ -253,14 +269,20 @@
 }
 
 @media(max-width: 300px) {
-.avatar{
+  .avatar{
     width: 20px;
     height: 20px;
-  }
-  
+   }
+
   .name {
     margin: 8px 0px 0 2px;
     font-size: 16px;
+  }
+
+  .emoji {
+    margin: 0 auto;
+    left: 0;
+    right: 0;
   }
 }
 

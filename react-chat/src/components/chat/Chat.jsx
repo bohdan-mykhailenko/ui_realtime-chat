@@ -1,7 +1,7 @@
-import React, { useContext, useState, useRef, useEffect } from 'react';
+import React, { useContext, useState, useRef } from 'react';
 import { Context } from '../../index';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Grid, Container } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import Avatar from '@material-ui/core/Avatar';
 import firebase from "firebase/compat/app";
 import Loader from '../loader/Loader';
@@ -30,8 +30,6 @@ const Chat = () => {
     firestore.collection('messages').orderBy('createdAt')
   )
 
-  console.log(isVisibleEmoji)
-
   const sendMessage = async () => {
     await firestore.collection('messages').add({
       uid: user.uid,
@@ -51,15 +49,14 @@ const Chat = () => {
     bottomRef.current.scrollIntoView(true);
   }
 
-  const getDocumentId = () => {
+  // getDocumentsId
+  (function () {
     firestore.collection('messages').orderBy('createdAt').get().then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
         setArrayOfID(arrayOfID.add(doc.id));
       });
     });
-  }
-
-  getDocumentId();
+  }());
 
   const getDocumentIdFromSet = (set, index) => {
     let i = 0;
@@ -185,7 +182,7 @@ const Chat = () => {
                 {message.image
                   ?
                   <div className={classes.imgWrapper}>
-                    <img src={message.image} className={classes.img} />
+                    <img src={message.image} className={classes.img} alt='img' />
                   </div>
                   :
                   <div className={classes.emptyImg}>
@@ -233,7 +230,7 @@ const Chat = () => {
           setFocus={setFocus}
         />
         {isVisibleEmoji &&
-          <div className={classes.emoji}>
+          <div className={classes.emoji} >
             <Emoji
               emojiValue={emojiValue}
               setEmojiValue={setEmojiValue}

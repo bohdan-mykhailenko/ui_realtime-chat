@@ -1,21 +1,16 @@
-import React, { useContext, useEffect, useState, useRef } from 'react';
-import firebase from "firebase/compat/app";
+import React, { useEffect, useState, useRef } from 'react';
 import { Grid } from '@material-ui/core';
 import SendIcon from '@mui/icons-material/Send';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import MoodIcon from '@mui/icons-material/Mood';
 import classes from './Form.module.css';
 import { app } from "../../../src/index";
-import { Context } from '../../index';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
 import 'firebase/firestore';
 import 'firebase/compat/storage';
-import Emoji from '../emoji/Emoji';
 
 const Form = (props) => {
   const textareaRef = useRef(null);
   const [textValue, setTextValue] = useState('');
-  const { firestore } = useContext(Context);
   const atachImage = async (event) => {
     const file = event.target.files[0];
     const storageRef = app.storage().ref();
@@ -32,17 +27,13 @@ const Form = (props) => {
   // const storageRef = app.storage().ref();
   // console.log(storageRef.get())
 
-  const [photos, loading] = useCollectionData(
-    firestore.collection('photos').orderBy('createdAt')
-  )
-
   useEffect(() => {
     if (!textValue) {
       props.setValue(props.emojiValue)
       return
     }
     props.setValue(textValue + props.emojiValue)
-  }, [props.emojiValue]);
+  }, [props]);
 
   const enterKey = (event) => {
     if (event.keyCode === 13) {
@@ -64,7 +55,7 @@ const Form = (props) => {
           {props.imageURL
             ?
             < div className={classes.imgPreviewWrapper}>
-              <img src={props.imageURL} className={classes.imgPreview} />
+              <img src={props.imageURL} className={classes.imgPreview} alt='img' />
             </div>
             :
             <AttachFileIcon className={classes.icon} />
