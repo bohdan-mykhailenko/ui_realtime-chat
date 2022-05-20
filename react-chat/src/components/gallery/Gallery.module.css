@@ -1,0 +1,36 @@
+.gallery {
+  margin: 5px;
+  width: calc(100vw - 10px);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto;
+  gap: 3px;
+}
+
+.galleryItem  {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.galleryImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 2px solid var(--second-color);
+  border-radius: 5px;
+} 
+
+.galleryImgActive {
+  position: absolute;
+  top: 0;
+  right: 0;
+  object-fit: contain;
+  margin: 0 auto;
+  width: 100vw;
+  height: 100vh;
+  background: var(--modal-color);
+}
+
+.galleryItemUnactive {
+  display: none;
+}

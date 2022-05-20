@@ -13,6 +13,8 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import MyDate from '../date/MyDate'
 import Emoji from '../emoji/Emoji';
 import '../../index.css'
+import 'firebase/firestore';
+import 'firebase/compat/storage';
 
 const Chat = () => {
   const [isVisibleEmoji, setIsVisibleEmoji] = useState(false);
@@ -30,6 +32,8 @@ const Chat = () => {
     firestore.collection('messages').orderBy('createdAt')
   )
 
+  //main function
+
   const sendMessage = async () => {
     await firestore.collection('messages').add({
       uid: user.uid,
@@ -39,17 +43,25 @@ const Chat = () => {
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       image: imageURL,
     })
+
+    await firestore.collection('photos').add({
+      URL: imageURL,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+    })
+
     firestore.collection('messages').orderBy('createdAt').get().then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
         arrayOfID.add(doc.id);
       });
     });
+
     setValue('');
     setImageURL('');
     bottomRef.current.scrollIntoView(true);
   }
 
-  // getDocumentsId
+  //getDocumentsId
+
   (function () {
     firestore.collection('messages').orderBy('createdAt').get().then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
@@ -72,6 +84,8 @@ const Chat = () => {
     return result;
   }
 
+  //likes
+
   const likeMessage = async (event) => {
     if (event.detail >= 2) {
       if (event.currentTarget.lastChild.firstChild.style.display === 'block') {
@@ -85,13 +99,7 @@ const Chat = () => {
     }
   }
 
-  // Delete wrong messages
-  // var query = firestore.collection('messages').where("text", '==', "Перевірка");
-  // query.get().then(function (querySnapshot) {
-  //   querySnapshot.forEach(function (doc) {
-  //     doc.ref.delete();
-  //   });
-  // });
+  //visibily of bottom element
 
   const isVisible = () => {
     const target = bottomRef.current;
@@ -117,6 +125,8 @@ const Chat = () => {
     }
     setIsVisibleBottomDiv(false);
   };
+
+  //key events
 
   const enterKey = (event) => {
     if (event.keyCode === 13) {
@@ -208,6 +218,7 @@ const Chat = () => {
             ?
             <div className={classes.arrow} onClick={() => {
               bottomRef.current.scrollIntoView(true);
+              escapeMouseDown();
             }}>
               <KeyboardDoubleArrowDownIcon fontSize={'large'} />
             </div>

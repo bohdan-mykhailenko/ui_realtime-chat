@@ -15,9 +15,11 @@ import { useTheme } from '../../hooks/useTheme';
 import IconButton from '@mui/material/IconButton';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7'
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
+  const [isVisibleGallery, setIsVisibleGallery] = useState(false);
   const [modalSignIn, setModalSignIn] = useState(false);
   const [modalSignOut, setModalSignOut] = useState(false);
   const { auth, loading } = useContext(Context);
@@ -51,7 +53,7 @@ const Navbar = () => {
   }
 
   return (
-    <AppBar className={classes.appbar} position="fixed">
+    <AppBar className={classes.appbar} position="static">
       <Toolbar
         className={classes.toolbar}
         onMouseDown={(event) => escapeMouseDown(event)}>
@@ -64,8 +66,14 @@ const Navbar = () => {
           onMouseDown={(event) => escapeMouseDown(event)} >
           MyChat
         </h1>
-        <div className="navbar__links">
-        </div>
+        <Grid container justifyContent={"flex-end"}>
+          {isVisibleGallery
+            ?
+            <Link to="/gallery" onClick={() => setIsVisibleGallery(!isVisibleGallery)}>Gallery</Link>
+            :
+            <Link to="/chat" onClick={() => setIsVisibleGallery(!isVisibleGallery)}> Chat</Link>
+          }
+        </Grid>
         <Grid container justifyContent={"flex-end"} className={classes.buttonWrapper}>
           <div className={classes.themeSelector}>
             <h2

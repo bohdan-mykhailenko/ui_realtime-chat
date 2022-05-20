@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useContext } from 'react';
 import { Grid } from '@material-ui/core';
 import SendIcon from '@mui/icons-material/Send';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
@@ -11,27 +11,24 @@ import 'firebase/compat/storage';
 const Form = (props) => {
   const textareaRef = useRef(null);
   const [textValue, setTextValue] = useState('');
+
   const atachImage = async (event) => {
     const file = event.target.files[0];
     const storageRef = app.storage().ref();
     const fileRef = storageRef.child(file.name);
     await fileRef.put(file);
+    console.log(file);
+    console.log(fileRef);
+    console.log(await fileRef.getDownloadURL());
     props.setImageURL(await fileRef.getDownloadURL());
-    // const sendPhotoURL = async () => {
-    //   await firestore.collection('photos').add({
-    //     createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-    //     image: imageURL,
-    //     id: itemID,
-    //   })
   }
-  // const storageRef = app.storage().ref();
-  // console.log(storageRef.get())
 
   useEffect(() => {
     if (!textValue) {
       props.setValue(props.emojiValue)
       return
     }
+
     props.setValue(textValue + props.emojiValue)
   }, [props]);
 
@@ -47,9 +44,7 @@ const Form = (props) => {
   }
 
   return (
-    <Grid
-      onKeyDown={enterKey}
-    >
+    <Grid onKeyDown={enterKey}>
       <div className={classes.form}>
         <label className={classes.label}>
           {props.imageURL
@@ -110,7 +105,7 @@ const Form = (props) => {
           <SendIcon className={classes.icon} />
         </button>
       </div>
-    </Grid >
+    </Grid>
   )
 }
 
