@@ -12,14 +12,17 @@ import { ReactComponent as Logo } from '../../imgs/logo.svg'
 import classes from './Navbar.module.css';
 import { getAuth } from "firebase/auth";
 import { useTheme } from '../../hooks/useTheme';
+import { useGallery } from '../../hooks/useGallery';
 import IconButton from '@mui/material/IconButton';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7'
+import ChatIcon from '@mui/icons-material/Chat';
+import CollectionsIcon from '@mui/icons-material/Collections';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
-  const [isVisibleGallery, setIsVisibleGallery] = useState(false);
+  const { isVisibleGallery, setIsVisibleGallery } = useGallery(false);
   const [modalSignIn, setModalSignIn] = useState(false);
   const [modalSignOut, setModalSignOut] = useState(false);
   const { auth, loading } = useContext(Context);
@@ -57,24 +60,40 @@ const Navbar = () => {
       <Toolbar
         className={classes.toolbar}
         onMouseDown={(event) => escapeMouseDown(event)}>
-        <Logo
-          className={classes.logo}
-          onMouseDown={(event) => escapeMouseDown(event)}
-        />
-        <h1
-          className={classes.title}
-          onMouseDown={(event) => escapeMouseDown(event)} >
-          MyChat
-        </h1>
-        <Grid container justifyContent={"flex-end"}>
-          {isVisibleGallery
-            ?
-            <Link to="/gallery" onClick={() => setIsVisibleGallery(!isVisibleGallery)}>Gallery</Link>
-            :
-            <Link to="/chat" onClick={() => setIsVisibleGallery(!isVisibleGallery)}> Chat</Link>
-          }
+        <Grid className={classes.logoWrapper} container >
+          <Logo
+            className={classes.logo}
+            onMouseDown={(event) => escapeMouseDown(event)}
+          />
+          <h1
+            className={classes.title}
+            onMouseDown={(event) => escapeMouseDown(event)} >
+            MyChat
+          </h1>
         </Grid>
-        <Grid container justifyContent={"flex-end"} className={classes.buttonWrapper}>
+        <Grid className={classes.interactiveWrapper} container justifyContent={"flex-end"} >
+          {isVisibleGallery === true || isVisibleGallery === 'true'
+            ?
+            <div className={classes.linkWrapper}>
+              <Link Link className={classes.link} to="/chat"
+                onClick={() => {
+                  setIsVisibleGallery(false)
+                }}>
+                <ChatIcon className={classes.linkIcon} fontSize='small' />
+              </Link>
+
+            </div>
+            :
+            <div className={classes.linkWrapper}>
+              <Link className={classes.link} to="/gallery"
+                onClick={() => {
+                  setIsVisibleGallery(true)
+                }}>
+                <CollectionsIcon className={classes.linkIcon} fontSize='small' />
+              </Link>
+
+            </div>
+          }
           <div className={classes.themeSelector}>
             <h2
               style={{
@@ -100,34 +119,32 @@ const Navbar = () => {
                 />}
             </IconButton>
           </div>
-          <div>
-            {user
-              ?
-              <div>
-                <button className={classes.avatarWrapper} onClick={() => { setModalSignOut(true) }} >
-                  {photoURL
-                    ?
-                    <img src={photoURL} className={classes.avatar} />
-                    :
-                    <div className={classes.defaultAvatar}></div>
-                  }
-                </button>
-                <ModalSignOut visible={modalSignOut} setVisible={setModalSignOut} />
-              </div>
-              :
-              <div>
-                <button className={classes.button} onClick={() => {
-                  setModalSignIn(true);
-                  setModalSignOut(false);
-                }} >
-                  Log in
-                </button>
-                <ModalSignIn visible={modalSignIn} setVisible={setModalSignIn}>
-                  <Login />
-                </ModalSignIn>
-              </div>
-            }
-          </div>
+          {user
+            ?
+            <div>
+              <button className={classes.avatarWrapper} onClick={() => { setModalSignOut(true) }} >
+                {photoURL
+                  ?
+                  <img src={photoURL} className={classes.avatar} />
+                  :
+                  <div className={classes.defaultAvatar}></div>
+                }
+              </button>
+              <ModalSignOut visible={modalSignOut} setVisible={setModalSignOut} />
+            </div>
+            :
+            <div>
+              <button className={classes.button} onClick={() => {
+                setModalSignIn(true);
+                setModalSignOut(false);
+              }} >
+                Log in
+              </button>
+              <ModalSignIn visible={modalSignIn} setVisible={setModalSignIn}>
+                <Login />
+              </ModalSignIn>
+            </div>
+          }
         </Grid>
       </Toolbar>
     </AppBar >
