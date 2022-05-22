@@ -33,7 +33,7 @@ const Chat = () => {
   )
 
   //main function
-
+  console.log(imageURL)
   const sendMessage = async () => {
     await firestore.collection('messages').add({
       uid: user.uid,
@@ -44,10 +44,12 @@ const Chat = () => {
       image: imageURL,
     })
 
-    await firestore.collection('photos').add({
-      URL: imageURL,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-    })
+    if (imageURL) {
+      await firestore.collection('photos').add({
+        URL: imageURL,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      })
+    }
 
     firestore.collection('messages').orderBy('createdAt').get().then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
@@ -56,7 +58,7 @@ const Chat = () => {
     });
 
     setValue('');
-    setImageURL('');
+    setImageURL(null);
     bottomRef.current.scrollIntoView(true);
   }
 

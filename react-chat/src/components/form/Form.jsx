@@ -36,6 +36,29 @@ const Form = (props) => {
     }
   };
 
+  const handleChangeTextValue = (event) => {
+    setTextValue(event.target.value);
+
+    if (event.target.value !== undefined) {
+      props.setValue(event.target.value + props.emojiValue)
+      props.setEmojiValue('');
+      return;
+    }
+
+    props.setValue(props.emojiValue)
+    props.setEmojiValue('');
+  }
+
+  const handleClickButton = () => {
+    if (props.value || props.imageURL) {
+      props.sendMessage();
+    }
+
+    props.setValue('');
+    props.setEmojiValue('');
+    setTextValue('');
+  }
+
   if (props.focus) {
     textareaRef.current.focus();
   }
@@ -64,17 +87,7 @@ const Form = (props) => {
           className={classes.textarea}
           placeholder={'Write a message...'}
           value={props.value}
-          onChange={event => {
-            setTextValue(event.target.value);
-            if (event.target.value !== undefined) {
-              props.setValue(event.target.value + props.emojiValue)
-              props.setEmojiValue('');
-              console.log(event.target.value)
-              return
-            }
-            props.setValue(props.emojiValue)
-            props.setEmojiValue('');
-          }}
+          onChange={(event) => handleChangeTextValue(event)}
           onKeyDown={props.enterKey}
         >
         </textarea>
@@ -91,14 +104,7 @@ const Form = (props) => {
         <button
           ref={props.btnRef}
           className={classes.button}
-          onClick={() => {
-            if (props.value || props.imageURL) {
-              props.sendMessage();
-            }
-            props.setValue('');
-            props.setEmojiValue('');
-            setTextValue('');
-          }}>
+          onClick={handleClickButton}>
           <SendIcon className={classes.icon} />
         </button>
       </div>

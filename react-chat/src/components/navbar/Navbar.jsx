@@ -72,26 +72,30 @@ const Navbar = () => {
           </h1>
         </Grid>
         <Grid className={classes.interactiveWrapper} container justifyContent={"flex-end"} >
-          {isVisibleGallery === true || isVisibleGallery === 'true'
-            ?
-            <div className={classes.linkWrapper}>
-              <Link Link className={classes.link} to="/chat"
-                onClick={() => {
-                  setIsVisibleGallery(false)
-                }}>
-                <ChatIcon className={classes.linkIcon} fontSize='small' />
-              </Link>
+          {user &&
+            <div>
+              {isVisibleGallery === true || isVisibleGallery === 'true'
+                ?
+                <div className={classes.linkWrapper}>
+                  <Link Link className={classes.link} to="/chat"
+                    onClick={() => {
+                      setIsVisibleGallery(false)
+                    }}>
+                    <ChatIcon className={classes.linkIcon} fontSize='small' />
+                  </Link>
 
-            </div>
-            :
-            <div className={classes.linkWrapper}>
-              <Link className={classes.link} to="/gallery"
-                onClick={() => {
-                  setIsVisibleGallery(true)
-                }}>
-                <CollectionsIcon className={classes.linkIcon} fontSize='small' />
-              </Link>
+                </div>
+                :
+                <div className={classes.linkWrapper}>
+                  <Link className={classes.link} to="/gallery"
+                    onClick={() => {
+                      setIsVisibleGallery(true)
+                    }}>
+                    <CollectionsIcon className={classes.linkIcon} fontSize='small' />
+                  </Link>
 
+                </div>
+              }
             </div>
           }
           <div className={classes.themeSelector}>

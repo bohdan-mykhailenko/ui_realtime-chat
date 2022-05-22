@@ -35,7 +35,6 @@
   opacity: 0.5;
 }
 
-
 @media(max-width: 1200px) {
   .galleryItem  {
     max-height: 350px;
@@ -52,6 +51,7 @@
   .gallery {
     grid-template-columns: repeat(3, 1fr);
   }
+
   .galleryItem  {
     max-height: 270px;
   }
@@ -61,6 +61,7 @@
   .gallery {
     grid-template-columns: repeat(2, 1fr);
   }
+  
   .galleryItem  {
     max-height: 270px;
   }

@@ -6,12 +6,14 @@ import Loader from '../loader/Loader';
 
 const Gallery = () => {
   const { firestore } = useContext(Context);
-  const [isActiveImg, setIsActiveImg] = useState(false);
+  const [isActiveImg, setIsActiveImg] = useState(true);
   const [photos, loading] = useCollectionData(
     firestore.collection('photos').orderBy('createdAt')
   )
 
-  const handleActiveImg = (event) => {
+
+
+  const handleClickImg = (event) => {
     setIsActiveImg(!isActiveImg);
 
     const activeImg = event.currentTarget;
@@ -24,6 +26,8 @@ const Gallery = () => {
     event.target.className = isActiveImg ? classes.galleryImgActive : classes.galleryImg;
   }
 
+  console.log(isActiveImg)
+
   if (loading) {
     return <Loader />
   }
@@ -33,7 +37,7 @@ const Gallery = () => {
       {photos?.map((photo) =>
         <div
           className={classes.galleryItem}
-          onClick={(event) => handleActiveImg(event)}>
+          onClick={(event) => handleClickImg(event)}>
           <img className={classes.galleryImg} src={photo.URL} alt="" />
         </div>
       )}
