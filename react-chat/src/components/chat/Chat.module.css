@@ -168,7 +168,7 @@
 
 @media(max-width: 767px) {
   .wrapper {
-    height: calc(100vh - 56px);
+    height: calc(100vh - 64px);
   }
 
   .item {
@@ -193,6 +193,10 @@
 } 
 
 @media(max-width: 600px) {
+  .wrapper {
+    height: calc(100vh - 56px);
+  }
+
   .body {
     padding: 0 1px;
   }

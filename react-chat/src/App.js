@@ -18,7 +18,6 @@ function App() {
     <HashRouter>
       <Navbar />
       <AppRoater />
-
     </HashRouter>
   );
 }

@@ -117,10 +117,8 @@
 
 .imgPreviewWrapper {
   position: relative;
-  width: 80px;
-  height: 80px;
-  font-size: 1px;
-  line-height: 0;
+  width: 54px;
+  height: 54px;
 }
 
 .imgPreview {
@@ -138,10 +136,7 @@
   .textarea {
     margin: 0;
     padding: 3px 3px 3px 3px;
-    height: 60px;
     font-size: 16px;
-    border: none;
-    border-radius: 0;
   }
 
   .form {
@@ -181,17 +176,18 @@
     font-size: 14px;
   }
   
+  
+  .imgPreviewWrapper {
+    width: 50px;
+    height: 50px;
+  }
+
   .icon {
     transform: scale(1.15);
   }
 
   .button {
     padding: 0;
-  }
-
-  .imgPreviewWrapper {
-    width: 55px;
-    height: 55px;
   }
 }
 
@@ -247,8 +243,8 @@
   }
   
   .imgPreviewWrapper {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
   }
 
   .imgPreview {
@@ -271,6 +267,11 @@
   .icon {
     width: 28px;
   }
+
+  .imgPreviewWrapper {
+    width: 30px;
+    height: 30px;
+  }
 }
 
 @media(max-width: 300px) {
@@ -284,11 +285,6 @@
 
   .icon {
     width: 28px;
-  }
-
-  .imgPreviewWrapper {
-    width: 40px;
-    height: 40px;
   }
 }
 

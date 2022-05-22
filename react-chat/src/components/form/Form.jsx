@@ -17,16 +17,13 @@ const Form = (props) => {
     const storageRef = app.storage().ref();
     const fileRef = storageRef.child(file.name);
     await fileRef.put(file);
-    console.log(file);
-    console.log(fileRef);
-    console.log(await fileRef.getDownloadURL());
     props.setImageURL(await fileRef.getDownloadURL());
   }
 
   useEffect(() => {
     if (!textValue) {
       props.setValue(props.emojiValue)
-      return
+      return;
     }
 
     props.setValue(textValue + props.emojiValue)

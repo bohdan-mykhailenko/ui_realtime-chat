@@ -43,16 +43,16 @@ const Navbar = () => {
     event.stopPropagation();
   }
 
-  if (loading) {
-    return <Loader />
-  }
-
   const handleSelectThemeClick = () => {
     if (theme === 'dark') {
       setTheme('light');
       return
     }
     setTheme('dark');
+  }
+
+  if (loading) {
+    return <Loader />
   }
 
   return (
@@ -147,7 +147,7 @@ const Navbar = () => {
           }
         </Grid>
       </Toolbar>
-    </AppBar >
+    </AppBar>
   )
 }
 

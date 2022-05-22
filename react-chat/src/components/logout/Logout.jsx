@@ -17,16 +17,18 @@ const Logout = (setVisible) => {
     const photoURL = await getAuth().currentUser.photoURL;
     let name = await getAuth().currentUser.displayName;
     let email = await getAuth().currentUser.email;
+
     if (name === null) {
       name = "GitHub user";
     }
+
     if (email === null) {
       email = "hidden_email@mail.com";
     }
+
     setPhotoURL(photoURL);
     setName(name);
     setEmail(email);
-
   }
 
   useEffect(() => {
@@ -50,8 +52,7 @@ const Logout = (setVisible) => {
             height: 'auto'
           }}
           alignItems={'center'}
-          justify={'center'}
-        >
+          justify={'center'}>
           <Grid
             className={classes.wrapper}
             container

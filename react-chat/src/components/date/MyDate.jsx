@@ -4,12 +4,11 @@ import { Context } from '../../index';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 const MyDate = (props) => {
+  const [time, setTime] = useState(new Date());
   const { firestore } = useContext(Context);
   const [messages] = useCollectionData(
     firestore.collection('messages').orderBy('createdAt')
   )
-
-  const [time, setTime] = useState(new Date());
 
   const getTime = async () => {
     const timestamp = await new Date(props.message.createdAt.seconds * 1000);

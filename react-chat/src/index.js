@@ -9,10 +9,10 @@ import { ThemeProvider, createTheme } from '@material-ui/core';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#4FBAA7'
+      main: 'rgb(192, 184, 184)'
     },
     secondary: {
-      main: '#530B43'
+      main: 'rgb(192, 184, 184)'
     }
   }
 })
@@ -30,12 +30,8 @@ const firebaseConfig = {
 }
 
 export const app = firebase.initializeApp(firebaseConfig);
-
-
 const firestore = app.firestore();
 const auth = firebase.auth();
-
-const photoURL = '';
 
 export const Context = React.createContext(null);
 
@@ -44,7 +40,6 @@ ReactDOM.render(
     firebase,
     auth,
     firestore,
-    photoURL,
   }}>
     <ThemeProvider theme={theme}>
       <App />

@@ -14,6 +14,7 @@ const Home = () => {
 
   function CreateList(props) {
     let i = 0;
+
     const listItems = [1, 2, 3, 4, 5, 6].map((number) =>
       <ListItem className={classes.item}>
         <ListItemIcon>
@@ -27,6 +28,7 @@ const Home = () => {
         </span>
       </ListItem>
     );
+
     return (
       <List className={classes.list}>
         {listItems}
