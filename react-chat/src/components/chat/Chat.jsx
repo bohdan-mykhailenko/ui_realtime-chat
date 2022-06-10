@@ -28,14 +28,31 @@ const Chat = () => {
   const [imageURL, setImageURL] = useState(null);
   const [arrayOfID, setArrayOfID] = useState(new Set());
   const [isVisibleBottomDiv, setIsVisibleBottomDiv] = useState('');
+
+  const identifyUser = () => {
+    if (
+      user.uid == '27ofykS3n6hxFTDUzJAOAeIuCj93' ||
+      user.uid == 'ccVxAhtSqjnXIxrCTit2R3jjhlao2' ||
+      user.uid == 'gZYsZRVXbOMcCVJGRdiJP4bTUoW2' ||
+      user.uid == 'lQ8gTXdhvFN7UtS598LLW5walEx2' ||
+      user.uid == '27h9xSZ6xQU2SKoHlTs58Jg0UcC3' ||
+      user.uid == 'nrKmbtMoJ5RFQUiMkPALm9Uxx6y2') {
+      return ['messages', 'photos'];
+    } else {
+      return ['messages2', 'photos2'];
+    }
+  }
+
+  const [collection, setCollection] = useState(identifyUser()[0]);
+  const [photoCollection, setPhotoCollection] = useState(identifyUser()[1]);
+
   const [messages, loading] = useCollectionData(
-    firestore.collection('messages').orderBy('createdAt')
+    firestore.collection(collection).orderBy('createdAt')
   )
 
   //main function
-  console.log(imageURL)
   const sendMessage = async () => {
-    await firestore.collection('messages').add({
+    await firestore.collection(collection).add({
       uid: user.uid,
       displayName: user.displayName,
       photoURL: user.photoURL,
@@ -45,13 +62,13 @@ const Chat = () => {
     })
 
     if (imageURL) {
-      await firestore.collection('photos').add({
+      await firestore.collection(photoCollection).add({
         URL: imageURL,
         createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       })
     }
 
-    firestore.collection('messages').orderBy('createdAt').get().then(function (querySnapshot) {
+    firestore.collection(collection).orderBy('createdAt').get().then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
         arrayOfID.add(doc.id);
       });
@@ -65,7 +82,7 @@ const Chat = () => {
   //getDocumentsId
 
   (function () {
-    firestore.collection('messages').orderBy('createdAt').get().then(function (querySnapshot) {
+    firestore.collection(collection).orderBy('createdAt').get().then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
         setArrayOfID(arrayOfID.add(doc.id));
       });
@@ -92,12 +109,12 @@ const Chat = () => {
     if (event.detail >= 2) {
       if (event.currentTarget.lastChild.firstChild.style.display === 'block') {
         event.currentTarget.lastChild.firstChild.style.display = 'none';
-        await firestore.collection('messages').doc(event.currentTarget.id).update({ like: false });
+        await firestore.collection(collection).doc(event.currentTarget.id).update({ like: false });
         return;
       }
 
       event.currentTarget.lastChild.firstChild.style.display = 'block';
-      await firestore.collection('messages').doc(event.currentTarget.id).update({ like: true });
+      await firestore.collection(collection).doc(event.currentTarget.id).update({ like: true });
     }
   }
 
@@ -138,7 +155,6 @@ const Chat = () => {
   };
 
   const escapeMouseDown = (event) => {
-    event.preventDefault();
     event.stopPropagation();
   }
 
