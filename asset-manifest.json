@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/react_task_3/static/css/main.9dd92479.css",
-    "main.js": "/react_task_3/static/js/main.1f3f5590.js",
-    "static/media/forestbw.jpg": "/react_task_3/static/media/forestbw.0434eb058bfed8d66fda.jpg",
-    "static/media/react.svg": "/react_task_3/static/media/react.ee142fe49f6ca15e312c787c9eb21845.svg",
-    "static/media/logo.svg": "/react_task_3/static/media/logo.ea32ec083a5a90fed586f5032f4637a0.svg",
-    "index.html": "/react_task_3/index.html",
-    "main.9dd92479.css.map": "/react_task_3/static/css/main.9dd92479.css.map",
-    "main.1f3f5590.js.map": "/react_task_3/static/js/main.1f3f5590.js.map"
+    "main.css": "/chat/static/css/main.33b8ab53.css",
+    "main.js": "/chat/static/js/main.763fe4ba.js",
+    "static/media/forestbw.jpg": "/chat/static/media/forestbw.0434eb058bfed8d66fda.jpg",
+    "static/media/react.svg": "/chat/static/media/react.ee142fe49f6ca15e312c787c9eb21845.svg",
+    "static/media/logo.svg": "/chat/static/media/logo.ea32ec083a5a90fed586f5032f4637a0.svg",
+    "index.html": "/chat/index.html",
+    "main.33b8ab53.css.map": "/chat/static/css/main.33b8ab53.css.map",
+    "main.763fe4ba.js.map": "/chat/static/js/main.763fe4ba.js.map"
   },
   "entrypoints": [
-    "static/css/main.9dd92479.css",
-    "static/js/main.1f3f5590.js"
+    "static/css/main.33b8ab53.css",
+    "static/js/main.763fe4ba.js"
   ]
 }
