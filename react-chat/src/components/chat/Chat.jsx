@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef } from 'react';
+import React, { useContext, useState, useRef, useEffect } from 'react';
 import { Context } from '../../index';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Grid } from '@material-ui/core';
@@ -15,6 +15,7 @@ import Emoji from '../emoji/Emoji';
 import '../../index.css'
 import 'firebase/firestore';
 import 'firebase/compat/storage';
+import { useUser } from '../../hooks/useUser';
 
 const Chat = () => {
   const [isVisibleEmoji, setIsVisibleEmoji] = useState(false);
@@ -23,36 +24,22 @@ const Chat = () => {
   const btnRef = useRef(null);
   const bottomRef = useRef(null);
   const { auth, firestore } = useContext(Context);
-  const [user] = useAuthState(auth);
   const [value, setValue] = useState('');
   const [imageURL, setImageURL] = useState(null);
   const [arrayOfID, setArrayOfID] = useState(new Set());
   const [isVisibleBottomDiv, setIsVisibleBottomDiv] = useState('');
 
-  const identifyUser = () => {
-    if (
-      user.uid == '27ofykS3n6hxFTDUzJAOAeIuCj93' ||
-      user.uid == 'ccVxAhtSqjnXIxrCTit2R3jjhlao2' ||
-      user.uid == 'gZYsZRVXbOMcCVJGRdiJP4bTUoW2' ||
-      user.uid == 'lQ8gTXdhvFN7UtS598LLW5walEx2' ||
-      user.uid == '27h9xSZ6xQU2SKoHlTs58Jg0UcC3' ||
-      user.uid == 'nrKmbtMoJ5RFQUiMkPALm9Uxx6y2') {
-      return ['messages', 'photos'];
-    } else {
-      return ['messages2', 'photos2'];
-    }
-  }
+  const [user] = useAuthState(auth);
 
-  const [collection, setCollection] = useState(identifyUser()[0]);
-  const [photoCollection, setPhotoCollection] = useState(identifyUser()[1]);
+  const { collections } = useUser(user);
 
   const [messages, loading] = useCollectionData(
-    firestore.collection(collection).orderBy('createdAt')
+    firestore.collection(collections[0]).orderBy('createdAt')
   )
 
   //main function
   const sendMessage = async () => {
-    await firestore.collection(collection).add({
+    await firestore.collection(collections[0]).add({
       uid: user.uid,
       displayName: user.displayName,
       photoURL: user.photoURL,
@@ -62,13 +49,13 @@ const Chat = () => {
     })
 
     if (imageURL) {
-      await firestore.collection(photoCollection).add({
+      await firestore.collection(collections[1]).add({
         URL: imageURL,
         createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       })
     }
 
-    firestore.collection(collection).orderBy('createdAt').get().then(function (querySnapshot) {
+    firestore.collection(collections[0]).orderBy('createdAt').get().then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
         arrayOfID.add(doc.id);
       });
@@ -82,7 +69,7 @@ const Chat = () => {
   //getDocumentsId
 
   (function () {
-    firestore.collection(collection).orderBy('createdAt').get().then(function (querySnapshot) {
+    firestore.collection(collections[0]).orderBy('createdAt').get().then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
         setArrayOfID(arrayOfID.add(doc.id));
       });
@@ -109,12 +96,12 @@ const Chat = () => {
     if (event.detail >= 2) {
       if (event.currentTarget.lastChild.firstChild.style.display === 'block') {
         event.currentTarget.lastChild.firstChild.style.display = 'none';
-        await firestore.collection(collection).doc(event.currentTarget.id).update({ like: false });
+        await firestore.collection(collections[0]).doc(event.currentTarget.id).update({ like: false });
         return;
       }
 
       event.currentTarget.lastChild.firstChild.style.display = 'block';
-      await firestore.collection(collection).doc(event.currentTarget.id).update({ like: true });
+      await firestore.collection(collections[0]).doc(event.currentTarget.id).update({ like: true });
     }
   }
 
