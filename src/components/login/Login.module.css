@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400;1,800&display=swap');
+
+* {
+  margin: 0;
+  font-family: 'Merriweather Sans', sans-serif;
+}
+
+.wrapper {
+  position: relative;
+  z-index: 1000;
+  height: auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto repeat(3, 1fr);
+  row-gap: 20px; 
+}
+
+.item {
+  background: var(--first-color);
+  border-radius: 5px;
+  border: 3px solid var(--second-color);
+  display: flex;
+  height: auto;
+  align-items: center;
+  justify-content: center;
+  width: 250px;
+  cursor: pointer;
+}
+
+.item:hover,
+.item:active {
+  box-sizing: border-box;
+  box-shadow: none;
+  border-color: var(--second-color-dark);
+  background: var(--fourth-color-light);
+}
+
+.button {
+  width: 100%;
+  height: 100%;
+  padding: 15px 0;
+  font-size: 25px;
+  font-weight: 600;
+  color: var(--first-color-dark);
+  box-sizing: border-box;
+  box-shadow: none;
+  border: none;
+  background: transparent;
+  width: auto;
+  cursor: pointer;
+}
+
+.title {
+  margin: 0 0 15px 0;
+  text-align: center;
+  color: var(--second-color);
+  letter-spacing: 1px;
+  font-size: 32px;
+}
+
+.icon {
+  margin: -2px 7px 0 0;
+  width: auto;
+  height: auto;
+  cursor: pointer;
+}
+
+.googleIcon {
+  font-size: 25px;
+  color:var(--facebook-color);
+}
+
+.facebookIcon {
+  font-size: 25px;
+  color: var(--google-color);
+}
+
+.githubIcon {
+  font-size: 25px;
+  color:var(--github-color);
+}
+
+@media(max-width: 600px) {
+  .wrapper {
+    row-gap: 20px;
+  }
+  .item {
+    width: 230px;
+  }
+  .title {
+    margin: 0 0 10px 0;
+    font-size: 30px;
+  }
+  .button {
+    font-size: 23px;
+  }
+  .googleIcon {
+    font-size: 24px;
+  }
+  .facebookIcon {
+    font-size: 24px;
+  }
+  .githubIcon {
+    font-size: 24px;
+  }
+}
+
+@media(max-width: 450px) {
+  .wrapper {
+    row-gap: 15px;
+  }
+  .item {
+    width: 210px;
+  }
+  .title {
+    font-size: 28px;
+  }
+  .button {
+    font-size: 21px;
+  }
+  .googleIcon {
+    font-size: 23px;
+  }
+  .facebookIcon {
+    font-size: 23px;
+  }
+  .githubIcon {
+    font-size: 23px;
+  }
+}
+
+@media(max-width: 350px) {
+  .wrapper {
+    row-gap: 15px;
+  }
+  .item {
+    width: 180px;
+  }
+  .title {
+    font-size: 26px;
+  }
+  .button {
+    font-size: 20px;
+  }
+  .googleIcon {
+    font-size: 22px;
+  }
+  .facebookIcon {
+    font-size: 22px;
+  }
+  .githubIcon {
+    font-size: 22px;
+  }
+}

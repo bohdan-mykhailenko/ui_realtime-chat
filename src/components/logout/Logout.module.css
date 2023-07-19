@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400;1,800&display=swap');
+
+* {
+  margin: 0;
+  font-family: 'Merriweather Sans', sans-serif;
+}
+
+.wrapper {
+  position: relative;
+  z-index: 1000;
+  height: auto;
+}
+
+.button {
+  padding: 15px 70px;
+  background: var(--first-color);
+  border-radius: 5px;
+  font-size: 25px;
+  font-weight: 800;
+  color: var(--first-color-dark);
+  box-sizing: border-box;
+  box-shadow: none;
+  border: 3px solid var(--second-color);
+  cursor: pointer;
+}
+
+.button:hover,
+.button:active {
+  box-sizing: border-box;
+  box-shadow: none;
+  border-color: var(--second-color-dark);
+  background: var(--fourth-color-light);
+  transition: background-color 200ms linear;
+}
+
+.avatar {
+  margin:  0 auto 20px auto;
+  border: 3px solid var(--second-color);
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+}
+
+.name {
+  margin: 0 0 20px 0;
+  font-size: 28px;
+  color: var(--text-color-light);
+}
+
+.email {
+  margin: 0 0 45px 0;
+  font-size: 20px;
+  color: var(--text-color-light);
+}
+
+@media(max-width: 600px) {
+  .name {
+    margin: 0 0 10px 0;
+    font-size: 26px;
+  }
+  
+  .email {
+    margin: 0 0 35px 0;
+    font-size: 18px;
+  }
+
+  .button {
+    padding: 10px 60px;
+    font-size: 23px;
+  }
+}
+
+@media(max-width: 450px) {
+  .avatar {
+    width: 70px;
+    height: 70px;
+  }
+  .name {
+    margin: 0 0 7px 0;
+    font-size: 24px;
+  }
+  
+  .email {
+    margin: 0 0 35px 0;
+    font-size: 17px;
+  }
+  .button {
+    padding: 10px 55px;
+    font-size: 21px;
+  }
+}
+
+@media(max-width: 350px) {
+  .avatar {
+    width: 60px;
+    height: 60px;
+  }
+  .name {
+    margin: 0 0 7px 0;
+    font-size: 22px;
+  }
+  
+  .email {
+    margin: 0 0 45px 0;
+    font-size: 16px;
+  }
+  .button {
+    padding: 8px 50px;
+    font-size: 20px;
+  }
+}
