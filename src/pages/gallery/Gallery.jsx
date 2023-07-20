@@ -1,14 +1,14 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import classes from './Gallery.module.css';
-import Loader from '../loader/Loader';
-import { Context } from '../../index';
+import Loader from '../../components/loader/Loader';
+import { FirebaseContext } from '../../contexts/FirebaseContext';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useUser } from '../../hooks/useUser';
 
 const Gallery = () => {
   const [isActiveImg, setIsActiveImg] = useState(true);
-  const { auth, firestore } = useContext(Context);
+  const { auth, firestore } = useContext(FirebaseContext);
   const [user] = useAuthState(auth);
 
   const { collections } = useUser(user);

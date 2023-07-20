@@ -1,17 +1,18 @@
 import classes from './MyDate.module.css';
 import React, { useState, useEffect, useContext } from 'react';
-import { Context } from '../../index';
+import PropTypes from 'prop-types';
+import { FirebaseContext } from '../../contexts/FirebaseContext';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
-const MyDate = (props) => {
+export const MyDate = ({ message }) => {
   const [time, setTime] = useState(new Date());
-  const { firestore } = useContext(Context);
+  const { firestore } = useContext(FirebaseContext);
   const [messages] = useCollectionData(
     firestore.collection('messages').orderBy('createdAt')
   )
 
   const getTime = async () => {
-    const timestamp = await new Date(props.message.createdAt.seconds * 1000);
+    const timestamp = new Date(message.createdAt.seconds * 1000);
     setTime(timestamp);
   };
 
@@ -64,4 +65,13 @@ const MyDate = (props) => {
   )
 }
 
-export default MyDate;
+MyDate.propTypes = {
+  message: PropTypes.shape({
+    createdAt: PropTypes.timestamp,
+    displayName: PropTypes.string,
+    image: PropTypes.string,
+    photoURL:  PropTypes.string,
+    text: PropTypes.string,
+    uid: PropTypes.string,
+  }).isRequired,
+};

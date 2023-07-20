@@ -1,20 +1,20 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Grid, Container, } from '@material-ui/core';
-import { Context } from '../../index';
+import { FirebaseContext } from '../../contexts/FirebaseContext';
 import classes from './Logout.module.css';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getAuth } from "firebase/auth";
 import Loader from '../loader/Loader';
 
 const Logout = (setVisible) => {
-  const { auth, } = useContext(Context);
+  const { auth, } = useContext(FirebaseContext);
   const [photoURL, setPhotoURL] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [user] = useAuthState(auth);
 
   const getUserInfo = async () => {
-    const photoURL = await getAuth().currentUser.photoURL;
+    const photoURL = getAuth().currentUser.photoURL;
     let name = await getAuth().currentUser.displayName;
     let email = await getAuth().currentUser.email;
 
@@ -38,6 +38,7 @@ const Logout = (setVisible) => {
   const logout = async () => {
     await auth.signOut()
     await setVisible(false);
+    
     return (
       <Loader />
     )

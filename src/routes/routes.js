@@ -1,6 +1,6 @@
-import Home from "./components/home/Home";
-import Chat from "./components/chat/Chat";
-import Gallery from "./components/gallery/Gallery";
+import Home from '../pages/home/Home';
+import Chat from "../pages/chat/Chat";
+import Gallery from "../pages/gallery/Gallery";
 
 export const publicRoutes = [
   { path: '/home', component: <Home />, exact: true, },

@@ -1,18 +1,17 @@
 import React, { useContext } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { privateRoutes, publicRoutes } from '../../routes';
+import { privateRoutes, publicRoutes } from './routes/routes';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Context } from '../../index';
-import { Layout } from '../../layout/Layout';
+import { Layout } from './layout/Layout';
+import { FirebaseContext } from './contexts/FirebaseContext';
 
-const AppRoater = () => {
-  const { auth } = useContext(Context);
+export const App = () => {
+  const { auth } = useContext(FirebaseContext);
   const [user] = useAuthState(auth);
 
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-
         {user ? (
           <>
             {privateRoutes.map(({ path, component }) => (
@@ -32,6 +31,3 @@ const AppRoater = () => {
     </Routes>
   );
 };
-
-
-export default AppRoater;

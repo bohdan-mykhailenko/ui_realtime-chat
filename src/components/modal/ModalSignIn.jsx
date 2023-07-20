@@ -1,11 +1,11 @@
 import React, { useContext, useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import classes from './ModalSignIn.module.css';
-import { Context } from '../../index';
+import { FirebaseContext } from '../../contexts/FirebaseContext';
 import Login from '../login/Login';
 
 const ModalSignIn = ({ visible, setVisible }) => {
-  const { auth } = useContext(Context);
+  const { auth } = useContext(FirebaseContext);
   const [user] = useAuthState(auth);
   const rootClasses = [classes.modal];
 

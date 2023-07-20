@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import classes from './ModalSignIn.module.css';
-import { Context } from '../../index';
+import { FirebaseContext } from '../../contexts/FirebaseContext';
 import Logout from '../logout/Logout';
 
 const ModalSignOut = ({ visible, setVisible }) => {
-  const { auth } = useContext(Context);
+  const { auth } = useContext(FirebaseContext);
   const rootClasses = [classes.modal];
 
   if (visible) {

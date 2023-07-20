@@ -1,18 +1,18 @@
-import React, { useContext, useState, useRef, useEffect } from 'react';
-import { Context } from '../../index';
+import React, { useContext, useState, useRef } from 'react';
+import { FirebaseContext } from '../../contexts/FirebaseContext';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Grid } from '@material-ui/core';
 import Avatar from '@material-ui/core/Avatar';
 import firebase from "firebase/compat/app";
-import Loader from '../loader/Loader';
-import Form from '../form/Form';
+import Loader from '../../components/loader/Loader';
+import Form from '../../components/form/Form';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import classes from './Chat.module.css';
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import MyDate from '../date/MyDate'
-import Emoji from '../emoji/Emoji';
-import '../../index.css'
+import { MyDate } from '../../components/date'
+import { Emoji } from '../../components/Emoji';
+import '../../contexts/FirebaseContext';
 import 'firebase/firestore';
 import 'firebase/compat/storage';
 import { useUser } from '../../hooks/useUser';
@@ -23,7 +23,7 @@ const Chat = () => {
   const [focus, setFocus] = useState(false);
   const btnRef = useRef(null);
   const bottomRef = useRef(null);
-  const { auth, firestore } = useContext(Context);
+  const { auth, firestore } = useContext(FirebaseContext);
   const [value, setValue] = useState('');
   const [imageURL, setImageURL] = useState(null);
   const [arrayOfID, setArrayOfID] = useState(new Set());
@@ -149,6 +149,9 @@ const Chat = () => {
     return <Loader />
   }
 
+  const changeEmojiValue = (value) => setEmojiValue(value);
+  const changeFocus = (value) => setFocus(value);
+
   return (
     <Grid className={classes.container} >
       <div className={classes.wrapper}>
@@ -159,6 +162,7 @@ const Chat = () => {
             onScroll={isVisible}>
             {messages.map((message, index) =>
               <div
+                key={message.uid}
                 onMouseDown={(event) => escapeMouseDown(event)}
                 onClick={likeMessage}
                 id={getDocumentIdFromSet(arrayOfID, index)}
@@ -249,9 +253,8 @@ const Chat = () => {
           <div className={classes.emoji} >
             <Emoji
               emojiValue={emojiValue}
-              setEmojiValue={setEmojiValue}
-              focus={focus}
-              setFocus={setFocus}
+              onChangeEmojiValue={changeEmojiValue}
+              onChangeFocus={changeFocus}
             />
           </div>
         }

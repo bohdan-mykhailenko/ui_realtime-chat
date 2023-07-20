@@ -1,23 +1,36 @@
 import React from 'react';
 import Picker from 'emoji-picker-react';
+import PropTypes from 'prop-types';
 
-const Emoji = (props) => {
-  const onEmojiClick = (event, emojiObject) => {
-    props.setEmojiValue(props.emojiValue + emojiObject.emoji);
+export const Emoji = ({
+  emojiValue,
+  onChangeEmojiValue,
+  onChangeFocus,
+}) => {
+  const handleFocus = () => {
+    onChangeFocus(true);
+  };
+
+  const handleEmojiClick = (emojiObject) => {
+    onChangeEmojiValue(emojiValue + emojiObject.emoji);
   };
 
   return (
-    <div onClick={props.setFocus(true)}>
+    <div onClick={handleFocus}>
       <div>
         <Picker
           groupVisibility={{
             flags: false,
           }}
           disableSearchBar={true}
-          onEmojiClick={onEmojiClick} />
+          onEmojiClick={handleEmojiClick} />
       </div>
     </div>
   );
 };
 
-export default Emoji;
+Emoji.propTypes = {
+  emojiValue: PropTypes.string,
+  onChangeEmojiValue: PropTypes.func,
+  onChangeFocus: PropTypes.func,
+}

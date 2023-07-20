@@ -3,7 +3,7 @@ import AppBar from '@material-ui/core/Appbar';
 import Toolbar from '@material-ui/core/Toolbar';
 import { Grid } from '@material-ui/core';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Context } from '../../index';
+import { FirebaseContext } from '../../contexts/FirebaseContext';
 import Loader from '../loader/Loader';
 import ModalSignIn from '../modal/ModalSignIn';
 import ModalSignOut from '../modal/ModalSignOut';
@@ -25,7 +25,7 @@ const Navbar = () => {
   const { isVisibleGallery, setIsVisibleGallery } = useGallery(false);
   const [modalSignIn, setModalSignIn] = useState(false);
   const [modalSignOut, setModalSignOut] = useState(false);
-  const { auth, loading } = useContext(Context);
+  const { auth, loading } = useContext(FirebaseContext);
   const [user] = useAuthState(auth);
   const [photoURL, setPhotoURL] = useState('');
 

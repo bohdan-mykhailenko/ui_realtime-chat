@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Grid, Container, Button } from '@material-ui/core';
-import { Context } from '../../index';
+import { FirebaseContext } from '../../contexts/FirebaseContext';
 import firebase from 'firebase/compat/app';
 import classes from './Login.module.css';
 import Icon from '@mui/material/Icon';
@@ -9,7 +9,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import GitHubIcon from '@mui/icons-material/GitHub';
 
 const Login = (setVisible) => {
-  const { auth } = useContext(Context);
+  const { auth } = useContext(FirebaseContext);
 
   const googleLogin = async () => {
     const provider = new firebase.auth.GoogleAuthProvider();

@@ -1,14 +1,27 @@
-import React, { useEffect, useState, useRef, useContext } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+import PropTypes from 'prop-types';
 import { Grid } from '@material-ui/core';
 import SendIcon from '@mui/icons-material/Send';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import MoodIcon from '@mui/icons-material/Mood';
 import classes from './Form.module.css';
-import { app } from "../../../src/index";
+import { app } from "../../config/firebase";
 import 'firebase/firestore';
 import 'firebase/compat/storage';
 
-const Form = (props) => {
+const Form = ({
+  setImageURL,
+  setValue,
+  emojiValue,
+  setEmojiValue,
+  value,
+  imageURL,
+  sendMessage,
+  focus,
+  setIsVisibleEmoji,
+  isVisibleEmoji,
+  btnRef,
+}) => {
   const textareaRef = useRef(null);
   const [textValue, setTextValue] = useState('');
 
@@ -17,17 +30,17 @@ const Form = (props) => {
     const storageRef = app.storage().ref();
     const fileRef = storageRef.child(file.name);
     await fileRef.put(file);
-    props.setImageURL(await fileRef.getDownloadURL());
+    setImageURL(await fileRef.getDownloadURL());
   }
 
   useEffect(() => {
     if (!textValue) {
-      props.setValue(props.emojiValue)
+      setValue(emojiValue)
       return;
     }
 
-    props.setValue(textValue + props.emojiValue)
-  }, [props]);
+    setValue(textValue + emojiValue)
+  }, [value]);
 
   const enterKey = (event) => {
     if (event.keyCode === 13) {
@@ -40,26 +53,26 @@ const Form = (props) => {
     setTextValue(event.target.value);
 
     if (event.target.value !== undefined) {
-      props.setValue(event.target.value + props.emojiValue)
-      props.setEmojiValue('');
+      setValue(event.target.value + emojiValue)
+      setEmojiValue('');
       return;
     }
 
-    props.setValue(props.emojiValue)
-    props.setEmojiValue('');
+    setValue(emojiValue)
+    setEmojiValue('');
   }
 
   const handleClickButton = () => {
-    if (props.value || props.imageURL) {
-      props.sendMessage();
+    if (value || imageURL) {
+      sendMessage();
     }
 
-    props.setValue('');
-    props.setEmojiValue('');
+    setValue('');
+    setEmojiValue('');
     setTextValue('');
   }
 
-  if (props.focus) {
+  if (focus) {
     textareaRef.current.focus();
   }
 
@@ -67,10 +80,10 @@ const Form = (props) => {
     <Grid onKeyDown={enterKey}>
       <div className={classes.form}>
         <label className={classes.label}>
-          {props.imageURL
+          {imageURL
             ?
             < div className={classes.imgPreviewWrapper}>
-              <img src={props.imageURL} className={classes.imgPreview} alt='img' />
+              <img src={imageURL} className={classes.imgPreview} alt='img' />
             </div>
             :
             <AttachFileIcon className={classes.icon} />
@@ -86,23 +99,23 @@ const Form = (props) => {
           rows='3'
           className={classes.textarea}
           placeholder={'Write a message...'}
-          value={props.value}
+          value={value}
           onChange={(event) => handleChangeTextValue(event)}
-          onKeyDown={props.enterKey}
+          onKeyDown={enterKey}
         >
         </textarea>
         <button className={classes.moodIcon}>
           <MoodIcon
             className={classes.icon}
             onClick={(event) => {
-              props.setIsVisibleEmoji(!props.isVisibleEmoji);
+              setIsVisibleEmoji(!isVisibleEmoji);
               event.preventDefault();
               textareaRef.current.focus();
             }}
           />
         </button>
         <button
-          ref={props.btnRef}
+          ref={btnRef}
           className={classes.button}
           onClick={handleClickButton}>
           <SendIcon className={classes.icon} />
@@ -111,5 +124,19 @@ const Form = (props) => {
     </Grid>
   )
 }
+
+Form.propTypes = {
+  setImageURL: PropTypes.func.isRequired,
+  setValue: PropTypes.func.isRequired,
+  emojiValue: PropTypes.string.isRequired,
+  setEmojiValue: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+  imageURL: PropTypes.string.isRequired,
+  sendMessage: PropTypes.func.isRequired,
+  focus: PropTypes.func.isRequired,
+  setIsVisibleEmoji: PropTypes.func.isRequired,
+  isVisibleEmoji: PropTypes.bool.isRequired,
+  btnRef: PropTypes.object.isRequired,
+};
 
 export default Form;
