@@ -10,7 +10,7 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 import classes from './Chat.module.css';
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { MyDate } from '../../components/date'
+import { DateInfo } from '../../components/DateInfo'
 import { Emoji } from '../../components/Emoji';
 import '../../contexts/FirebaseContext';
 import 'firebase/firestore';
@@ -212,7 +212,7 @@ const Chat = () => {
                     style={{
                       display: message.like === true ? 'block' : 'none'
                     }} />
-                  <MyDate message={message} />
+                  <DateInfo message={message} />
                 </div>
               </div>
             )}
@@ -258,8 +258,8 @@ const Chat = () => {
             />
           </div>
         }
-      </div >
-    </Grid >
+      </div>
+    </Grid>
   )
 }
 

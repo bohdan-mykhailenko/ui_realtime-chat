@@ -1,6 +1,7 @@
 import React from 'react';
 import Picker from 'emoji-picker-react';
 import PropTypes from 'prop-types';
+import { Grid } from '@material-ui/core';
 
 export const Emoji = ({
   emojiValue,
@@ -16,16 +17,14 @@ export const Emoji = ({
   };
 
   return (
-    <div onClick={handleFocus}>
-      <div>
-        <Picker
-          groupVisibility={{
-            flags: false,
-          }}
-          disableSearchBar={true}
-          onEmojiClick={handleEmojiClick} />
-      </div>
-    </div>
+    <Grid onClick={handleFocus}>
+      <Picker
+        groupVisibility={{
+          flags: false,
+        }}
+        disableSearchBar={true}
+        onEmojiClick={handleEmojiClick} />
+    </Grid>
   );
 };
 
