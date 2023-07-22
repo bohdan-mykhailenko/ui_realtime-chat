@@ -53,7 +53,7 @@ const Logout = (setVisible) => {
             height: 'auto'
           }}
           alignItems={'center'}
-          justify={'center'}>
+          justifyContent={'center'}>
           <Grid
             className={classes.wrapper}
             container

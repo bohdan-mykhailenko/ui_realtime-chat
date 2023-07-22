@@ -19,11 +19,10 @@ export const Emoji = ({
   return (
     <Grid onClick={handleFocus}>
       <Picker
-        groupVisibility={{
-          flags: false,
-        }}
+        groupVisibility={{ flags: false }}
         disableSearchBar={true}
-        onEmojiClick={handleEmojiClick} />
+        onEmojiClick={handleEmojiClick} 
+      />
     </Grid>
   );
 };

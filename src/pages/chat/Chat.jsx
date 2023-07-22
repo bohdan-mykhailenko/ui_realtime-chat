@@ -29,6 +29,8 @@ const Chat = () => {
   const [arrayOfID, setArrayOfID] = useState(new Set());
   const [isVisibleBottomDiv, setIsVisibleBottomDiv] = useState('');
 
+  console.log(emojiValue);
+
   const [user] = useAuthState(auth);
 
   const { collections } = useUser(user);
@@ -76,19 +78,19 @@ const Chat = () => {
     });
   }());
 
-  const getDocumentIdFromSet = (set, index) => {
-    let i = 0;
-    let result;
+  // const getDocumentIdFromSet = (set, index) => {
+  //   let i = 0;
+  //   let result;
 
-    for (let value of set) {
-      if (i === index) {
-        result = value;
-        break
-      }
-      i++;
-    }
-    return result;
-  }
+  //   for (let value of set) {
+  //     if (i === index) {
+  //       result = value;
+  //       break
+  //     }
+  //     i++;
+  //   }
+  //   return result;
+  // }
 
   //likes
 
@@ -165,7 +167,7 @@ const Chat = () => {
                 key={message.uid}
                 onMouseDown={(event) => escapeMouseDown(event)}
                 onClick={likeMessage}
-                id={getDocumentIdFromSet(arrayOfID, index)}
+                id={index}
                 className={classes.item}
                 style={{
                   margin: 5,

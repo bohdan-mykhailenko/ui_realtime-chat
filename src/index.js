@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { App } from './App';
 import { ThemeProvider } from '@material-ui/core';
 import { FirebaseProvider } from './providers/FirebaseProvider';
@@ -9,14 +9,13 @@ import 'firebase/compat/auth';
 import { theme } from './consts/theme';
 import './index.css';
  
-ReactDOM.render(
+ReactDOM.createRoot(document.getElementById('root')).render(
   <HashRouter>
     <FirebaseProvider>
       <ThemeProvider theme={theme}>
         <App />
       </ThemeProvider>
     </FirebaseProvider>
-  </HashRouter>,
-  document.getElementById('root')
+  </HashRouter>
 );
 

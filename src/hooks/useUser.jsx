@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 export const useUser = (user) => {
 
-  const [collections, setCollections] = useState(
+  const [collections] = useState(
     user
       ?
       (user.uid === '27ofykS3n6hxFTDUzJAOAeIuCj93' ||
@@ -14,7 +14,7 @@ export const useUser = (user) => {
         ?
         ['messages', 'photos']
         :
-        ['messages2', 'photos2']
+        ['messages3', 'photos3']
       :
       []
   )

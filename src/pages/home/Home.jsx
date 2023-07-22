@@ -16,7 +16,10 @@ const Home = () => {
     let i = 0;
 
     const listItems = [1, 2, 3, 4, 5, 6].map((number) =>
-      <ListItem className={classes.item}>
+      <ListItem 
+        className={classes.item}
+        key={number}
+      >
         <ListItemIcon>
           {props.icons === 1
             ? <ExtensionIcon className={classes.icon} />
@@ -55,9 +58,9 @@ const Home = () => {
         </h1>
         <Grid
           className={classes.text}
-          onMouseDown={(event) => escapeMouseDown(event)}>
-          The idea to create this program came from watching a video from Ulbi (YouTube). The author showed the work of React(JavaScript library) and Firebase  - popular service for hosting apps and actions with databases, and it was so interesting and exciting for me because of my desire to study Web-development.
-          I've been studying React for 2 weeks, so these materials helped me to find new information and improve my skills with this library.
+          onMouseDown={(event) => escapeMouseDown(event)}
+        >
+          LoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsumLoremIpsum
         </Grid>
         <div
           className={classes.lists}

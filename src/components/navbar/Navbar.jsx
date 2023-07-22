@@ -30,9 +30,18 @@ const Navbar = () => {
   const [photoURL, setPhotoURL] = useState('');
 
   const getPhotoURL = async () => {
-    const url = await getAuth().currentUser.photoURL;
-    setPhotoURL(url);
-  }
+    try {
+      const user = getAuth().currentUser;
+
+      if (user) {
+        const url = await user.photoURL;
+      
+        setPhotoURL(url);
+      } 
+    } catch (error) {
+      console.error('Error fetching photo URL:', error);
+    }
+  };
 
   useEffect(() => {
     getPhotoURL();
@@ -131,7 +140,7 @@ const Navbar = () => {
                   ?
                   <img src={photoURL} className={classes.avatar} />
                   :
-                  <div className={classes.defaultAvatar}></div>
+                  <img src='../imgs/defaultAvatar.png' className={classes.avatar} />
                 }
               </button>
               <ModalSignOut visible={modalSignOut} setVisible={setModalSignOut} />

@@ -15,17 +15,11 @@ export const DateInfo = ({ message }) => {
   return (
     <Grid className={classes.date}>
       <Grid className={classes.dateHM}>
-        {hours}
-        :
-        {minutes}
+        {hours}:{minutes}
       </Grid>
 
       <Grid className={classes.dateDMY}>
-        {day}
-        /
-        {month}
-        /
-        {year}
+        {day}/{month}/{year}
       </Grid>
     </Grid>
   )

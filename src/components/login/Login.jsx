@@ -1,5 +1,5 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { Grid, Container, Button } from '@material-ui/core';
+import React, { useContext } from 'react';
+import { Grid, Container } from '@material-ui/core';
 import { FirebaseContext } from '../../contexts/FirebaseContext';
 import firebase from 'firebase/compat/app';
 import classes from './Login.module.css';
@@ -15,18 +15,21 @@ const Login = (setVisible) => {
     const provider = new firebase.auth.GoogleAuthProvider();
     const { user } = await auth.signInWithPopup(provider);
     setVisible(false);
+    console.log(user)
   }
 
   const facebookLogin = async () => {
     const provider = new firebase.auth.FacebookAuthProvider();
     const { user } = await auth.signInWithPopup(provider);
     setVisible(false);
+    console.log(user)
   }
 
   const githubLogin = async () => {
     const provider = new firebase.auth.GithubAuthProvider();
     const { user } = await auth.signInWithPopup(provider);
     setVisible(false);
+    console.log(user)
   }
 
   return (
@@ -38,7 +41,7 @@ const Login = (setVisible) => {
             height: 'auto'
           }}
           alignItems={'center'}
-          justify={'center'}
+          justifyContent={'center'}
         >
           <Grid
             className={classes.wrapper}
@@ -79,8 +82,9 @@ const Login = (setVisible) => {
             </div>
           </Grid>
         </Grid>
+
       </Container>
-    </div >
+    </div>
   )
 }
 

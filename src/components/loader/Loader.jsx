@@ -5,6 +5,7 @@ import classes from './Loader.module.css';
 const Loader = () => {
   return (
     <Grid
+      container
       className={classes.container}
       alignItems={'center'}
       justifyContent={'center'}>
