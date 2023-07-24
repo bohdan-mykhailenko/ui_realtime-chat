@@ -12,7 +12,7 @@ export const Emoji = ({
     onChangeFocus(true);
   };
 
-  const handleEmojiClick = (emojiObject) => {
+  const handleEmojiClick = (event, emojiObject) => {
     onChangeEmojiValue(emojiValue + emojiObject.emoji);
   };
 

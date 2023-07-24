@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import classes from './Gallery.module.css';
 import Loader from '../../components/loader/Loader';
@@ -38,6 +38,7 @@ const Gallery = () => {
     <div className={classes.gallery}>
       {photos?.map((photo) =>
         <div
+          key={photos.id}
           className={classes.galleryItem}
           onClick={(event) => handleClickImg(event)}>
           <img className={classes.galleryImg} src={photo.URL} alt="" />

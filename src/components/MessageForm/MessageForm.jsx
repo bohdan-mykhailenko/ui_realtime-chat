@@ -1,51 +1,75 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useContext } from 'react';
+import { FirebaseContext } from '../../contexts/FirebaseContext';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import PropTypes from 'prop-types';
-import { Grid } from '@material-ui/core';
 import SendIcon from '@mui/icons-material/Send';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import MoodIcon from '@mui/icons-material/Mood';
-import classes from './Form.module.css';
 import { app } from "../../config/firebase";
 import 'firebase/firestore';
 import 'firebase/compat/storage';
+import classes from './MessageForm.module.css';
+import { Grid } from '@mui/material';
+import { Emoji } from '../Emoji';
+import { useUser } from '../../hooks/useUser';
+import { postMessage } from '../../api/messages';
+import { MessageType } from '../../types/MessageType';
+import { PhotoType } from '../../types/PhotoType';
 
-const Form = ({
-  setImageURL,
-  setValue,
-  emojiValue,
-  setEmojiValue,
-  value,
-  imageURL,
-  sendMessage,
-  focus,
-  setIsVisibleEmoji,
-  isVisibleEmoji,
-  btnRef,
-}) => {
+
+export const MessageForm = ({ messages, photos, bottomRef }) => {
   const textareaRef = useRef(null);
   const [textValue, setTextValue] = useState('');
+  const [isVisibleEmoji, setIsVisibleEmoji] = useState(false);
+  const [emojiValue, setEmojiValue] = useState('');
+  const [focus, setFocus] = useState(false);
+
+  const btnRef = useRef(null);
+  const [value, setValue] = useState('');
+  const [imageURL, setImageURL] = useState(null);
+  const { auth, firestore } = useContext(FirebaseContext);
+
+  const [user] = useAuthState(auth);
+
+  const { collections } = useUser(user);
 
   const atachImage = async (event) => {
     const file = event.target.files[0];
     const storageRef = app.storage().ref();
     const fileRef = storageRef.child(file.name);
+
     await fileRef.put(file);
+
     setImageURL(await fileRef.getDownloadURL());
+  }
+
+  const messageId = messages.length + 1 || 1;
+  const photoId = photos.length + 1 || 1;
+
+  const sendMessage = async () => {
+    postMessage(user, firestore, collections, value, imageURL, messageId, photoId);
+
+    setValue('');
+    setImageURL(null);
+    bottomRef.current.scrollIntoView(true);
   }
 
   useEffect(() => {
     if (!textValue) {
-      setValue(emojiValue)
+      setValue(emojiValue);
+
       return;
     }
 
     setValue(textValue + emojiValue)
-  }, [value]);
+  }, [value, emojiValue]);
 
   const enterKey = (event) => {
     if (event.keyCode === 13) {
       event.preventDefault();
       textareaRef.current.focus();
+
+      return;
     }
   };
 
@@ -62,23 +86,33 @@ const Form = ({
     setEmojiValue('');
   }
 
-  const handleClickButton = () => {
-    if (value || imageURL) {
-      sendMessage();
+
+  if (focus) {
+    textareaRef.current.focus();
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (!value && !imageURL) {
+      return
     }
+
+    console.log('aaa')
+
+    sendMessage();
 
     setValue('');
     setEmojiValue('');
     setTextValue('');
   }
 
-  if (focus) {
-    textareaRef.current.focus();
-  }
-
   return (
     <Grid onKeyDown={enterKey}>
-      <div className={classes.form}>
+      <form
+        className={classes.form}
+        onSubmit={handleSubmit}
+      >
         <label className={classes.label}>
           {imageURL
             ?
@@ -114,29 +148,30 @@ const Form = ({
             }}
           />
         </button>
+
+        {isVisibleEmoji &&
+          <div className={classes.emoji} >
+            <Emoji
+              emojiValue={emojiValue}
+              onChangeEmojiValue={setEmojiValue}
+              onChangeFocus={setFocus}
+            />
+          </div>
+        }
+
         <button
           ref={btnRef}
           className={classes.button}
-          onClick={handleClickButton}>
+        >
           <SendIcon className={classes.icon} />
         </button>
-      </div>
+      </form>
     </Grid>
   )
-}
-
-Form.propTypes = {
-  setImageURL: PropTypes.func.isRequired,
-  setValue: PropTypes.func.isRequired,
-  emojiValue: PropTypes.string.isRequired,
-  setEmojiValue: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
-  imageURL: PropTypes.string,
-  sendMessage: PropTypes.func.isRequired,
-  focus: PropTypes.bool.isRequired,
-  setIsVisibleEmoji: PropTypes.func.isRequired,
-  isVisibleEmoji: PropTypes.bool.isRequired,
-  btnRef: PropTypes.object.isRequired,
 };
 
-export default Form;
+MessageForm.propTypes = {
+  messages: PropTypes.arrayOf(MessageType),
+  photos: PropTypes.arrayOf(PhotoType),
+  bottomRef: PropTypes.object.isRequired,
+};
