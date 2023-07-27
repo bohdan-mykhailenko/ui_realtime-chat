@@ -1,0 +1,23 @@
+@keyframes likeAppearance {
+  0% {
+    color: rgba(176, 15, 15, 0.2);
+    transform: scale(0.7);
+  }
+  25% {
+    background: #b00e1375;
+  }
+  50% {
+    background: none;
+  }
+  75% {
+    background: #b00e1375;
+    color: rgba(176, 15, 15, 0.5);
+    transform: scale(1.2);
+  }
+  100% {
+    border-radius: 50%;
+    background: none;
+    color: rgba(176, 15, 15, 1);
+    transform: scale(1);
+  }
+}

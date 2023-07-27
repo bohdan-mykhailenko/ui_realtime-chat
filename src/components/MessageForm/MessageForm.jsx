@@ -98,8 +98,6 @@ export const MessageForm = ({ messages, photos, bottomRef }) => {
       return
     }
 
-    console.log('aaa')
-
     sendMessage();
 
     setValue('');

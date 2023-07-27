@@ -9,18 +9,19 @@ export const postMessage = async (
   messageId,
   photoId,
 ) => {
-  await firestore.collection(collections[0]).add({
+  await firestore.collection(collections[0]).doc(String(messageId)).set({
     id: messageId,
-    userId: user.uid,
+    uid: user.uid,
     displayName: user.displayName,
     photoURL: user.photoURL,
     text: value,
     createdAt: firebase.firestore.FieldValue.serverTimestamp(),
     image: imageURL,
+    like: false,
   })
 
   if (imageURL) {
-    await firestore.collection(collections[1]).add({
+    await firestore.collection(collections[1]).doc(messageId).add({
       id: photoId,
       URL: imageURL,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),

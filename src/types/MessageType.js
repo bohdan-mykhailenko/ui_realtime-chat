@@ -8,4 +8,5 @@ export const MessageType = PropTypes.shape({
   text: PropTypes.string,
   createdAt: PropTypes.oneOfType([PropTypes.number, PropTypes.object]),
   image: PropTypes.string,
+  like: PropTypes.bool,
 });

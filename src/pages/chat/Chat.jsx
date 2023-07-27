@@ -6,7 +6,6 @@ import Loader from '../../components/loader/Loader';
 import { MessageForm } from '../../components/MessageForm';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
-import '../../contexts/FirebaseContext';
 import 'firebase/firestore';
 import 'firebase/compat/storage';
 import { useUser } from '../../hooks/useUser';
@@ -14,16 +13,12 @@ import { Message } from '../../components/Message';
 import classes from './Chat.module.css';
 
 const Chat = () => {
-  const { auth, firestore } = useContext(FirebaseContext);
-
   const [arrayOfID, setArrayOfID] = useState(new Set());
   const [isVisibleBottomDiv, setIsVisibleBottomDiv] = useState('');
   const bottomRef = useRef(null);
 
-  // console.log(emojiValue);
-
+  const { auth, firestore } = useContext(FirebaseContext);
   const [user] = useAuthState(auth);
-
   const { collections } = useUser(user);
 
   const [messages, messagesLoading] = useCollectionData(firestore
@@ -111,12 +106,10 @@ const Chat = () => {
         <div
           className={classes.body}
           onScroll={isVisible}>
-          {messages.map((message, index) =>
+          {messages.map((message) =>
             <Message
               key={message.id}
               message={message}
-              index={index}
-              user={user}
             />
           )}
           <div ref={bottomRef} className={classes.bottomItem}>

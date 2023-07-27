@@ -1,36 +1,57 @@
-import React from 'react';
+import React, { memo, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Avatar, Grid } from '@mui/material';
-import classes from '../../pages/c  hat/Chat.module.css';
+import classes from './Message.module.scss';
 import { DateInfo } from '../DateInfo/DateInfo';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { MessageType } from '../../types/MessageType';
-import { PhotoType } from '../../types/PhotoType';
+import { FirebaseContext } from '../../contexts/FirebaseContext';
+import { useUser } from '../../hooks/useUser';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
-export const Message = ({ message, index, user }) => {
-  // const likeMessage = async (event) => {
-  //   if (event.detail >= 2) {
-  //     if (event.currentTarget.lastChild.firstChild.style.display === 'block') {
-  //       event.currentTarget.lastChild.firstChild.style.display = 'none';
-  //       await firestore.collection(collections[0]).doc(event.currentTarget.id).update({ like: false });
-  //       return;
-  //     }
+export const Message = memo(({ message }) => {
+  const { auth, firestore } = useContext(FirebaseContext);
+  const [user] = useAuthState(auth);
+  const { collections } = useUser(user);
 
-  //     event.currentTarget.lastChild.firstChild.style.display = 'block';
-  //     await firestore.collection(collections[0]).doc(event.currentTarget.id).update({ like: true });
-  //   }
-  // }
+  const [liked, setLiked] = useState(message.like || false);
+  const [updatingLike, setUpdatingLike] = useState(false);
+
+  const handleLikeClick = async () => {
+    if (updatingLike) {
+      return;
+    }
+
+    try {
+      const likeStatus = !liked;
+      const docId = String(message.id);
+
+      setUpdatingLike(true);
+      setLiked(likeStatus);
+
+      await firestore.collection(collections[0])
+        .doc(docId)
+        .set({
+          like: likeStatus
+        }, {
+          merge: true
+        });
+    } catch (error) {
+      console.error('Error updating like status:', error);
+    } finally {
+      setUpdatingLike(false);
+    }
+  };
 
   const escapeMouseDown = (event) => {
     event.stopPropagation();
   }
 
   return (
-    <div
+    <Grid
       onMouseDown={(event) => escapeMouseDown(event)}
-      //onClick={likeMessage}
-      id={index}
-      className={classes.item}
+      onClick={handleLikeClick}
+      className={classes.message}
       style={{
         margin: 5,
         marginTop: 10,
@@ -40,50 +61,50 @@ export const Message = ({ message, index, user }) => {
         marginLeft: user.uid === message.uid ? 'auto' : '5px',
         width: 'fit-content'
       }}>
-      <Grid container className={classes.infoWrapper}>
-        <Avatar src={message.photoURL} className={classes.avatar} />
-        <div
-          className={classes.name}
+      <Grid container className={classes.message__infoWrapper}>
+        <Avatar src={message.photoURL} className={classes.message__avatar} />
+        <Grid
+          className={classes.message__name}
           onMouseDown={(event) => escapeMouseDown(event)}
         >
           {message.displayName
-            ? <div>
+            ? <Grid>
               {message.displayName}
-            </div>
-            : <div>
+            </Grid>
+            : <Grid>
               {"Github user"}
-            </div>
+            </Grid>
           }
-        </div>
+        </Grid>
       </Grid>
-      <div
-        className={classes.text}
+      <Grid
+        className={classes.message__text}
         onMouseDown={(event) => escapeMouseDown(event)}
       >
         {message.text}
-      </div>
+      </Grid>
       {message.image
         ?
-        <div className={classes.imgWrapper}>
-          <img src={message.image} className={classes.img} alt='img' />
-        </div>
+        <Grid className={classes.message__imgWrapper}>
+          <img src={message.image} className={classes.message__img} alt='img' />
+        </Grid>
         :
-        <div className={classes.emptyImg}>
-        </div>
+        <Grid className={classes.message__emptyImg}>
+        </Grid>
       }
-      <div className={classes.bottomInfoWrapper}>
-        <FavoriteIcon className={classes.like}
+      <Grid className={classes.message__bottomInfoWrapper}>
+        <FavoriteIcon className={classes.message__like}
           style={{
             display: message.like === true ? 'block' : 'none'
           }} />
         <DateInfo message={message} />
-      </div>
-    </div>
+      </Grid>
+    </Grid>
   );
-};
+});
+
+Message.displayName = 'Message';
 
 Message.propTypes = {
   message: PropTypes.shape(MessageType),
-  photos: PropTypes.shape(PhotoType),
-  user: PropTypes.object,
 };
