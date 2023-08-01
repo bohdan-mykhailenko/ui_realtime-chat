@@ -12,7 +12,7 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto repeat(3, 1fr);
-  row-gap: 20px; 
+  row-gap: 20px;
 }
 
 .item {
@@ -67,7 +67,7 @@
 
 .googleIcon {
   font-size: 25px;
-  color:var(--facebook-color);
+  color: var(--facebook-color);
 }
 
 .facebookIcon {
@@ -77,10 +77,10 @@
 
 .githubIcon {
   font-size: 25px;
-  color:var(--github-color);
+  color: var(--github-color);
 }
 
-@media(max-width: 600px) {
+@media (max-width: 600px) {
   .wrapper {
     row-gap: 20px;
   }
@@ -105,7 +105,7 @@
   }
 }
 
-@media(max-width: 450px) {
+@media (max-width: 450px) {
   .wrapper {
     row-gap: 15px;
   }
@@ -129,7 +129,7 @@
   }
 }
 
-@media(max-width: 350px) {
+@media (max-width: 350px) {
   .wrapper {
     row-gap: 15px;
   }

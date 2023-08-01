@@ -1,13 +1,13 @@
 import React, { memo, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Avatar, Grid } from '@mui/material';
-import classes from './Message.module.scss';
 import { DateInfo } from '../DateInfo/DateInfo';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { MessageType } from '../../types/MessageType';
 import { FirebaseContext } from '../../contexts/FirebaseContext';
 import { useUser } from '../../hooks/useUser';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import classes from './Message.module.scss';
 
 export const Message = memo(({ message }) => {
   const { auth, firestore } = useContext(FirebaseContext);
@@ -17,8 +17,8 @@ export const Message = memo(({ message }) => {
   const [liked, setLiked] = useState(message.like || false);
   const [updatingLike, setUpdatingLike] = useState(false);
 
-  const handleLikeClick = async () => {
-    if (updatingLike) {
+  const handleLikeClick = async (event) => {
+    if (updatingLike || event.detail < 2) {
       return;
     }
 
@@ -29,13 +29,14 @@ export const Message = memo(({ message }) => {
       setUpdatingLike(true);
       setLiked(likeStatus);
 
-      await firestore.collection(collections[0])
-        .doc(docId)
-        .set({
-          like: likeStatus
-        }, {
-          merge: true
-        });
+      await firestore.collection(collections[0]).doc(docId).set(
+        {
+          like: likeStatus,
+        },
+        {
+          merge: true,
+        },
+      );
     } catch (error) {
       console.error('Error updating like status:', error);
     } finally {
@@ -45,7 +46,7 @@ export const Message = memo(({ message }) => {
 
   const escapeMouseDown = (event) => {
     event.stopPropagation();
-  }
+  };
 
   return (
     <Grid
@@ -55,26 +56,33 @@ export const Message = memo(({ message }) => {
       style={{
         margin: 5,
         marginTop: 10,
-        background: user.uid === message.uid ? 'var(--first-color)' : 'var(--message-color)',
-        border: user.uid === message.uid ? '3px solid var(--first-color)' : '3px solid var(--message-color)',
-        borderRadius: user.uid === message.uid ? '25px 25px 0px 25px' : '0px 25px 25px 25px',
+        background:
+          user.uid === message.uid
+            ? 'var(--first-color)'
+            : 'var(--message-color)',
+        border:
+          user.uid === message.uid
+            ? '3px solid var(--first-color)'
+            : '3px solid var(--message-color)',
+        borderRadius:
+          user.uid === message.uid
+            ? '25px 25px 0px 25px'
+            : '0px 25px 25px 25px',
         marginLeft: user.uid === message.uid ? 'auto' : '5px',
-        width: 'fit-content'
-      }}>
+        width: 'fit-content',
+      }}
+    >
       <Grid container className={classes.message__infoWrapper}>
         <Avatar src={message.photoURL} className={classes.message__avatar} />
         <Grid
           className={classes.message__name}
           onMouseDown={(event) => escapeMouseDown(event)}
         >
-          {message.displayName
-            ? <Grid>
-              {message.displayName}
-            </Grid>
-            : <Grid>
-              {"Github user"}
-            </Grid>
-          }
+          {message.displayName ? (
+            <Grid>{message.displayName}</Grid>
+          ) : (
+            <Grid>{'Github user'}</Grid>
+          )}
         </Grid>
       </Grid>
       <Grid
@@ -83,20 +91,15 @@ export const Message = memo(({ message }) => {
       >
         {message.text}
       </Grid>
-      {message.image
-        ?
+      {message.image ? (
         <Grid className={classes.message__imgWrapper}>
-          <img src={message.image} className={classes.message__img} alt='img' />
+          <img src={message.image} className={classes.message__img} alt="img" />
         </Grid>
-        :
-        <Grid className={classes.message__emptyImg}>
-        </Grid>
-      }
+      ) : (
+        <Grid className={classes.message__emptyImg}></Grid>
+      )}
       <Grid className={classes.message__bottomInfoWrapper}>
-        <FavoriteIcon className={classes.message__like}
-          style={{
-            display: message.like === true ? 'block' : 'none'
-          }} />
+        {liked && <FavoriteIcon className={classes.message__like} />}
         <DateInfo message={message} />
       </Grid>
     </Grid>

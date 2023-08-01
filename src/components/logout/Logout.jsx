@@ -1,13 +1,13 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { Grid, Container, } from '@material-ui/core';
+import { Grid, Container } from '@mui/material';
 import { FirebaseContext } from '../../contexts/FirebaseContext';
 import classes from './Logout.module.css';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { getAuth } from "firebase/auth";
+import { getAuth } from 'firebase/auth';
 import Loader from '../loader/Loader';
 
 const Logout = (setVisible) => {
-  const { auth, } = useContext(FirebaseContext);
+  const { auth } = useContext(FirebaseContext);
   const [photoURL, setPhotoURL] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -19,47 +19,47 @@ const Logout = (setVisible) => {
     let email = await getAuth().currentUser.email;
 
     if (name === null) {
-      name = "GitHub user";
+      name = 'GitHub user';
     }
 
     if (email === null) {
-      email = "hidden_email@mail.com";
+      email = 'hidden_email@mail.com';
     }
 
     setPhotoURL(photoURL);
     setName(name);
     setEmail(email);
-  }
+  };
 
   useEffect(() => {
     getUserInfo();
   }, [user]);
 
   const logout = async () => {
-    await auth.signOut()
+    await auth.signOut();
     await setVisible(false);
-    
-    return (
-      <Loader />
-    )
-  }
+
+    return <Loader />;
+  };
 
   return (
     <div>
-      <Container >
+      <Container>
         <Grid
           container
           style={{
-            height: 'auto'
+            height: 'auto',
           }}
           alignItems={'center'}
-          justifyContent={'center'}>
+          justifyContent={'center'}
+        >
           <Grid
             className={classes.wrapper}
             container
             justifyContent={'center'}
             alignItems={'center'}
-            direction={'column'}>
+            direction={'column'}
+          >
             <img src={photoURL} className={classes.avatar} />
             <h1 className={classes.name}>{name}</h1>
             <h2 className={classes.email}>{email}</h2>
@@ -69,8 +69,8 @@ const Logout = (setVisible) => {
           </Grid>
         </Grid>
       </Container>
-    </div >
-  )
-}
+    </div>
+  );
+};
 
 export default Logout;

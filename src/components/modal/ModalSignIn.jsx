@@ -23,11 +23,14 @@ const ModalSignIn = ({ visible, setVisible }) => {
 
   return (
     <div className={rootClasses.join(' ')} onClick={() => setVisible(false)}>
-      <div className={classes.modalContent} onClick={(e) => e.stopPropagation()} >
+      <div
+        className={classes.modalContent}
+        onClick={(e) => e.stopPropagation()}
+      >
         <Login setVisible={setVisible} />
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default ModalSignIn;

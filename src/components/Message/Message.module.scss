@@ -12,7 +12,6 @@
   color: var(--text-color);
 
   &--active {
-    
   }
 
   &__name {
@@ -30,7 +29,8 @@
   &__text {
     margin: 3px 3px 3px 0;
     font-weight: 400;
-    font-family: 'Nunito Sans', 'Trebuchet MS', 'Lucida Sans Unicode', sans-serif;
+    font-family: 'Nunito Sans', 'Trebuchet MS', 'Lucida Sans Unicode',
+      sans-serif;
   }
 
   &__bottomItem {
@@ -71,6 +71,7 @@
     position: relative;
     top: 0px;
     color: rgb(204, 24, 24);
+    font-size: 20px;
     border-radius: 50%;
     animation: likeAppearance 0.4s linear alternate running 0s none;
   }
@@ -158,4 +159,3 @@
     }
   }
 }
-

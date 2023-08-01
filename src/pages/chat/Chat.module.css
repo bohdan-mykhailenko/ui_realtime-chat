@@ -1,6 +1,8 @@
 * {
   margin: 0;
-  transition: border-color 200ms linear, background-color 200ms linear;
+  transition:
+    border-color 200ms linear,
+    background-color 200ms linear;
 }
 
 .wrapper {
@@ -19,13 +21,16 @@
   height: 100%;
   overflow-y: auto;
   background-size: cover;
-	background-position: 90% 0%;
-	background-repeat: no-repeat;
-	background-image: url("../../imgs/forestbw.jpg"), linear-gradient(0deg, var(--background-first-color) 20%, var(--background-second-color) 70%);
-	background-blend-mode: multiply;
+  background-position: 90% 0%;
+  background-repeat: no-repeat;
+  background-image: url('../../imgs/forestbw.jpg'),
+    linear-gradient(
+      0deg,
+      var(--background-first-color) 20%,
+      var(--background-second-color) 70%
+    );
+  background-blend-mode: multiply;
 }
-
-
 
 .emoji {
   margin: 0 0 0 auto;
@@ -39,8 +44,7 @@
   justify-content: center;
   align-items: center;
   opacity: 1;
-  animation: emojiAppearance 0.3s linear 
-  alternate running 0s none; 
+  animation: emojiAppearance 0.3s linear alternate running 0s none;
 }
 
 @keyframes emojiAppearance {
@@ -59,7 +63,7 @@
   border-radius: 0;
 }
 
-@media(max-width: 992px) {
+@media (max-width: 992px) {
   .wrapper {
     height: calc(100vh - 70px);
   }
@@ -68,9 +72,9 @@
     padding: 5px;
     max-width: 80%;
   }
-} 
+}
 
-@media(max-width: 767px) {
+@media (max-width: 767px) {
   .wrapper {
     height: calc(100vh - 64px);
   }
@@ -80,23 +84,23 @@
     max-width: 90%;
   }
 
-  .avatar{
+  .avatar {
     width: 32px;
     height: 32px;
   }
-  
+
   .name {
     margin: 0 5px;
     font-size: 18px;
   }
-  
+
   .text {
     margin: 3px 3px 3px 0;
     font-size: 16px;
   }
-} 
+}
 
-@media(max-width: 600px) {
+@media (max-width: 600px) {
   .wrapper {
     height: calc(100vh - 56px);
   }
@@ -109,19 +113,19 @@
     padding: 5px;
     max-width: 97.5%;
   }
-  
-  .avatar{
+
+  .avatar {
     width: 30px;
     height: 30px;
   }
-  
+
   .name {
     margin: 0 5px;
     font-size: 18px;
   }
 
   .arrow {
-    right:  15px;
+    right: 15px;
     bottom: 60px;
   }
 
@@ -130,17 +134,17 @@
   }
 }
 
-@media(max-width: 450px) {
-  .avatar{
+@media (max-width: 450px) {
+  .avatar {
     width: 24px;
     height: 24px;
   }
-  
+
   .name {
     margin: 0 3px;
     font-size: 17px;
   }
-  
+
   .text {
     margin: 2px 2px 2px 0;
     font-size: 15px;
@@ -162,23 +166,23 @@
   }
 }
 
-@media(max-width: 350px) {
- .avatar{
+@media (max-width: 350px) {
+  .avatar {
     width: 24px;
     height: 24px;
   }
-  
+
   .name {
     margin: 0 2px;
     font-size: 16px;
   }
 }
 
-@media(max-width: 300px) {
-  .avatar{
+@media (max-width: 300px) {
+  .avatar {
     width: 20px;
     height: 20px;
-   }
+  }
 
   .name {
     margin: 8px 0px 0 2px;
@@ -191,6 +195,3 @@
     right: 0;
   }
 }
-
-
-

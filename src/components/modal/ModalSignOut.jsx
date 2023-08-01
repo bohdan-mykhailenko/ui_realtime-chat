@@ -11,11 +11,14 @@ const ModalSignOut = ({ visible, setVisible }) => {
 
   return (
     <div className={rootClasses.join(' ')} onClick={() => setVisible(false)}>
-      <div className={classes.modalContent} onClick={(e) => e.stopPropagation()} >
+      <div
+        className={classes.modalContent}
+        onClick={(e) => e.stopPropagation()}
+      >
         <Logout setVisible={setVisible} />
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default ModalSignOut;

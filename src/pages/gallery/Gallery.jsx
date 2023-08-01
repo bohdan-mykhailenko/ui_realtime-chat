@@ -14,38 +14,46 @@ const Gallery = () => {
   const { collections } = useUser(user);
 
   const [photos, loading] = useCollectionData(
-    firestore.collection(collections[1]).orderBy('createdAt')
-  )
+    firestore.collection(collections[1]).orderBy('createdAt'),
+  );
 
   const handleClickImg = (event) => {
     setIsActiveImg(!isActiveImg);
 
     const activeImg = event.currentTarget;
-    const siblings = (activeImg) => [].slice.call(activeImg.parentNode.children).filter(child => (child !== activeImg));
+    const siblings = (activeImg) =>
+      [].slice
+        .call(activeImg.parentNode.children)
+        .filter((child) => child !== activeImg);
 
     siblings(activeImg).forEach((item) => {
-      item.className = isActiveImg ? classes.galleryItemUnactive : classes.galleryItem;
-    })
+      item.className = isActiveImg
+        ? classes.galleryItemUnactive
+        : classes.galleryItem;
+    });
 
-    event.target.className = isActiveImg ? classes.galleryImgActive : classes.galleryImg;
-  }
+    event.target.className = isActiveImg
+      ? classes.galleryImgActive
+      : classes.galleryImg;
+  };
 
   if (loading) {
-    return <Loader />
+    return <Loader />;
   }
 
   return (
     <div className={classes.gallery}>
-      {photos?.map((photo) =>
+      {photos?.map((photo) => (
         <div
           key={photos.id}
           className={classes.galleryItem}
-          onClick={(event) => handleClickImg(event)}>
+          onClick={(event) => handleClickImg(event)}
+        >
           <img className={classes.galleryImg} src={photo.URL} alt="" />
         </div>
-      )}
+      ))}
     </div>
-  )
-}
+  );
+};
 
 export default Gallery;

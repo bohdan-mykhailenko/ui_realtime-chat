@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FirebaseContext } from '../contexts/FirebaseContext';
-import firebase from "firebase/compat/app";
+import firebase from 'firebase/compat/app';
 import { app } from '../config/firebase';
 
 import 'firebase/compat/firestore';

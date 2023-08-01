@@ -1,7 +1,7 @@
 import React, { useContext, useState, useRef } from 'react';
 import { FirebaseContext } from '../../contexts/FirebaseContext';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Grid } from '@material-ui/core';
+import { Grid } from '@mui/material';
 import Loader from '../../components/loader/Loader';
 import { MessageForm } from '../../components/MessageForm';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
@@ -21,26 +21,28 @@ const Chat = () => {
   const [user] = useAuthState(auth);
   const { collections } = useUser(user);
 
-  const [messages, messagesLoading] = useCollectionData(firestore
-    .collection(collections[0])
-    .orderBy('createdAt')
+  const [messages, messagesLoading] = useCollectionData(
+    firestore.collection(collections[0]).orderBy('createdAt'),
   );
-  const [photos, photosLoading] = useCollectionData(firestore
-    .collection(collections[1])
-    .orderBy('createdAt')
+  const [photos, photosLoading] = useCollectionData(
+    firestore.collection(collections[1]).orderBy('createdAt'),
   );
 
   if (photosLoading || messagesLoading) {
-    return <Loader />
+    return <Loader />;
   }
 
   (function () {
-    firestore.collection(collections[0]).orderBy('createdAt').get().then(function (querySnapshot) {
-      querySnapshot.forEach(function (doc) {
-        setArrayOfID(arrayOfID.add(doc.id));
+    firestore
+      .collection(collections[0])
+      .orderBy('createdAt')
+      .get()
+      .then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+          setArrayOfID(arrayOfID.add(doc.id));
+        });
       });
-    });
-  }());
+  })();
 
   // const getDocumentIdFromSet = (set, index) => {
   //   let i = 0;
@@ -63,22 +65,24 @@ const Chat = () => {
   const isVisible = () => {
     const target = bottomRef.current;
     let targetPosition = {
-      top: window.pageYOffset + target.getBoundingClientRect().top,
-      left: window.pageXOffset + target.getBoundingClientRect().left,
-      right: window.pageXOffset + target.getBoundingClientRect().right,
-      bottom: window.pageYOffset + target.getBoundingClientRect().bottom
-    },
+        top: window.pageYOffset + target.getBoundingClientRect().top,
+        left: window.pageXOffset + target.getBoundingClientRect().left,
+        right: window.pageXOffset + target.getBoundingClientRect().right,
+        bottom: window.pageYOffset + target.getBoundingClientRect().bottom,
+      },
       windowPosition = {
         top: window.pageYOffset,
         left: window.pageXOffset,
         right: window.pageXOffset + document.documentElement.clientWidth,
-        bottom: window.pageYOffset + document.documentElement.clientHeight
+        bottom: window.pageYOffset + document.documentElement.clientHeight,
       };
 
-    if (targetPosition.bottom > windowPosition.top &&
+    if (
+      targetPosition.bottom > windowPosition.top &&
       targetPosition.top < windowPosition.bottom &&
       targetPosition.right > windowPosition.left &&
-      targetPosition.left < windowPosition.right) {
+      targetPosition.left < windowPosition.right
+    ) {
       setIsVisibleBottomDiv(true);
       return;
     }
@@ -86,9 +90,6 @@ const Chat = () => {
   };
 
   //key events
-
-
-
 
   // const changeEmojiValue = (event, value) => {
   //   setEmojiValue(value);
@@ -98,41 +99,40 @@ const Chat = () => {
 
   const escapeMouseDown = (event) => {
     event.stopPropagation();
-  }
+  };
 
   return (
-    <Grid className={classes.container} >
+    <Grid className={classes.container}>
       <div className={classes.wrapper}>
-        <div
-          className={classes.body}
-          onScroll={isVisible}>
-          {messages.map((message) =>
-            <Message
-              key={message.id}
-              message={message}
-            />
-          )}
-          <div ref={bottomRef} className={classes.bottomItem}>
-          </div>
+        <div className={classes.body} onScroll={isVisible}>
+          {messages.map((message) => (
+            <Message key={message.id} message={message} />
+          ))}
+          <div ref={bottomRef} className={classes.bottomItem}></div>
         </div>
 
-        {
-          !isVisibleBottomDiv
-            ?
-            <div className={classes.arrow} onClick={() => {
+        {!isVisibleBottomDiv ? (
+          <div
+            className={classes.arrow}
+            onClick={() => {
               bottomRef.current.scrollIntoView(true);
               escapeMouseDown();
-            }}>
-              <KeyboardDoubleArrowDownIcon fontSize={'large'} />
-            </div>
-            :
-            <div></div>
-        }
+            }}
+          >
+            <KeyboardDoubleArrowDownIcon fontSize={'large'} />
+          </div>
+        ) : (
+          <div></div>
+        )}
 
-        <MessageForm messages={messages} photos={photos} bottomRef={bottomRef} />
+        <MessageForm
+          messages={messages}
+          photos={photos}
+          bottomRef={bottomRef}
+        />
       </div>
     </Grid>
-  )
-}
+  );
+};
 
 export default Chat;

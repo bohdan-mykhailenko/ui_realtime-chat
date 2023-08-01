@@ -34,7 +34,7 @@
 }
 
 .avatar {
-  margin:  0 auto 20px auto;
+  margin: 0 auto 20px auto;
   border: 3px solid var(--second-color);
   width: 80px;
   height: 80px;
@@ -53,12 +53,12 @@
   color: var(--text-color-light);
 }
 
-@media(max-width: 600px) {
+@media (max-width: 600px) {
   .name {
     margin: 0 0 10px 0;
     font-size: 26px;
   }
-  
+
   .email {
     margin: 0 0 35px 0;
     font-size: 18px;
@@ -70,7 +70,7 @@
   }
 }
 
-@media(max-width: 450px) {
+@media (max-width: 450px) {
   .avatar {
     width: 70px;
     height: 70px;
@@ -79,7 +79,7 @@
     margin: 0 0 7px 0;
     font-size: 24px;
   }
-  
+
   .email {
     margin: 0 0 35px 0;
     font-size: 17px;
@@ -90,7 +90,7 @@
   }
 }
 
-@media(max-width: 350px) {
+@media (max-width: 350px) {
   .avatar {
     width: 60px;
     height: 60px;
@@ -99,7 +99,7 @@
     margin: 0 0 7px 0;
     font-size: 22px;
   }
-  
+
   .email {
     margin: 0 0 45px 0;
     font-size: 16px;

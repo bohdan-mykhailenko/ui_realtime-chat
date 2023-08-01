@@ -6,11 +6,10 @@ export const Layout = () => {
   return (
     <>
       <Navbar />
-      
+
       <main className="main">
         <Outlet />
       </main>
-      
     </>
   );
 };

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import SendIcon from '@mui/icons-material/Send';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import MoodIcon from '@mui/icons-material/Mood';
-import { app } from "../../config/firebase";
+import { app } from '../../config/firebase';
 import 'firebase/firestore';
 import 'firebase/compat/storage';
 import classes from './MessageForm.module.css';
@@ -15,7 +15,6 @@ import { useUser } from '../../hooks/useUser';
 import { postMessage } from '../../api/messages';
 import { MessageType } from '../../types/MessageType';
 import { PhotoType } from '../../types/PhotoType';
-
 
 export const MessageForm = ({ messages, photos, bottomRef }) => {
   const textareaRef = useRef(null);
@@ -41,18 +40,26 @@ export const MessageForm = ({ messages, photos, bottomRef }) => {
     await fileRef.put(file);
 
     setImageURL(await fileRef.getDownloadURL());
-  }
+  };
 
   const messageId = messages.length + 1 || 1;
   const photoId = photos.length + 1 || 1;
 
   const sendMessage = async () => {
-    postMessage(user, firestore, collections, value, imageURL, messageId, photoId);
+    postMessage(
+      user,
+      firestore,
+      collections,
+      value,
+      imageURL,
+      messageId,
+      photoId,
+    );
 
     setValue('');
     setImageURL(null);
     bottomRef.current.scrollIntoView(true);
-  }
+  };
 
   useEffect(() => {
     if (!textValue) {
@@ -61,7 +68,7 @@ export const MessageForm = ({ messages, photos, bottomRef }) => {
       return;
     }
 
-    setValue(textValue + emojiValue)
+    setValue(textValue + emojiValue);
   }, [value, emojiValue]);
 
   const enterKey = (event) => {
@@ -77,15 +84,14 @@ export const MessageForm = ({ messages, photos, bottomRef }) => {
     setTextValue(event.target.value);
 
     if (event.target.value !== undefined) {
-      setValue(event.target.value + emojiValue)
+      setValue(event.target.value + emojiValue);
       setEmojiValue('');
       return;
     }
 
-    setValue(emojiValue)
+    setValue(emojiValue);
     setEmojiValue('');
-  }
-
+  };
 
   if (focus) {
     textareaRef.current.focus();
@@ -95,7 +101,7 @@ export const MessageForm = ({ messages, photos, bottomRef }) => {
     event.preventDefault();
 
     if (!value && !imageURL) {
-      return
+      return;
     }
 
     sendMessage();
@@ -103,39 +109,35 @@ export const MessageForm = ({ messages, photos, bottomRef }) => {
     setValue('');
     setEmojiValue('');
     setTextValue('');
-  }
+  };
 
   return (
     <Grid onKeyDown={enterKey}>
-      <form
-        className={classes.form}
-        onSubmit={handleSubmit}
-      >
+      <form className={classes.form} onSubmit={handleSubmit}>
         <label className={classes.label}>
-          {imageURL
-            ?
-            < div className={classes.imgPreviewWrapper}>
-              <img src={imageURL} className={classes.imgPreview} alt='img' />
+          {imageURL ? (
+            <div className={classes.imgPreviewWrapper}>
+              <img src={imageURL} className={classes.imgPreview} alt="img" />
             </div>
-            :
+          ) : (
             <AttachFileIcon className={classes.icon} />
-          }
+          )}
           <input
             type="file"
             accept="image/*"
             className={classes.fileInput}
-            onChange={atachImage} />
+            onChange={atachImage}
+          />
         </label>
         <textarea
           ref={textareaRef}
-          rows='3'
+          rows="3"
           className={classes.textarea}
           placeholder={'Write a message...'}
           value={value}
           onChange={(event) => handleChangeTextValue(event)}
           onKeyDown={enterKey}
-        >
-        </textarea>
+        ></textarea>
         <button className={classes.moodIcon}>
           <MoodIcon
             className={classes.icon}
@@ -147,25 +149,22 @@ export const MessageForm = ({ messages, photos, bottomRef }) => {
           />
         </button>
 
-        {isVisibleEmoji &&
-          <div className={classes.emoji} >
+        {isVisibleEmoji && (
+          <div className={classes.emoji}>
             <Emoji
               emojiValue={emojiValue}
               onChangeEmojiValue={setEmojiValue}
               onChangeFocus={setFocus}
             />
           </div>
-        }
+        )}
 
-        <button
-          ref={btnRef}
-          className={classes.button}
-        >
+        <button ref={btnRef} className={classes.button}>
           <SendIcon className={classes.icon} />
         </button>
       </form>
     </Grid>
-  )
+  );
 };
 
 MessageForm.propTypes = {

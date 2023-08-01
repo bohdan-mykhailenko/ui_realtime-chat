@@ -1,4 +1,4 @@
-import firebase from "firebase/compat/app";
+import firebase from 'firebase/compat/app';
 
 export const postMessage = async (
   user,
@@ -18,14 +18,14 @@ export const postMessage = async (
     createdAt: firebase.firestore.FieldValue.serverTimestamp(),
     image: imageURL,
     like: false,
-  })
+  });
 
   if (imageURL) {
     await firestore.collection(collections[1]).doc(messageId).add({
       id: photoId,
       URL: imageURL,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-    })
+    });
   }
 
   // firestore.collection(collections[0])
@@ -36,4 +36,4 @@ export const postMessage = async (
   //       arrayOfID.add(doc.id);
   //     });
   //   });
-}
+};

@@ -11,7 +11,7 @@
   bottom: 0;
   right: 0;
   left: 0;
-  display:none;
+  display: none;
   z-index: 122;
   background: var(--modal-color);
   z-index: 1000;
@@ -21,7 +21,7 @@
   border-radius: 10px;
   height: auto;
   width: auto;
-  border: 3px solid var(--second-color)
+  border: 3px solid var(--second-color);
 }
 
 .modal.active {
@@ -30,19 +30,19 @@
   align-items: center;
 }
 
-@media(max-width: 600px) {
+@media (max-width: 600px) {
   .modalContent {
     padding: 20px;
   }
 }
 
-@media(max-width: 450px) {
+@media (max-width: 450px) {
   .modalContent {
     padding: 15px;
   }
 }
 
-@media(max-width: 350px) {
+@media (max-width: 350px) {
   .modalContent {
     padding: 12px;
   }
