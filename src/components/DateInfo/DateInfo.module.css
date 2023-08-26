@@ -6,13 +6,14 @@
   padding: 0 3px 0 0;
   color: var(--first-color-dark);
   font-size: 10px;
+
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 }
 
 .dateHM {
-  margin: 0 0 2px 0;
+  margin-bottom: 3px;
   font-weight: 500;
   color: var(--first-color-dark);
 }

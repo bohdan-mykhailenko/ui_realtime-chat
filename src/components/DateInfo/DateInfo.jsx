@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classes from './DateInfo.module.css';
-import { Grid } from '@mui/material';
 
 export const DateInfo = ({ message }) => {
   const timestamp = message?.createdAt?.seconds * 1000;
@@ -13,15 +12,15 @@ export const DateInfo = ({ message }) => {
   const year = date.getFullYear() > 2022 ? '23' : '22';
 
   return (
-    <Grid className={classes.date}>
-      <Grid className={classes.dateHM}>
+    <div className={classes.date}>
+      <div className={classes.dateHM}>
         {hours}:{minutes}
-      </Grid>
+      </div>
 
-      <Grid className={classes.dateDMY}>
+      <div className={classes.dateDMY}>
         {day}/{month}/{year}
-      </Grid>
-    </Grid>
+      </div>
+    </div>
   );
 };
 

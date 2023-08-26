@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import AppBar from '@mui/material/Appbar';
+import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import { Grid } from '@mui/material';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -20,7 +20,7 @@ import ChatIcon from '@mui/icons-material/Chat';
 import CollectionsIcon from '@mui/icons-material/Collections';
 import { Link } from 'react-router-dom';
 
-const Navbar = () => {
+export const Navbar = () => {
   const { theme, setTheme } = useTheme();
   const { isVisibleGallery, setIsVisibleGallery } = useGallery(false);
   const [modalSignIn, setModalSignIn] = useState(false);
@@ -198,5 +198,3 @@ const Navbar = () => {
     </AppBar>
   );
 };
-
-export default Navbar;
